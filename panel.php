@@ -59,7 +59,7 @@ $_SESSION['fecha'] = $fecha_actual;
 
 	ul span {
 
-		color:white;
+		color:blue;
 		font-size: 25px;
 
 	}
