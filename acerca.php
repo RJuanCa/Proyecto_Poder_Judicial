@@ -1,4 +1,5 @@
 <?php
+/*
 session_start();
 
 // Si se cerro la sesión por otro lado
@@ -11,7 +12,7 @@ if ($definido==false){
   exit();
          
 }
-
+*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -104,9 +105,9 @@ if ($definido==false){
 
  	<span class="encab">
  	<span class="text-danger">
-	Fecha: <?php echo $_SESSION['fecha']; ?>
+	Fecha: <!--<?php echo $_SESSION['fecha']; ?> -->
 	<br/>
-	Usuario: <?php echo $_SESSION['usuario']; ?>
+	Usuario: <!--<?php echo $_SESSION['usuario']; ?>-->
 	</span>
 	</span>
 
@@ -137,7 +138,9 @@ if ($definido==false){
 <br/>
 <div class="panel-footer">
   <div class="container">
-    
+    <p class="acerca_list">
+      DESARROLLADO POR ALUMNOS DEL INSTITUTO LLANO
+    </p>
   </div>
 </div>
 
