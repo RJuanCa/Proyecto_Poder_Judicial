@@ -1,5 +1,5 @@
 <?php 
-/*
+
 require("coneccion/connection.php");
 session_start();
 
@@ -33,7 +33,7 @@ if(isset($_GET['usuario'])) {
 //echo $_SESSION['usuario2'];
 //echo "...";
 //exit();
-*/
+
 
 
 ?>
@@ -182,9 +182,9 @@ if(isset($_GET['usuario'])) {
 
 	 <span class="encab">
    <span class="text-danger">
-    Fecha: <?php /* echo $_SESSION['fecha']; */ ?>
+    Fecha: <?php  echo $_SESSION['fecha']; ?>
 	  <br/>
-	  Usuario: <?php /* echo $_SESSION['usuario']; */ ?>
+	  Usuario: <?php  echo $_SESSION['usuario']; ?>
    </span>  
 	 </span>	
 

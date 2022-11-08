@@ -1,6 +1,6 @@
 <?php 
 
-/*require("coneccion/connection.php");
+require("coneccion/connection.php");
 session_start();
 
 // Si se cerro la sesión por otro lado
@@ -28,13 +28,13 @@ $consultaf2 = $row2->fetch_assoc();
 $hora_actual=$consultaf2['hora'];
 $_SESSION['hora_actual'] = $hora_actual;
 
-/*
+
 $sql = "SELECT DATE_FORMAT(NOW( ), '%d-%m-%Y' ) as fecha";
 $row3 = $mysqli->query($sql);
 $consultaf3 = $row3->fetch_assoc();
 $fecha_actual=$consultaf3['fecha'];
 $_SESSION['fecha'] = $fecha_actual;
-*/
+
 
 ?>
 <!DOCTYPE html>
@@ -97,9 +97,9 @@ $_SESSION['fecha'] = $fecha_actual;
 			
 			<span class="text-danger">
 			<br/>			
-			Fecha: <?php /* echo $_SESSION['fecha']; */ ?>
+			Fecha: <?php  echo $_SESSION['fecha'];  ?>
 			<br/>			
-			Usuario: <?php /* echo $_SESSION['usuario']; */ ?>
+			Usuario: <?php  echo $_SESSION['usuario'];  ?>
 			</span>
 
 		<p>

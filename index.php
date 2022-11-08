@@ -1,6 +1,6 @@
 <?php
 
-/*require("coneccion/connection.php");
+require("coneccion/connection.php");
 session_start();
 
 if(!isset($_SESSION['usuario_2'])) {
@@ -9,7 +9,7 @@ if(!isset($_SESSION['usuario_2'])) {
 	$_SESSION['clave_2']="";
 
 }	
-
+/*
 $sql = "SELECT current_date";
 $row = $mysqli->query($sql);
 $consultaf = $row->fetch_assoc();
@@ -29,17 +29,17 @@ $fecha_act_i=$valores_fecha_act_i[2]."-".$valores_fecha_act_i[1]."-".$valores_fe
 
 /*
 
-$valores_fecha_act[0], año
+$valores_fecha_act[0], anyo
 $valores_fecha_act[1], mes
 $valores_fecha_act[2], dia
 
 */
 
-/*$sql="SELECT * FROM tab_fecha_pc";
+$sql="SELECT * FROM tab_fecha_pc";
 $query = $mysqli->query($sql);
-$row=$query->fetch_assoc();
+/*$row=$query->fetch_assoc();
 
-$fecha_pc_last=$row["fecha_pc"];
+$fecha_pc_last=$row["fecha_pc"]; 
 
 $valores_fecha_pc_last = explode('-', $fecha_pc_last);
 $fecha_pc_last=$valores_fecha_pc_last[2]."-".$valores_fecha_pc_last[1]."-".$valores_fecha_pc_last[0];
@@ -76,7 +76,7 @@ function compararFechas($primera, $segunda)
   $anyoSegunda  = $valoresSegunda[2];
 
   $diasPrimeraJuliano = gregoriantojd($mesPrimera, $diaPrimera, $anyoPrimera);  
-  $diasSegundaJuliano = gregoriantojd($mesSegunda, $diaSegunda, $anyoSegunda);     
+  $diasSegundaJuliano = gregoriantojd($mesSegunda, $diaSegunda, $anyoSegunda);
 
   if(!checkdate($mesPrimera, $diaPrimera, $anyoPrimera)){
     // "La fecha ".$primera." no es v&aacute;lida";
@@ -88,8 +88,8 @@ function compararFechas($primera, $segunda)
     return  $diasPrimeraJuliano - $diasSegundaJuliano;
   } 
 
-}*/
-
+}
+*/
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -128,11 +128,11 @@ function compararFechas($primera, $segunda)
 				<div>
 					<div class="input-group">
 						<label class="label1" for="nombre">Usuario: </label>
-						<input type="text" id="user" name="user" autofocus value=<?php /*echo $_SESSION['usuario_2'];*/ ?>>
+						<input type="text" id="user" name="user" autofocus value=<?php echo $_SESSION['usuario_2']; ?>>
 					</div>
 					<div class="input-group">
 						<label class="label2" for="pass">Contraseña: </label>
-						<input type="password" id="pass" name="pass" value=<?php /*echo $_SESSION['clave_2'];*/ ?>>
+						<input type="password" id="pass" name="pass" value=<?php echo $_SESSION['clave_2']; ?>>
 					</div>
           <input onclick="Validar(document.getElementById('user').value, document.getElementById('pass').value);" type="submit" id="btn-submit" value="Entrar">
 		 <br> 

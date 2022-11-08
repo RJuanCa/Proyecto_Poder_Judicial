@@ -3,7 +3,7 @@
 $server="localhost"; 
 $user="root";
 $pass="";
-$db="?";
+$db="db_arquitectura";
 
 
 $mysqli = new mysqli($server, $user, $pass, $db);

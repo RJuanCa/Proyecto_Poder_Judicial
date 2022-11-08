@@ -1,5 +1,5 @@
 <?php 
-/* require("coneccion/connection.php");
+ require("coneccion/connection.php");
 session_start();
 
 // Si se cerro la sesión por otro lado
@@ -12,22 +12,28 @@ if ($definido==false){
          
 }
 
-if(isset($_GET['producto'])) {
+if(isset($_GET['articulos'])) {
 
-    $producto=$_GET['producto'];
-    $descripcion=$_GET['descripcion'];
-    $precio_compra=$_GET['precio_compra'];
-    $precio_final=$_GET['precio_final'];
+    $id_art=$_GET['id_articulos'];
+    $nom_art=$_GET['nombre_articulo'];
+    $id_subrubro=$_GET['id_subrubro'];
+    $id_rubro=$_GET['id_rubro'];
+    $marca=$_GET['marca'];
+    $modelo=$_GET['modelo'];
+    $estado=$_GET['estado'];
    
 }else{
 
-  $producto="";
-  $descripcion="";
-  $precio_compra="";
-  $precio_final="";
+  $id_art="";
+  $nom_art="";
+  $id_subrubro="";
+  $id_rubro="";
+  $marca="";
+  $modelo="";
+  $estado="";
 
 }
-*/
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -174,9 +180,9 @@ if(isset($_GET['producto'])) {
 
 	 <span class="encab">
    <span class="text-danger">
-    Fecha: <?php /* echo $_SESSION['fecha']; */ ?>
+    Fecha: <?php  echo $_SESSION['fecha']; ?>
 	  <br/>
-	  Usuario: <?php /* echo $_SESSION['usuario'];*/ ?>
+	  Usuario: <?php  echo $_SESSION['usuario']; ?>
    </span>  
 	 </span>	
 
