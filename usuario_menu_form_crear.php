@@ -179,7 +179,7 @@ if(isset($_GET['usuario'])) {
 <div class="container">
 
   <p class="usuario3">
-
+<!--
 	 <span class="encab">
    <span class="text-danger">
     Fecha: <?php  echo $_SESSION['fecha']; ?>
@@ -187,7 +187,7 @@ if(isset($_GET['usuario'])) {
 	  Usuario: <?php  echo $_SESSION['usuario']; ?>
    </span>  
 	 </span>	
-
+-->
   </p>
 
   <h4>Agregar Usuario</h4>

@@ -51,7 +51,7 @@ if(isset($_GET['id_dependencia'])) {
 
       $oficina=utf8_decode($row['oficina']);
       $responsable=utf8_decode($row['responsable']);
-      $telefono=$row['telefono'];
+      $cargo=$row['telefono'];
       $direccion=utf8_decode($row['direccion']);
       $correo=$row['correo'];
 
@@ -59,7 +59,7 @@ if(isset($_GET['id_dependencia'])) {
      $_SESSION['dependencia2']=$dependencia;
      $_SESSION['oficina2']=$oficina;
       $_SESSION['responsable2']=$responsable;
-      $_SESSION['telefono2']=$telefono;
+      $_SESSION['telefono2']=$cargo;
       $_SESSION['direccion2']=$direccion;
       $_SESSION['correo2']=$correo;
 
@@ -267,7 +267,7 @@ if(isset($_GET['id_dependencia'])) {
       <div class="form-group">
         <label for="telefono" class="control-label col-md-2">Teléfono:</label>
         <div class="col-md-9">
-          <input id="telefono" class="form-control" type="text" name="telefono" size="50" maxlength="50" value="<?php echo $telefono ?>"/>
+          <input id="telefono" class="form-control" type="text" name="telefono" size="50" maxlength="50" value="<?php echo $cargo ?>"/>
         </div>
       </div>
 

@@ -15,101 +15,88 @@ if ($definido==false){
          
 }
 
-/*
 
-$oficina=$producto = $_POST['oficina'];
-echo $oficina;
+
+$direccion=$direccion = $_POST['direccion'];
+echo $direccion;
 exit();
 
-$id_cliente
-$dependencia
-$oficina
-$responsable
-$telefono
-$direccion
-$correo
+$id_dep;
+$nom_depen;
+$direccion;
+$responsable_dep;
+$cargo;
 
-*/
+
 
 //validación
 $error_form = "";
-/*
+
 if ($_POST["nac"] == "") {
 
     $_SESSION['contenido_mensaje_cliente']='Debes escribir el campo antes de la Cédula o Rif';
     $_SESSION['cliente_mensaje']='si';
 
-    $id_cliente=$_SESSION['id_cliente2'];
-    $nac=$_SESSION['nac2'];
-    $dependencia=$_SESSION['dependencia2'];
-    $rif_final=$_SESSION['rif_final2'];
-    $oficina=$_SESSION["oficina2"];
-    $responsable=$_SESSION['responsable2'];
-    $telefono=$_SESSION['telefono2'];
-    $direccion=$_SESSION['direccion2'];
-    $correo=$_SESSION['correo2'];
-
-    echo "<script>location.href = 'clientes_editar.php?id_cliente=$id_cliente'</script>";    
+    $id_dep=$_SESSION['id_dependecia2'];
+    $nom_depen=$_SESSION['nom_depen2'];
+    $direccion=$_SESSION["direccion2"];
+    $responsable_dep=$_SESSION['responsable_dep2'];
+    $cargo=$_SESSION['cargo2'];
+    
+    echo "<script>location.href = 'dependencia_editar.php?id_dep=$id_dep'</script>";    
     exit();
 
 }
-*/
-if ($_POST["dependencia"] == "") {
 
-    $_SESSION['contenido_mensaje_cliente']='Debes escribir la Dependencia';
+if ($_POST["nom_depen"] == "") {
+
+    $_SESSION['contenido_mensaje_cliente']='Debes escribir la nom_depen';
     $_SESSION['cliente_mensaje']='si';
 
-    $id_cliente=$_SESSION['id_cliente2'];
-    $nac=$_SESSION['nac2'];
-    $dependencia=$_SESSION['dependencia2'];
-    $rif_final=$_SESSION['rif_final2'];
-    $oficina=$_SESSION["oficina2"];
-    $responsable=$_SESSION['responsable2'];
-    $telefono=$_SESSION['telefono2'];
+    $id_dep=$_SESSION['id_dep2'];
+    $nom_depen=$_SESSION['nom_depen2'];
+    $direccion=$_SESSION["direccion2"];
+    $responsable_dep=$_SESSION['responsable_dep2'];
+    $cargo=$_SESSION['cargo2'];
     $direccion=$_SESSION['direccion2'];
     $correo=$_SESSION['correo2'];
 
-    echo "<script>location.href = 'clientes_editar.php?id_cliente=$id_cliente'</script>";    
+    echo "<script>location.href = 'nom_depen_editar.php?id_dep=$id_dep'</script>";    
     exit();
 
 }
-/*
-$dependencia_numero =  is_numeric($_POST["dependencia"]);
-if ($dependencia_numero==false){
 
-    $_SESSION['contenido_mensaje_cliente']='La Dependencia debe ser un nonmbre';
+$nom_depen_numero =  is_numeric($_POST["nom_depen"]);
+if ($nom_depen_numero==false){
+
+    $_SESSION['contenido_mensaje_cliente']='La nom_depen debe ser un nonmbre';
     $_SESSION['cliente_mensaje']='si';
 
-    $id_cliente=$_SESSION['id_cliente2'];
-    $nac=$_SESSION['nac2'];
-    $dependencia=$_SESSION['dependencia2'];
-    $rif_final=$_SESSION['rif_final2'];
-    $oficina=$_SESSION["oficina2"];
-    $responsable=$_SESSION['responsable2'];
-    $telefono=$_SESSION['telefono2'];
-    $direccion=$_SESSION['direccion2'];
-    $correo=$_SESSION['correo2'];
+    $id_dep=$_SESSION['id_dep2'];
+    $nom_depen=$_SESSION['nom_depen2'];
+    $direccion=$_SESSION["direccion2"];
+    $responsable_dep=$_SESSION['responsable_dep2'];
+    $cargo=$_SESSION['cargo2'];
+   
 
-    echo "<script>location.href = 'clientes_editar.php?id_cliente=$id_cliente'</script>";    
+    echo "<script>location.href = 'nom_depen_editar.php?id_dep=$id_dep'</script>";    
     exit();
 
 }
-*/
-$dependencia_decimal=number_format($_POST["dependencia"],1);
-$dependencia_decimal = explode('.', $dependencia_decimal);
 
-if ($dependencia_decimal[1]!=0){
+$nom_depen_decimal=number_format($_POST["nom_depen"],1);
+$nom_depen_decimal = explode('.', $nom_depen_decimal);
 
-    $_SESSION['contenido_mensaje_cliente']='La Cédula o Rif debe ser un número entero';
+if ($nom_depen_decimal[1]!=0){
+
+    $_SESSION['contenido_mensaje_cliente']='';
     $_SESSION['cliente_mensaje']='si';
 
-    $id_cliente=$_SESSION['id_cliente2'];
-    $nac=$_SESSION['nac2'];
-    $dependencia=$_SESSION['dependencia2'];
-    $rif_final=$_SESSION['rif_final2'];
-    $oficina=$_SESSION["oficina2"];
-    $responsable=$_SESSION['responsable2'];
-    $telefono=$_SESSION['telefono2'];
+    $id_dep=$_SESSION['id_dep2'];
+    $nom_depen=$_SESSION['nom_depen2'];
+    $direccion=$_SESSION["direccion2"];
+    $responsable_dep=$_SESSION['responsable_dep2'];
+    $cargo=$_SESSION['cargo2'];
     $direccion=$_SESSION['direccion2'];
     $correo=$_SESSION['correo2'];
 
@@ -129,11 +116,11 @@ if ($_POST["rif_final"] != "") {
 
         $id_cliente=$_SESSION['id_cliente2'];
         $nac=$_SESSION['nac2'];
-        $dependencia=$_SESSION['dependencia2'];
+        $nom_depen=$_SESSION['nom_depen2'];
         $rif_final=$_SESSION['rif_final2'];
-        $oficina=$_SESSION["oficina2"];
-        $responsable=$_SESSION['responsable2'];
-        $telefono=$_SESSION['telefono2'];
+        $direccion=$_SESSION["direccion2"];
+        $responsable_dep=$_SESSION['responsable_dep2'];
+        $cargo=$_SESSION['cargo2'];
         $direccion=$_SESSION['direccion2'];
         $correo=$_SESSION['correo2'];
 
@@ -154,17 +141,17 @@ if ($_POST["rif_final"] == "") {
 
 }
 
-if ($_POST["oficina"] == "") {
+if ($_POST["direccion"] == "") {
 
-	$_SESSION['contenido_mensaje_cliente']='Debes escribir los oficina';
+	$_SESSION['contenido_mensaje_cliente']='Debes escribir los direccion';
     $_SESSION['cliente_mensaje']='si';
 
     $id_cliente=$_SESSION['id_cliente2'];
     $nac=$_SESSION['nac2'];
-    $dependencia=$_SESSION['dependencia2'];
-    $oficina=$_SESSION["oficina2"];
-    $responsable=$_SESSION['responsable2'];
-    $telefono=$_SESSION['telefono2'];
+    $nom_depen=$_SESSION['nom_depen2'];
+    $direccion=$_SESSION["direccion2"];
+    $responsable_dep=$_SESSION['responsable_dep2'];
+    $cargo=$_SESSION['cargo2'];
     $direccion=$_SESSION['direccion2'];
     $correo=$_SESSION['correo2'];
 
@@ -173,17 +160,17 @@ if ($_POST["oficina"] == "") {
 
 }
 
-if ($_POST["responsable"] == "") {
+if ($_POST["responsable_dep"] == "") {
 
-    $_SESSION['contenido_mensaje_cliente']='Debes escribir los responsable';
+    $_SESSION['contenido_mensaje_cliente']='Debes escribir los responsable_dep';
     $_SESSION['cliente_mensaje']='si';
 
     $id_cliente=$_SESSION['id_cliente2'];
     $nac=$_SESSION['nac2'];
-    $dependencia=$_SESSION['dependencia2'];
-    $oficina=$_SESSION["oficina2"];
-    $responsable=$_SESSION['responsable2'];
-    $telefono=$_SESSION['telefono2'];
+    $nom_depen=$_SESSION['nom_depen2'];
+    $direccion=$_SESSION["direccion2"];
+    $responsable_dep=$_SESSION['responsable_dep2'];
+    $cargo=$_SESSION['cargo2'];
     $direccion=$_SESSION['direccion2'];
     $correo=$_SESSION['correo2'];
 
@@ -192,17 +179,17 @@ if ($_POST["responsable"] == "") {
 
 }
 
-if ($_POST["telefono"] == "") {
+if ($_POST["cargo"] == "") {
 
     $_SESSION['contenido_mensaje_cliente']='Debes escribir el Teléfono';
     $_SESSION['cliente_mensaje']='si';
 
     $id_cliente=$_SESSION['id_cliente2'];
     $nac=$_SESSION['nac2'];
-    $dependencia=$_SESSION['dependencia2'];
-    $oficina=$_SESSION["oficina2"];
-    $responsable=$_SESSION['responsable2'];
-    $telefono=$_SESSION['telefono2'];
+    $nom_depen=$_SESSION['nom_depen2'];
+    $direccion=$_SESSION["direccion2"];
+    $responsable_dep=$_SESSION['responsable_dep2'];
+    $cargo=$_SESSION['cargo2'];
     $direccion=$_SESSION['direccion2'];
     $correo=$_SESSION['correo2'];
 
@@ -218,10 +205,10 @@ if ($_POST["direccion"] == "") {
 
     $id_cliente=$_SESSION['id_cliente2'];
     $nac=$_SESSION['nac2'];
-    $dependencia=$_SESSION['dependencia2'];
-    $oficina=$_SESSION["oficina2"];
-    $responsable=$_SESSION['responsable2'];
-    $telefono=$_SESSION['telefono2'];
+    $nom_depen=$_SESSION['nom_depen2'];
+    $direccion=$_SESSION["direccion2"];
+    $responsable_dep=$_SESSION['responsable_dep2'];
+    $cargo=$_SESSION['cargo2'];
     $direccion=$_SESSION['direccion2'];
     $correo=$_SESSION['correo2'];
 
@@ -237,10 +224,10 @@ if ($_POST["correo"] == "") {
 
     $id_cliente=$_SESSION['id_cliente2'];
     $nac=$_SESSION['nac2'];
-    $dependencia=$_SESSION['dependencia2'];
-    $oficina=$_SESSION["oficina2"];
-    $responsable=$_SESSION['responsable2'];
-    $telefono=$_SESSION['telefono2'];
+    $nom_depen=$_SESSION['nom_depen2'];
+    $direccion=$_SESSION["direccion2"];
+    $responsable_dep=$_SESSION['responsable_dep2'];
+    $cargo=$_SESSION['cargo2'];
     $direccion=$_SESSION['direccion2'];
     $correo=$_SESSION['correo2'];
 
@@ -250,21 +237,21 @@ if ($_POST["correo"] == "") {
 }
 
 $nac=$_POST['nac'];
-$dependencia=$_POST['dependencia'];
+$nom_depen=$_POST['nom_depen'];
 $rif_final=$_POST['rif_final'];
 
-$dependencia=$nac."-".$dependencia;
+$nom_depen=$nac."-".$nom_depen;
 
 if($rif_final!=""){
 
-    $dependencia=$dependencia."-".$rif_final;
+    $nom_depen=$nom_depen."-".$rif_final;
 
 }
 
-if($dependencia!=$_SESSION['dependencia_actual2']){
+if($nom_depen!=$_SESSION['nom_depen_actual2']){
 
     // Chequea que existe la cédula o rif del cliente
-    $sql20="SELECT dependencia FROM tab_clientes WHERE (dependencia = '$dependencia')";
+    $sql20="SELECT nom_depen FROM tab_clientes WHERE (nom_depen = '$nom_depen')";
     $query20 = $mysqli->query($sql20);
     // $row20=$query20->fetch_assoc();
 
@@ -275,10 +262,10 @@ if($dependencia!=$_SESSION['dependencia_actual2']){
 
         $id_cliente=$_SESSION['id_cliente2'];
         $nac=$_SESSION['nac2'];
-        $dependencia=$_SESSION['dependencia2'];
-        $oficina=$_SESSION["oficina2"];
-        $responsable=$_SESSION['responsable2'];
-        $telefono=$_SESSION['telefono2'];
+        $nom_depen=$_SESSION['nom_depen2'];
+        $direccion=$_SESSION["direccion2"];
+        $responsable_dep=$_SESSION['responsable_dep2'];
+        $cargo=$_SESSION['cargo2'];
         $direccion=$_SESSION['direccion2'];
         $correo=$_SESSION['correo2'];
 
@@ -290,16 +277,16 @@ if($dependencia!=$_SESSION['dependencia_actual2']){
 }
 
 $id_cliente=$_POST["id_cliente"];
-$oficina=utf8_encode($_POST["oficina"]);
-$responsable=utf8_encode($_POST['responsable']);
-$telefono=$_POST['telefono'];
+$direccion=utf8_encode($_POST["direccion"]);
+$responsable_dep=utf8_encode($_POST['responsable_dep']);
+$cargo=$_POST['cargo'];
 $direccion=utf8_encode($_POST['direccion']);
 $correo=$_POST['correo'];
 
 // Guarda datos 
-$sql="UPDATE tab_clientes SET dependencia = '".$dependencia."', ";
-$sql.="oficina = '".$oficina."', responsable = '".$responsable."', ";
-$sql.="telefono = '".$telefono."', direccion = '".$direccion."', ";
+$sql="UPDATE tab_clientes SET nom_depen = '".$nom_depen."', ";
+$sql.="direccion = '".$direccion."', responsable_dep = '".$responsable_dep."', ";
+$sql.="cargo = '".$cargo."', direccion = '".$direccion."', ";
 $sql.="correo = '".$correo."' ";
 $sql.="WHERE (tab_clientes.id_cliente = ".$id_cliente.")";
 

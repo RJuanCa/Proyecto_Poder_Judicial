@@ -1,5 +1,5 @@
 <?php 
-/* require("coneccion/connection.php");
+require("coneccion/connection.php");
 session_start();
 
 // Si se cerro la sesión por otro lado
@@ -7,7 +7,7 @@ $definido=isset($_SESSION['usuario']);
 // No está definido la variable
 if ($definido==false){
 
-    header("Location:error1.php");
+    header("Location:index.php");
     exit();
          
 }
@@ -18,7 +18,7 @@ if(isset($_GET['nac'])) {
     $dependencia=$_SESSION['dependencia'];
     $oficina=$_SESSION['oficina'];
     $responsable=$_SESSION['responsable'];
-    $telefono=$_SESSION['telefono'];
+    $cargo=$_SESSION['telefono'];
     $direccion=$_SESSION['direccion'];
     $correo=$_SESSION['correo'];
    
@@ -28,11 +28,11 @@ if(isset($_GET['nac'])) {
   $dependencia="";
   $oficina="";
   $responsable="";
-  $telefono="";
+  $cargo="";
   $direccion="";
   $correo="";
 
-} */
+} 
 
 ?>
 <!DOCTYPE html>
@@ -225,7 +225,7 @@ if(isset($_GET['nac'])) {
       <div class="form-group">
         <label for="telefono" class="control-label col-md-2">Teléfono:</label>
         <div class="col-md-9">
-          <input id="telefono" class="form-control" type="text" name="telefono" value="<?php /* echo $telefono */ ?>" size="50" maxlength="50" />
+          <input id="telefono" class="form-control" type="text" name="telefono" value="<?php /* echo $cargo */ ?>" size="50" maxlength="50" />
         </div>
       </div>
 

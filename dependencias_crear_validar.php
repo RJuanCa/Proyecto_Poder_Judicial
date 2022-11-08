@@ -188,7 +188,7 @@ if ($_POST["telefono"] == "") {
 
 }else{
 
-    $telefono=$_POST["telefono"];
+    $cargo=$_POST["telefono"];
 
 }
 
@@ -272,7 +272,7 @@ $id_dependencias_cp=$_SESSION["id_dependencias"];
 
 // Guarda datos 
 $sql="INSERT INTO tab_dependencias (cedula, dependencia, oficina, telefono, direccion, correo, fecha_reg, hora_reg, id_dependencias) ";
-$sql.="VALUES ('$cedula','$dependencia','$oficina','$telefono','$direccion','$correo','$fecha_act','$hora_actual','$id_dependencias_cp')";
+$sql.="VALUES ('$cedula','$dependencia','$oficina','$cargo','$direccion','$correo','$fecha_act','$hora_actual','$id_dependencias_cp')";
 
 // echo $sql;
 // exit();
