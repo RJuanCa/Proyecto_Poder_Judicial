@@ -1,5 +1,5 @@
 <?php
-/* session_start();
+ session_start();
 define("NRO_REGISTROS",20);
 require_once('coneccion/conexion.php');
 
@@ -8,7 +8,7 @@ $definido=isset($_SESSION['usuario']);
 // No está definido la variable
 if ($definido==false){
 
-    header("Location:error1.php");
+    header("Location:index.php");
 
   exit();
          
@@ -16,7 +16,7 @@ if ($definido==false){
 
 $id_usuario=$_SESSION['id_usuario'];
 $nro=0;
-*/
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -120,9 +120,9 @@ $nro=0;
 
    	<span class="encab">
    	<span class="text-danger">
-	Fecha: <?php /* echo $_SESSION['fecha']; */ ?>
+	Fecha: <?php  echo $_SESSION['fecha']; ?>
 	<br/>
-	Usuario: <?php /* echo $_SESSION['usuario']; */ ?>
+	Usuario: <?php  echo $_SESSION['usuario'];  ?>
 	</span>
 	</span>
 
@@ -147,7 +147,7 @@ return $tfecha;
 	if(!empty($_POST['search']['keyword'])) {
 		$search_keyword = $_POST['search']['keyword'];
 	}
-	$sql = 'SELECT * FROM tab_productos WHERE (cod_producto_2 LIKE :keyword OR producto LIKE :keyword OR descripcion LIKE :keyword) ORDER BY producto ASC ';
+	$sql = 'SELECT * FROM articulos WHERE (nombre_articulo_2 LIKE :keyword OR articulo LIKE :keyword OR nombre LIKE :keyword) ORDER BY nombre_articulo ASC ';
 	
 	/* Pagination Code starts */
 	$per_page_html = '';
@@ -158,7 +158,7 @@ return $tfecha;
 		$start=($page-1) /* NRO_REGISTROS*/;
     $nro=$start;
 	}
-  /*
+   
 	$limit=" limit " . $start . "," . NRO_REGISTROS;
 	$pagination_statement = $pdo_conn->prepare($sql);
 	$pagination_statement->bindValue(':keyword', '%' . $search_keyword . '%', PDO::PARAM_STR);
@@ -185,7 +185,7 @@ return $tfecha;
 	$pdo_statement->bindValue(':keyword', '%' . $search_keyword . '%', PDO::PARAM_STR);
 	$pdo_statement->execute();
 	$resultados = $pdo_statement->fetchAll();
-  */
+  
 ?>
 <form name='frmSearch' action='' method='post'>
 <div style='text-align:right;margin:20px 0px;'>
@@ -230,7 +230,7 @@ return $tfecha;
         echo $nro; 
       ?>
     </td>
-    <td><?php echo $row['producto']; ?></td>
+    <td><?php echo $row['id_articulo']; ?></td>
 		<td>
       <?php 
       $descripcione=$row['descripcion'];
@@ -244,7 +244,7 @@ return $tfecha;
     </td>
     
 		<td>
-     <a href="productos_reporte.php?id_producto=<?php echo $row['id_producto']?>">Ver |</a>
+     <a href="articulos_reporte.php?id_articulo=<?php echo $row['id_articulo']?>">Ver |</a>
     </td>
 
 	  </tr>
@@ -265,13 +265,13 @@ Página <?php echo $page; ?>
 </div>
 <script>
 
-// Editar producto
-function Validar3(id_producto, cod_producto, producto, descripcion, precio_compra, precio_final)
+// Editar id_articulo
+function Validar3(id_articulo, nombre_articulo, id_subrubro, id_rubro, marca, modelo, estado)
 {
 
 $.confirm({
 title: 'Mensaje',
-content: '¿Confirma en editar <br/> el producto de reglon nro. '+cod_producto+'?',
+content: '¿Confirma en editar <br/> el articulo '+nombre_articulo+'?',
 animation: 'scale',
 closeAnimation: 'zoom',
 buttons: {
@@ -281,7 +281,7 @@ buttons: {
 
            action: function(){
 
-           window.location.href="productos_editar.php?id_producto="+id_producto+"&producto="+producto+"&descripcion="+descripcion+"&cod_producto="+cod_producto+"&precio_compra="+precio_compra+"&precio_final="+precio_final;           
+           window.location.href="articulos_editar.php?id_articulo="+id_articulo+"&articulo="+articulo+"&descripcion="+descripcion+"&nombre_articulo="+nombre_articulo+"&precio_compra="+precio_compra+"&precio_final="+precio_final;           
              
            } // action: function(){
 
@@ -297,13 +297,13 @@ buttons: {
 
 }
 
-// Eliminar producto
-function Validar4(id_producto, cod_producto)
+// Eliminar articulo
+function Validar4(id_articulo, nombre_articulo)
 {
 
 $.confirm({
 title: 'Mensaje',
-content: '¿Confirma en eliminar <br/> el producto de reglon nro. '+cod_producto+'?',
+content: '¿Confirma en eliminar <br/> el articulo de reglon nro. '+nombre_articulo+'?',
 animation: 'scale',
 closeAnimation: 'zoom',
 buttons: {
@@ -313,7 +313,7 @@ buttons: {
 
            action: function(){
 
-           window.location.href="productos_eliminar_validar.php?id_producto="+id_producto;           
+           window.location.href="articulos_eliminar_validar.php?id_articulo="+id_articulo;           
              
            } // action: function(){
 
@@ -333,9 +333,9 @@ buttons: {
 
 <?php 
 
-if ( isset($_SESSION['producto_guardada']) && $_SESSION['producto_guardada'] == "si" ) {
+if ( isset($_SESSION['articulo_guardada']) && $_SESSION['articulo_guardada'] == "si" ) {
 
-    unset($_SESSION['producto_guardada']);
+    unset($_SESSION['articulo_guardada']);
     
     echo "<script>
 
@@ -353,15 +353,15 @@ if ( isset($_SESSION['producto_guardada']) && $_SESSION['producto_guardada'] == 
 
 }
 
-if ( isset($_SESSION['producto_eliminado']) && $_SESSION['producto_eliminado'] == "si" ) {
+if ( isset($_SESSION['articulo_eliminado']) && $_SESSION['articulo_eliminado'] == "si" ) {
 
-    unset($_SESSION['producto_eliminado']);
+    unset($_SESSION['articulo_eliminado']);
     
     echo "<script>
 
     $.confirm({
       title: 'Mensaje',
-      content: '<span style=color:green>Producto eliminado con éxito.</span>',
+      content: '<span style=color:green>articulo eliminado con éxito.</span>',
       autoClose: 'Cerrar|3000',
       buttons: {
           Cerrar: function () {
@@ -373,15 +373,15 @@ if ( isset($_SESSION['producto_eliminado']) && $_SESSION['producto_eliminado'] =
 
 }
 
-if ( isset($_SESSION['producto_tiene_factura']) && $_SESSION['producto_tiene_factura'] == "si" ) {
+if ( isset($_SESSION['articulo_tiene_factura']) && $_SESSION['articulo_tiene_factura'] == "si" ) {
 
-    unset($_SESSION['producto_tiene_factura']);
+    unset($_SESSION['articulo_tiene_factura']);
     
     echo "<script>
 
     $.confirm({
       title: 'Mensaje',
-      content: '<span style=color:red>No se puede eliminar el producto <br/>porque tiene facturas.</span>',
+      content: '<span style=color:red>No se puede eliminar el articulo <br/>porque tiene facturas.</span>',
       autoClose: 'Cerrar|3000',
       buttons: {
           Cerrar: function () {

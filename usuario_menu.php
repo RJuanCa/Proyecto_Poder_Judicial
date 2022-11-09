@@ -1,5 +1,5 @@
 <?php 
-/*
+
 require("coneccion/connection.php");
 session_start();
 
@@ -12,7 +12,7 @@ if ($definido==false){
     exit();
          
 }
-*/
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -130,9 +130,9 @@ if ($definido==false){
 <form id="formulario_usuarios" method="post" action="crear_factura.php">
 
 <?php
-/*
-// Tabla monedas
-$sql2="SELECT * FROM tab_usuarios ORDER BY usuario";
+
+
+$sql2="SELECT * FROM usuarios ORDER BY usuario";
 $query2 = $mysqli->query($sql2);
 
 if($query2->num_rows==0){
@@ -140,8 +140,8 @@ if($query2->num_rows==0){
 		echo "No hay datos para mostrar";
 
 }else{ // if($query2->num_rows==0)	
+}
 
-*/
 ?>
 
 <table class="table table-bordered table-hover">
@@ -161,17 +161,17 @@ if($query2->num_rows==0){
   <tbody id='table-body'>
 	
 <?php
-	/*
+	
 	while ($row2=$query2->fetch_assoc()) {
-*/
+
 ?>
 
 		<tr class='table-row'>
 		  
-			<td><?php /* echo utf8_decode($row2['usuario'])*/ ?></td>
-			<td><?php /* echo $row2['contrasena']*/ ?></td>
-      <td><?php /* echo $row2['rol']*/ ?></td>
-      <td><?php /* echo  utf8_decode($row2['nombre']) */ ?></td>
+			<td><?php echo utf8_decode($row2['usuario'])?></td>
+			<td><?php echo $row2['contrasena']?></td>
+      <td><?php echo $row2['rol']?></td>
+      <td><?php echo  utf8_decode($row2['nombre'])?></td>
 			<td>
 
         <a href="#" onclick="Validar3(<?php echo $row2['id_usuario']?>, '<?php echo $row2['usuario']?>', '<?php echo $row2['contrasena']?>', '<?php echo $row2['nombre']?>', '<?php echo $row2['rol']?>')">Editar | </a>
@@ -182,9 +182,9 @@ if($query2->num_rows==0){
 		</tr>
 
 <?php
-/*
+
 	} // while ($row2=$query2->fetch_assoc())
-*/
+
 ?>
 
   </tbody>

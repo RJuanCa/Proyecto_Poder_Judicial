@@ -19,13 +19,13 @@ if(isset($_GET['id_usuario'])) {
     $usuario=utf8_decode($_GET['usuario']);
     $contrasena=$_GET['contrasena'];
     $nombre=utf8_decode($_GET['nombre']);
-    $rol=$_GET['rol'];
+    $cargo=$_GET['cargo'];
 
     $_SESSION['id_usuario2']=$id_usuario;
     $_SESSION['usuario2']=$usuario;
     $_SESSION['contrasena2']=$contrasena;
     $_SESSION['nombre2']=$nombre;
-    $_SESSION['rol2']=$rol;
+    $_SESSION['cargo2']=$cargo;
  
 }
 */
@@ -136,38 +136,38 @@ if(isset($_GET['id_usuario'])) {
     <form id="formulario_usuario_editar" class="form-horizontal" method="post" action="return false" onsubmit="return false">
 
       <div class="form-group">
-        <label for="usuario" class="control-label col-md-2">Usuario:</label>
+        <label for="usuario" class="contcargo-label col-md-2">Usuario:</label>
         <div class="col-md-4">
-          <input id="usuario" class="form-control" type="text" name="usuario" size="20" maxlength="20" autofocus value="<?php /* echo $usuario */ ?>"/>
+          <input id="usuario" class="form-control" type="text" name="usuario" size="20" maxlength="20" autofocus value="<?php  echo $usuario  ?>"/>
         </div>
       </div>
 
       <div class="form-group">
         <label for="contrasena" class="control-label col-md-2">Contraseña:</label>
         <div class="col-md-4">
-          <input id="contrasena" class="form-control" type="text" name="contrasena" size="20" maxlength="20" value="<?php /* echo $contrasena */ ?>"/>
+          <input id="contrasena" class="form-control" type="text" name="contrasena" size="20" maxlength="20" value="<?php  echo $contrasena  ?>"/>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="nombre" class="control-label col-md-2">Nombres:</label>
+        <label for="nombre_apellido" class="control-label col-md-2">Nombres y Apellido: </label>
         <div class="col-md-7">
-          <input id="nombre" class="form-control" type="text" name="nombre" size="50" maxlength="50" value="<?php /* echo $nombre */ ?>"/>
+          <input id="nombre_apellido" class="form-control" type="text" name="nombre_apellido" size="50" maxlength="50" value="<?php  echo $nombre  ?>"/>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="rol" class="control-label col-md-2">Rol:</label>
+        <label for="cargo" class="control-label col-md-2">cargo:</label>
         <div class="col-md-4">
-          <input id="rol" class="form-control" type="text" name="rol" size="20" maxlength="20" value="<?php /* echo $rol */ ?>"/>
+          <input id="cargo" class="form-control" type="text" name="cargo" size="20" maxlength="20" value="<?php  echo $cargo  ?>"/>
         </div>
       </div>
 
-      <input id="id_usuario" class="form-control" type="hidden" name="id_usuario" value="<?php /* echo $id_usuario */ ?>"/>
+      <input id="id_usuario" class="form-control" type="hidden" name="id_usuario" value="<?php  echo $id_usuario  ?>"/>
 
       <div class="form-group">
         <div class="col-md-1 col-md-offset-2">
-          <button class="btn btn-success" name="submit2" onclick="Validar(document.getElementById('id_usuario').value,document.getElementById('usuario').value,document.getElementById('contrasena').value,document.getElementById('nombre').value,document.getElementById('rol').value);"><b>Guardar</b></button></p>
+          <button class="btn btn-success" name="submit2" onclick="Validar(document.getElementById('id_usuario').value,document.getElementById('usuario').value,document.getElementById('contrasena').value,document.getElementById('nombre').value,document.getElementById('cargo').value);"><b>Guardar</b></button></p>
         </div>
 
       </div>
@@ -180,7 +180,7 @@ if(isset($_GET['id_usuario'])) {
 <script>
 
 // Boton Guardar
-function Validar(id_usuario,usuario,contrasena,nombre,rol) {
+function Validar(id_usuario,usuario,contrasena,nombre,cargo) {
   
 // confirmation
 $.confirm({
@@ -198,7 +198,7 @@ buttons: {
           $.ajax({
             url: "usuario_menu_form_editar_validar.php",
             type: "POST",
-            data: "id_usuario="+id_usuario+"&usuario="+usuario+"&contrasena="+contrasena+"&nombre="+nombre+"&rol="+rol,
+            data: "id_usuario="+id_usuario+"&usuario="+usuario+"&contrasena="+contrasena+"&nombre="+nombre+"&cargo="+cargo,
             beforeSend: function () {
                 $("#resultado").html("<img src='imagen/loader-small.gif'/><font color='green'>&nbsp&nbspProcesando, por favor espere...</font>");
               },

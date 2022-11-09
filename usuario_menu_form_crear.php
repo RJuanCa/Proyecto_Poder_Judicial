@@ -18,15 +18,15 @@ if(isset($_GET['usuario'])) {
 
     $usuario=utf8_decode($_SESSION['usuario2']);
     $contrasena=$_SESSION['contrasena2'];
-    $nombre=utf8_decode($_SESSION['nombre2']);
-    $rol=$_SESSION['rol2'];
+    $nombre=utf8_decode($_SESSION['nombre_apellido2']);
+    $cargo=$_SESSION['cargo2'];
     
 }else{
 
     $usuario="";
     $contrasena="";
     $nombre="";
-    $rol="";
+    $cargo="";
   
 }
 
@@ -197,36 +197,36 @@ if(isset($_GET['usuario'])) {
       <div class="form-group">
         <label for="usuario" class="control-label col-md-2">Usuario:</label>
         <div class="col-md-4">
-          <input id="usuario" class="form-control" type="text" name="usuario" size="20" maxlength="20" autofocus value="<?php /* echo $usuario */ ?>"/>
+          <input id="usuario" class="form-control" type="text" name="usuario" size="20" maxlength="20" autofocus value="<?php  echo $usuario  ?>"/>
         </div>
       </div>
 
       <div class="form-group">
         <label for="contrasena" class="control-label col-md-2">Contraseña:</label>
         <div class="col-md-4">
-          <input id="contrasena" class="form-control" type="text" name="contrasena" size="20" maxlength="20" value="<?php /* echo $contrasena */ ?>"/>
+          <input id="contrasena" class="form-control" type="text" name="contrasena" size="20" maxlength="20" value="<?php  echo $contrasena  ?>"/>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="nombre" class="control-label col-md-2">Nombres:</label>
+        <label for="nombre_apellido" class="control-label col-md-2">Nombres y Apellido: </label>
         <div class="col-md-7">
-          <input id="nombre" class="form-control" type="text" name="nombre" size="50" maxlength="50" value="<?php /* echo $nombre */ ?>"/>
+          <input id="nombre_apellido" class="form-control" type="text" name="nombre_apellido" size="50" maxlength="50" value="<?php  echo $nombre  ?>"/>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="rol" class="control-label col-md-2">Rol:</label>
+        <label for="cargo" class="control-label col-md-2">Cargo: </label>
         <div class="col-md-4">
-          <input id="rol" class="form-control" type="text" name="rol" size="20" maxlength="20" value="<?php /* echo $rol */ ?>"/>
+          <input id="cargo" class="form-control" type="text" name="cargo" size="20" maxlength="20" value="<?php  echo $cargo  ?>"/>
         </div>
       </div>
 
-      <input id="id_usuario" class="form-control" type="hidden" name="id_usuario" value="<?php /* echo $id_usuario */ ?>"/>
+      <input id="id_usuario" class="form-control" type="hidden" name="id_usuario" value="<?php  echo $id_usuario  ?>"/>
 
       <div class="form-group">
         <div class="col-md-1 col-md-offset-2">
-          <button id="btn-enviar" class="btn btn-success" /><b>Guardar</b></button>
+          <button id="btn-enviar" class="btn btn-success"/><b>Guardar</b></button>
         </div>
 
       </div>

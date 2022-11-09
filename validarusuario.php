@@ -11,10 +11,11 @@ $pass = $_POST['pass'];
 $_SESSION['usuario_2']=$user;
 $_SESSION['clave_2']=$pass;
 
-$sql="SELECT * FROM usuarios WHERE (usuario = '".$user."') AND (contrasena = '".$pass."')";
+$sql="SELECT * FROM usuarios WHERE (usuario = '$user') AND (contrasena = '$pass')";
 $row = $mysqli->query($sql);
 $fila = $row->fetch_assoc();
-
+echo var_dump($fila);
+exit;
 $_SESSION["usuario"] = $user;
 $_SESSION["id_usuario"] = $fila["id_usuario"];
 

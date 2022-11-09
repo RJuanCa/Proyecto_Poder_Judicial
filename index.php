@@ -9,7 +9,7 @@ if(!isset($_SESSION['usuario_2'])) {
 	$_SESSION['clave_2']="";
 
 }	
-/*
+
 $sql = "SELECT current_date";
 $row = $mysqli->query($sql);
 $consultaf = $row->fetch_assoc();
@@ -27,17 +27,17 @@ $fecha_act_g=$valores_fecha_act[2]."/".$valores_fecha_act[1]."/".$valores_fecha_
 $valores_fecha_act_i= explode('-', $fecha_act);
 $fecha_act_i=$valores_fecha_act_i[2]."-".$valores_fecha_act_i[1]."-".$valores_fecha_act_i[0];
 
-/*
 
-$valores_fecha_act[0], anyo
+/*
+$valores_fecha_act[0], ano
 $valores_fecha_act[1], mes
 $valores_fecha_act[2], dia
-
 */
 
-$sql="SELECT * FROM tab_fecha_pc";
+
+$sql="SELECT * FROM fecha_pc";
 $query = $mysqli->query($sql);
-/*$row=$query->fetch_assoc();
+$row=$query->fetch_assoc();
 
 $fecha_pc_last=$row["fecha_pc"]; 
 
@@ -72,24 +72,24 @@ function compararFechas($primera, $segunda)
   $anyoPrimera   = $valoresPrimera[2]; 
 
   $diaSegunda   = $valoresSegunda[0];  
-  $mesSegunda = $valoresSegunda[1];  
-  $anyoSegunda  = $valoresSegunda[2];
+  /*$mesSegunda = $valoresSegunda[1];  
+  $anyoSegunda  = $valoresSegunda[2];*/
 
   $diasPrimeraJuliano = gregoriantojd($mesPrimera, $diaPrimera, $anyoPrimera);  
-  $diasSegundaJuliano = gregoriantojd($mesSegunda, $diaSegunda, $anyoSegunda);
+  /*$diasSegundaJuliano = gregoriantojd($mesSegunda, $diaSegunda, $anyoSegunda);*/
 
   if(!checkdate($mesPrimera, $diaPrimera, $anyoPrimera)){
     // "La fecha ".$primera." no es v&aacute;lida";
     return 0;
-  }elseif(!checkdate($mesSegunda, $diaSegunda, $anyoSegunda)){
+/*  }elseif(!checkdate($mesSegunda, $diaSegunda, $anyoSegunda)){*/
     // "La fecha ".$segunda." no es v&aacute;lida";
     return 0;
-  }else{
-    return  $diasPrimeraJuliano - $diasSegundaJuliano;
-  } 
+  }else
+    return  $diasPrimeraJuliano ; /*$diasSegundaJuliano;*/
+ }
+  
 
-}
-*/
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
