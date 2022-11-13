@@ -49,17 +49,16 @@ if(isset($_GET['id_dependencia'])) {
 
       }
 
-      $oficina=utf8_decode($row['oficina']);
+      
       $responsable=utf8_decode($row['responsable']);
       $cargo=$row['cargo'];
       $direccion=utf8_decode($row['direccion']);
       $_SESSION['id_dependencia2']=$id_dependencia;
-     $_SESSION['dependencia2']=$dependencia;
-     $_SESSION['oficina2']=$oficina;
+     $_SESSION['dependencia2']=$dependencia;     
       $_SESSION['responsable2']=$responsable;
       $_SESSION['cargo2']=$cargo;
       $_SESSION['direccion2']=$direccion;
-      $_SESSION['correo2']=$correo;
+      
 
     } else { // $row = $query->fetch_assoc()
 
