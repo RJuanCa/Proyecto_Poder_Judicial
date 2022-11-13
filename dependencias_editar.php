@@ -7,7 +7,7 @@ $definido=isset($_SESSION['usuario']);
 // No está definido la variable
 if ($definido==false){
 
-    header("Location:error1.php");
+    header("Location:index.php");
     exit();
          
 }
@@ -68,7 +68,7 @@ if(isset($_GET['id_dependencia'])) {
 
     } // $row = $query->fetch_assoc()
 
-} */
+} 
 
 ?>
 <!DOCTYPE html>
