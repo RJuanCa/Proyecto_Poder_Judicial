@@ -38,9 +38,7 @@ $valores_fecha_act[2], dia
 $sql="SELECT * FROM fecha_pc";
 $query = $mysqli->query($sql);
 $row=$query->fetch_assoc();
-
 $fecha_pc_last=$row["fecha_pc"]; 
-
 $valores_fecha_pc_last = explode('-', $fecha_pc_last);
 $fecha_pc_last=$valores_fecha_pc_last[2]."-".$valores_fecha_pc_last[1]."-".$valores_fecha_pc_last[0];
 

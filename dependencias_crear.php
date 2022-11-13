@@ -15,23 +15,19 @@ if ($definido==false){
 // Viene de valida dependencias crear
 if(isset($_GET['nac'])) {
 
-    $dependencia=$_SESSION['dependencia'];
-    $oficina=$_SESSION['oficina'];
+    $dependencia=$_SESSION['dependencia'];    
     $responsable=$_SESSION['responsable'];
-    $cargo=$_SESSION['telefono'];
+    $cargo=$_SESSION['cargo'];
     $direccion=$_SESSION['direccion'];
-    $correo=$_SESSION['correo'];
+    
    
 }else{
 
   
-  $dependencia="";
-  $oficina="";
+  $dependencia="";  
   $responsable="";
   $cargo="";
   $direccion="";
-  $correo="";
-
 } 
 
 ?>
@@ -197,51 +193,34 @@ if(isset($_GET['nac'])) {
         <div class="col-md-1">
           
             <div class="input-group">
-            <input id="dependencia" style="width:420px" class="form-control" type="text" name="dependencia" size="200" maxlength="200" value="<?php /*echo $dependencia*/ ?>"/>
+            <input id="dependencia" style="width:420px" class="form-control" type="text" name="dependencia" size="200" maxlength="200" value="<?php echo $dependencia ?>"/>
             </div>
             <span class="input-group-addon">por ejemplo: JUZGADO DE FALTAS</span>
 
         </div>
 
-      </div>
-
-      <div class="form-group">
-        <label for="oficina" class="control-label col-md-2">Oficina:</label>
-        <div class="col-md-1">
-
-          <div class="input-group">
-          <input id="oficina" style="width:420px" class="form-control" type="text" name="oficina" value="<?php /* echo $oficina */ ?>" size="200" maxlength="200" />
-          </div>
-        </div>
-      </div>
+      </div>      
 
       <div class="form-group">
         <label for="oficina" class="control-label col-md-2">Responsable:</label>
         <div class="col-md-9">
-          <input id="responsable" class="form-control" type="text" name="responsable" value="<?php /* echo $responsable */ ?>" size="20" maxlength="20" />
+          <input id="responsable" class="form-control" type="text" name="responsable" value="<?php echo $responsable ?>" size="20" maxlength="20" />
         </div>
       </div>
 
       <div class="form-group">
-        <label for="telefono" class="control-label col-md-2">Teléfono:</label>
+        <label for="cargo" class="control-label col-md-2">Cargo:</label>
         <div class="col-md-9">
-          <input id="telefono" class="form-control" type="text" name="telefono" value="<?php /* echo $cargo */ ?>" size="50" maxlength="50" />
+          <input id="cargo" class="form-control" type="text" name="cargo" value="<?php  echo $cargo  ?>" size="50" maxlength="50" />
         </div>
       </div>
 
       <div class="form-group">
         <label for="direccion" class="control-label col-md-2">Dirección:</label>
         <div class="col-md-9">
-          <input id="direccion" class="form-control" type="text" name="direccion" value="<?php /* echo $direccion */ ?>" size="100" maxlength="100" />
+          <input id="direccion" class="form-control" type="text" name="direccion" value="<?php  echo $direccion  ?>" size="100" maxlength="100" />
         </div>
-      </div>
-
-      <div class="form-group">
-        <label for="correo" class="control-label col-md-2">Correo:</label>
-        <div class="col-md-9">
-          <input id="correo" class="form-control" type="text" name="correo" value="<?php /* echo $correo */ ?>" size="50" maxlength="50" />
-        </div>
-      </div>
+      </div>      
 
       <div class="form-group">
         <div class="col-md-1 col-md-offset-2">
