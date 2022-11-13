@@ -27,8 +27,8 @@ if ($_POST["usuario"] == "") {
         
     $_SESSION['usuario2']="";
     $_SESSION['contrasena2']=$_POST["contrasena"];
-    $_SESSION['nombre2']=$_POST["nombre"];
-    $_SESSION['rol2']=$_POST["rol"];
+    $_SESSION['nombre_apellido2']=$_POST["nombre_apellido"];
+    $_SESSION['cargo2']=$_POST["cargo"];
 
     echo "<script>location.href = 'usuario_menu_form_crear.php?usuario=$usuario'</script>";    
     exit();
@@ -48,8 +48,8 @@ if ($_POST["contrasena"] == "") {
     
     $_SESSION['usuario2']=$_POST["usuario"];
     $_SESSION['contrasena2']="";
-    $_SESSION['nombre2']=$_POST["nombre"];
-    $_SESSION['rol2']=$_POST["rol"];
+    $_SESSION['nombre_apellido2']=$_POST["nombre_apellido"];
+    $_SESSION['cargo2']=$_POST["cargo"];
 
     echo "<script>location.href = 'usuario_menu_form_crear.php?usuario=$usuario'</script>";        
     exit();
@@ -60,7 +60,7 @@ if ($_POST["contrasena"] == "") {
 
 }
 
-if ($_POST["nombre"] == "") {
+if ($_POST["nombre_apellido"] == "") {
 
     $_SESSION['contenido_usuario_mensaje']='Debes escribir el Nombre';
     $_SESSION['usuario_mensaje']='si';
@@ -69,42 +69,42 @@ if ($_POST["nombre"] == "") {
     
     $_SESSION['usuario2']=$_POST["usuario"];
     $_SESSION['contrasena2']=$_POST["contrasena"];
-    $_SESSION['nombre2']="";
-    $_SESSION['rol2']=$_POST["rol"];
+    $_SESSION['nombre_apellido2']="";
+    $_SESSION['cargo2']=$_POST["cargo"];
 
     echo "<script>location.href = 'usuario_menu_form_crear.php?usuario=$usuario'</script>";        
     exit();
 
 }else{
 
-    $nombre=$_POST["nombre"];
+    $nombre_apellido=$_POST["nombre_apellido"];
 
 }
 
-if ($_POST["rol"] == "") {
+if ($_POST["cargo"] == "") {
 
-    $_SESSION['contenido_usuario_mensaje']='Debes escribir el Rol';
+    $_SESSION['contenido_usuario_mensaje']='Debes escribir el cargo';
     $_SESSION['usuario_mensaje']='si';
 
     $usuario=$_POST["usuario"];
     
     $_SESSION['usuario2']=$_POST["usuario"];
     $_SESSION['contrasena2']=$_POST["contrasena"];
-    $_SESSION['nombre2']=$_POST["nombre"];
-    $_SESSION['rol2']="";
+    $_SESSION['nombre_apellido2']=$_POST["nombre_apellido"];
+    $_SESSION['cargo2']="";
 
     echo "<script>location.href = 'usuario_menu_form_crear.php?usuario=$usuario'</script>";        
     exit();
 
 }else{
 
-    $rol=$_POST["rol"];
+    $cargo=$_POST["cargo"];
 
 }
 
 // Guarda datos 
-$sql="INSERT INTO tab_usuarios (usuario, contrasena, nombre, rol) ";
-$sql.="VALUES ('$usuario','$contrasena','$nombre','$rol')";
+$sql="INSERT INTO usuarios (usuario, contrasena, nombre_apellido, cargo) ";
+$sql.="VALUES ('$usuario','$contrasena','$nombre_apellido','$cargo')";
 
 $query = $mysqli->query($sql);
 

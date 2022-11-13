@@ -10,7 +10,7 @@ $definido=isset($_SESSION['usuario']);
 // No está definido la variable
 if ($definido==false){
 
-	header("Location:error1.php");
+	header("Location:index.php");
 	exit();
          
 }
@@ -36,7 +36,6 @@ if ($_POST["nac"] == "") {
 
     $_SESSION['contenido_mensaje_cliente']='Debes escribir el campo antes de la Cédula o Rif';
     $_SESSION['cliente_mensaje']='si';
-
     $id_dep=$_SESSION['id_dependecia2'];
     $nom_depen=$_SESSION['nom_depen2'];
     $direccion=$_SESSION["direccion2"];

@@ -8,7 +8,7 @@ $definido=isset($_SESSION['usuario']);
 // No está definido la variable
 if ($definido==false){
 
-    header("Location:error1.php");
+    header("Location:index.php");
     exit();
          
 }
@@ -226,7 +226,7 @@ if(isset($_GET['usuario'])) {
 
       <div class="form-group">
         <div class="col-md-1 col-md-offset-2">
-          <button id="btn-enviar" class="btn btn-success"/><b>Guardar</b></button>
+          <button id="btn-enviar" class="btn btn-success"><b>Guardar</b></button>
         </div>
 
       </div>

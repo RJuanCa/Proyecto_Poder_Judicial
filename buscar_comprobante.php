@@ -14,12 +14,41 @@ if ($definido==false){
          
 }
 
+if(isset($_GET['id_dep'])){
+
+	$id_dep=$_GET['id_dep'];
+
+	$sql2='SELECT id_dep, nom_depen, direccion, responsable_dep, cargo FROM dependencia WHERE (id_dep = '.$id_dep.')';
+    
+	$query2 = $pdo_conn -> prepare($sql2); 
+	$query2 -> execute(); 
+	$results = $query2 -> fetchAll(PDO::FETCH_OBJ); 
+
+	if($query2 -> rowCount() > 0) { 
+	
+	  foreach($results as $result) { 
+	
+	    $nom_depen = $result -> nom_depen." ".$result -> direccion;
+	    $_SESSION['nom_depen'] = $nom_depen;
+	    $_SESSION['responsable_dep'] = $result -> responsable_dep;
+	    $_SESSION['id_dep'] = $id_dep;
+	    $_SESSION['cargo'] = $result -> cargo;
+
+      } // foreach($results as $result)
+
+    } // if($query2 -> rowCount() > 0)
+		
+} // if(isset($_GET['id_dep']))	
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">	
-<title>Dir. de Arquitectura - Dependencias - Lista</title>
+<meta charset="utf-8">
+<title>Dir. de Arquitectura - Entregas - Lista</title>
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="demo/libs/bundled.css">
 <script src="demo/libs/bundled.js"></script>
@@ -31,7 +60,7 @@ if ($definido==false){
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="fonts/style.css">
 
-<link rel="shortcut icon" href="imagen/avatar.png" />
+<link rel="shortcut icon" href="imagen/imagen/avatar.png" />
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
 <style type="text/css">
@@ -47,19 +76,24 @@ if ($definido==false){
 	font-size:16px;
 	
   }
-  .th_color{
+  .monto{
 
-  	background: blue;
+	text-align:right;  	
 
   }
-  .navbar{
+  .th_color{
 
   	background: #0a3172;
 
   }
+  .navbar{
+
+  	background: blue;
+
+  }
   .body1{
 
-  	background:grey;
+  	background:silver;
 
   }
   .menu2{
@@ -73,7 +107,6 @@ if ($definido==false){
   	font-size:18px;
 
   }
-
   @media screen and (max-width:400px ) {
 
   .menu2{
@@ -84,18 +117,18 @@ if ($definido==false){
    }
    
   }	  
-  
+
 </style>
 </head>
 <body class="body1">
-
 <nav class="navbar navbar-default">
   <div class="container"> 
-    <!-- Marca y alternar se agrupan para una mejor visualización móvil -->
+    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       
       <p class="navbar-brand"><span class="menu2">Dir. de Arquitectura</span></p> 
       <p class="navbar-brand"><span class="menu2"><a href="panel.php">Menú</a></span></p> 
+      <p class="navbar-brand"><span class="menu2"><a href="buscar_dependencias.php">Volver</a></span></p> 
 
     </div>
     
@@ -103,26 +136,33 @@ if ($definido==false){
   </div>
   <!-- /.container-fluid --> 
 </nav>
-
 <div class="container">
-  <p class="usuario3">
+   <p class="usuario3">
 
-  	<span class="encab">
-  	<span class="text-danger">
-		Fecha:  <?php  echo $_SESSION['fecha'];  ?>
-		<br/>
-		Usuario:  <?php echo $_SESSION['usuario']; ?>
+	<span class="encab">	
+	<span class="text-danger">
+	Fecha: <?php echo $_SESSION['fecha']; ?>
+	<br/>
+	Usuario: <?php echo $_SESSION['usuario']; ?>
 	</span>
 	</span>
-
-  </p>	
+	<br/>
+	<b>nom_depen:</b> <?php echo $_SESSION['nom_depen']; ?>
+	<br/>
+	<b>Responsable de Dependencia:</b> <?php echo $_SESSION['responsable_dep']; ?>
+	<br/>
+	<b>Cargo:</b> <?php echo $_SESSION['cargo']; ?>
+	<br/>
+	
+	
+  </p>		
   <div class="row">
     <div class="col-md-12">
-      <h2>Dependencias - Lista</h2>
+      <h2>Comprobantes - Lista</h2>
     </div>
   </div>
   <div class="row">
-  	<div class="col-md-12">
+    <div class="col-md-12">
 <div class="panel-body">
 <?php
 function verfecha($vfecha)
@@ -136,7 +176,7 @@ return $tfecha;
 	if(!empty($_POST['search']['keyword'])) {
 		$search_keyword = $_POST['search']['keyword'];
 	}
-	$sql = 'SELECT * FROM dependencia WHERE nom_depen LIKE :keyword OR direccion LIKE :keyword OR responsable_dep LIKE :keyword ORDER BY nom_depen, responsable_dep ';
+	$sql = 'SELECT * FROM tab_facturas WHERE (nro_factura LIKE :keyword OR fecha_reg LIKE :keyword OR total LIKE :keyword OR descuento LIKE :keyword OR total_desc LIKE :keyword) AND (id_dep = '.$_SESSION['id_dep'].') ORDER BY fecha_reg DESC, id_factura DESC';
 	
 	/* Pagination Code starts */
 	$per_page_html = '';
@@ -189,16 +229,18 @@ return $tfecha;
   </div><!-- /.col-lg-6 -->
 </div><!-- /.row -->
 </div>
-<p><span class="encab"><a href="dependencias_crear.php">Agregar Dependencia</a></span></p>
+
 <div class="table-responsive">
+
+<p><span class="encab"><a href="crear_factura.php">Generar Comprobante</a></span></p>
 <table class="table table-bordered table-hover">
   <thead>
 	<tr class='th_color'>
-	  	  
-	  <th class='table-header' width='30%'>Juzgado</th>
-	  <th class='table-header' width='30%'>Oficina</th>
-	  <th class='table-header' width='14%'>Responsable</th>
-	  <th class='table-header' width='26%'>Acción</th>
+	  
+	  <th class='table-header' width='12%'>Nro. Comprobante</th>
+	  <th class='table-header' width='10%'>Fecha</th>
+	 	  <th class='table-header' width='10%'>Anulado</th>
+	  <th class='table-header' width='20%'>Enlace</th>
 
 	</tr>
   </thead>
@@ -206,20 +248,42 @@ return $tfecha;
 	<?php
 	if(!empty($resultados)) {
 		foreach($resultados as $row) {
+
+			/*
+			$valores[0], año
+			$valores[1], mes
+			$valores[2], dia
+			*/
+
+			$valores_fecha_reg = explode('-', $row['fecha_reg']);
+			$fecha_reg=$valores_fecha_reg[2]."-".$valores_fecha_reg[1]."-".$valores_fecha_reg[0];
+
 	?>
 	  <tr class='table-row'>
 		
-		<td><?php echo $row['nom_depen']; ?></td>
-		<td><?php echo $row['responsable_dep']; ?></td>
-		<td><?php echo $row['cargo']; ?></td>
+		<td><?php echo $row['nro_factura']; ?></td>
+		<td><?php echo $fecha_reg; ?></td>
+		<td><?php echo $row['anulado']; ?></td>
 		<td>
-      
-      <a href="dependencia_reporte.php?id_dep=<?php echo $row['id_dep']?>">Ver| </a>
-      <a href="#" onclick="Validar3(<?php  echo $row['id_dep'] ?>, '<?php  echo $row['nom_depen']  ?>')">Editar| </a>
-      <a href="#" onclick="Validar4(<?php  echo $row['id_dep'] ?>, '<?php  echo $row['nom_depen']  ?>')">Eliminar| </a>
-      <a href="buscar_comprobante.php?id_dep=<?php  echo $row['id_dep']  ?>">Comprobantes|</a>
+			<a href="factura_reporte.php?id_factura=<?php echo $row['id_factura'] ?>&nro_factura=<?php echo $row['nro_factura'] ?>&fecha_reg=<?php echo $fecha_reg ?>&total=<?php echo $row['total'] ?>&descuento=<?php echo $row['descuento'] ?>&total_desc=<?php echo $row['total_desc'] ?>">Vista | </a> 
+			<?php
+			
+				if($row['anulado']=='no'){
 
-    </td>
+					$id_factura_anular=$row['id_factura'];
+					$nro_factura=$row['nro_factura'];
+					$id_dep_a=$_SESSION['id_dep'];
+
+					echo "<a href='#' onclick='Validar4($id_factura_anular, $nro_factura, $id_dep_a)'>Anular</a>";
+			
+				}else{
+
+					echo "";
+
+				}
+
+			?>
+		</td>
 
 	  </tr>
     <?php
@@ -227,7 +291,6 @@ return $tfecha;
 	}
 	?>
   </tbody>
-
 </table>
 </div>
 <?php echo $per_page_html; ?>
@@ -237,15 +300,16 @@ return $tfecha;
 </div>
   </div>
 </div>
+
 <script>
 
-// Editar dependencia
-function Validar3(id_dep, nom_depen)
+// Anular factura
+function Validar4(id_factura, nro_factura, id_dep)
 {
 
 $.confirm({
 title: 'Mensaje',
-content: '¿Confirma en editar <br/> la dependencia '+nom_depen+'?',
+content: '¿Confirma en anular <br/> la factura nro. '+nro_factura+'?',
 animation: 'scale',
 closeAnimation: 'zoom',
 buttons: {
@@ -255,39 +319,7 @@ buttons: {
 
            action: function(){
 
-           window.location.href="dependencias_editar.php?id_dep="+id_dep;           
-             
-           } // action: function(){
-
-    }, // confirm: {
-
-    cancelar: function(){
-              
-    } // cancelar: function()
-    
-  } // buttons
-  
-}); // $.confirm
-
-}
-
-// Eliminar dependencia
-function Validar4(id_dep, nom_depen)
-{
-
-$.confirm({
-title: 'Mensaje',
-content: '¿Confirma en eliminar <br/> la dependencia '+nom_depen+'?',
-animation: 'scale',
-closeAnimation: 'zoom',
-buttons: {
-    confirm: {
-        text: 'Si',
-        btnClass: 'btn-orange',
-
-           action: function(){
-
-           window.location.href="dependencia_eliminar_validar.php?id_dep="+id_dep;           
+           window.location.href="anular_factura_validar.php?id_factura="+id_factura+"&id_dep="+id_dep;           
              
            } // action: function(){
 
@@ -307,71 +339,60 @@ buttons: {
 
 <?php 
 
-// Dependencia guardada
-if ( isset($_SESSION['dependencia_guardada']) && $_SESSION['dependencia_guardada'] == "si" ) {
+    if ( isset($_SESSION['factura_guardada']) && $_SESSION['factura_guardada'] == "si" ) {
 
-    unset($_SESSION['dependencia_guardada']);
-    
-    echo "<script>
+    	unset($_SESSION['factura_guardada']);
+    	unset($_SESSION['descuento']);
 
-    $.confirm({
-      title: 'Mensaje',
-      content: '<span style=color:green>Datos guardado con éxito.</span>',
-      autoClose: 'Cerrar|3000',
-      buttons: {
-          Cerrar: function () {
+        echo "<script>
+
+		$.confirm({
+    	title: 'Mensaje',
+    	content: '<span style=color:green>Datos guardado con éxito.</span>',
+    	autoClose: 'Cerrar|3000',
+    	buttons: {
+        	Cerrar: function () {
             
-          }
-      }
-    
-    });</script>";
+        	}
+    	}
+		
+		});</script>";
 
-}
-
-if ( isset($_SESSION['dependencia_eliminado']) && $_SESSION['dependencia_eliminado'] == "si" ) {
-
-    unset($_SESSION['dependencia_eliminado']);
-    
-    echo "<script>
-
-    $.confirm({
-      title: 'Mensaje',
-      content: '<span style=color:green>Dependencia eliminada con éxito.</span>',
-      autoClose: 'Cerrar|3000',
-      buttons: {
-          Cerrar: function () {
-            
-          }
-      }
-    
-    });</script>";
-
-}
-
-if ( isset($_SESSION['dependencia_tiene_comprobante']) && $_SESSION['dependencia_tiene_comprobante'] == "si" ) {
-
-    unset($_SESSION['dependencia_tiene_comprobante']);
-    
-    echo "<script>
-
-    $.confirm({
-      title: 'Mensaje',
-      content: '<span style=color:red>No se puede eliminar la dependencia <br/>porque tiene comprobantes.</span>',
-      autoClose: 'Cerrar|3000',
-      buttons: {
-          Cerrar: function () {
-            
-          }
-      }
-    
-    });</script>";
-
-}
+    }
 
 ?>
 
+<?php 
+
+    if ( isset($_SESSION['factura_anulada']) && $_SESSION['factura_anulada'] == "si" ) {
+
+    	unset($_SESSION['factura_anulada']);
+    	
+        echo "<script>
+
+		$.confirm({
+    	title: 'Mensaje',
+    	content: '<span style=color:green>Factura anulado con éxito.</span>',
+    	autoClose: 'Cerrar|3000',
+    	buttons: {
+        	Cerrar: function () {
+            
+        	}
+    	}
+		
+		});</script>";
+
+    }
+
+?>
+
+<div class="panel-footer">
+  <div class="container">
+   	<?php 
+  	// mini Sistemas RJC
+  	require("mini.php"); 
+	?>
   </div>
 </div>
-
 </body>
 </html>

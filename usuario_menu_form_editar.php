@@ -123,9 +123,9 @@ if(isset($_GET['id_usuario'])) {
 
 	 <span class="encab">
    <span class="text-danger">
-    Fecha: <?php /* echo $_SESSION['fecha']; */ ?>
+    Fecha: <?php  echo $_SESSION['fecha'];  ?>
 	   <br/>
-	   Usuario: <?php /* echo $_SESSION['usuario']; */ ?>
+	   Usuario: <?php echo $_SESSION['usuario']; ?>
    </span>  
 	 </span>	
 
@@ -136,7 +136,7 @@ if(isset($_GET['id_usuario'])) {
     <form id="formulario_usuario_editar" class="form-horizontal" method="post" action="return false" onsubmit="return false">
 
       <div class="form-group">
-        <label for="usuario" class="contcargo-label col-md-2">Usuario:</label>
+        <label for="usuario" class="control-label col-md-2">Usuario:</label>
         <div class="col-md-4">
           <input id="usuario" class="form-control" type="text" name="usuario" size="20" maxlength="20" autofocus value="<?php  echo $usuario  ?>"/>
         </div>

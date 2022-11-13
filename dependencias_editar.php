@@ -1,5 +1,5 @@
 <?php 
-/*require("coneccion/connection.php");
+require("coneccion/connection.php");
 session_start();
 
 // Si se cerro la sesión por otro lado
@@ -16,7 +16,7 @@ if(isset($_GET['id_dependencia'])) {
 
     $id_dependencia=$_GET['id_dependencia'];
 
-    $sql="SELECT * FROM tab_dependencias WHERE (id_dependencia = ".$id_dependencia.")";
+    $sql="SELECT * FROM dependencias WHERE (id_dep = ".$id_dep.")";
 
     $query = $mysqli->query($sql);
     $row = $query->fetch_assoc(); 
@@ -51,15 +51,13 @@ if(isset($_GET['id_dependencia'])) {
 
       $oficina=utf8_decode($row['oficina']);
       $responsable=utf8_decode($row['responsable']);
-      $cargo=$row['telefono'];
+      $cargo=$row['cargo'];
       $direccion=utf8_decode($row['direccion']);
-      $correo=$row['correo'];
-
       $_SESSION['id_dependencia2']=$id_dependencia;
      $_SESSION['dependencia2']=$dependencia;
      $_SESSION['oficina2']=$oficina;
       $_SESSION['responsable2']=$responsable;
-      $_SESSION['telefono2']=$cargo;
+      $_SESSION['cargo2']=$cargo;
       $_SESSION['direccion2']=$direccion;
       $_SESSION['correo2']=$correo;
 
@@ -226,9 +224,9 @@ if(isset($_GET['id_dependencia'])) {
 
 	 <span class="encab">
    <span class="text-danger">
-    Fecha: <?php /* echo $_SESSION['fecha']; */ ?>
+    Fecha: <?php  echo $_SESSION['fecha']; ?>
 	  <br/>
-	  Usuario: <?php /* echo $_SESSION['usuario']; */ ?>
+	  Usuario: <?php  echo $_SESSION['usuario']; ?>
    </span>  
 	 </span>	
 
@@ -249,14 +247,7 @@ if(isset($_GET['id_dependencia'])) {
          
         </div>
       </div>
-
-      <div class="form-group">
-        <label for="oficina" class="control-label col-md-2">Oficina:</label>
-        <div class="col-md-9">
-          <input id="oficina" class="form-control" type="text" name="oficina" size="50" maxlength="50" value="<?php echo $oficina ?>"/>
-        </div>
-      </div>
-
+      
       <div class="form-group">
         <label for="responsable" class="control-label col-md-2">Responsable:</label>
         <div class="col-md-9">
@@ -265,9 +256,9 @@ if(isset($_GET['id_dependencia'])) {
       </div>
 
       <div class="form-group">
-        <label for="telefono" class="control-label col-md-2">Teléfono:</label>
+        <label for="cargo" class="control-label col-md-2">Cargo:</label>
         <div class="col-md-9">
-          <input id="telefono" class="form-control" type="text" name="telefono" size="50" maxlength="50" value="<?php echo $cargo ?>"/>
+          <input id="cargo" class="form-control" type="text" name="cargo" size="50" maxlength="50" value="<?php echo $cargo ?>"/>
         </div>
       </div>
 
@@ -276,20 +267,13 @@ if(isset($_GET['id_dependencia'])) {
         <div class="col-md-9">
           <input id="direccion" class="form-control" type="text" name="direccion" size="100" maxlength="100" value="<?php echo $direccion ?>"/>
         </div>
-      </div>
-
-      <div class="form-group">
-        <label for="correo" class="control-label col-md-2">Correo:</label>
-        <div class="col-md-9">
-          <input id="correo" class="form-control" type="text" name="correo" size="50" maxlength="50" value="<?php echo $correo ?>"/>
-        </div>
-      </div>
+      </div>      
 
       <input id="id_dependencia" class="form-control" type="hidden" name="id_dependencia" value="<?php echo $id_dependencia ?>"/>
 
       <div class="form-group">
         <div class="col-md-1 col-md-offset-2">
-          <button id="btn-enviar" class="btn btn-success" /><b>Guardar</b></button>
+          <button id="btn-enviar" class="btn btn-success"><b>Guardar</b></button>
         </div>
       </div>
 

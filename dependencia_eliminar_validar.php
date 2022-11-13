@@ -15,21 +15,21 @@ if ($definido==false){
          
 }
 
-$id_dependencia=$_GET["id_dependencia"];
+$id_dep=$_GET["id_dep"];
 
 // Elimina la dependencia si no tiene movimientos
-$sql="SELECT movimiento FROM tab_dependencia WHERE (id_dependencia = ".$id_dependencia.")";
+$sql="SELECT movimiento FROM dependencia WHERE (id_dep = ".$id_dep.")";
 $query=$mysqli->query($sql);
 $row=$query->fetch_assoc();
 
 if($query->num_rows!=0){
 	if ($row['movimiento']=="no") {
 
-  		$sql="DELETE FROM tab_dependencia WHERE (id_dependencia = ".$id_dependencia.")";
+  		$sql="DELETE FROM dependencia WHERE (id_dep = ".$id_dep.")";
   		$query=$mysqli->query($sql);
           
-  		$_SESSION['cliente_eliminado']="si";
-  		echo '<script>location.href = "buscar_clientes.php"</script>';
+  		$_SESSION['dependencia_eliminado']="si";
+  		echo '<script>location.href = "buscar_dependencias.php"</script>';
 
 	}else{
 

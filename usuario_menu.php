@@ -8,7 +8,7 @@ $definido=isset($_SESSION['usuario']);
 // No está definido la variable
 if ($definido==false){
 
-    header("Location:error1.php");
+    header("Location:index.php");
     exit();
          
 }
@@ -110,9 +110,9 @@ if ($definido==false){
 
   <span class="encab">
   <span class="text-danger">
-	 Fecha: <?php /* echo $_SESSION['fecha']; */ ?>
+	 Fecha: <?php  echo $_SESSION['fecha'];  ?>
 	 <br/>
-	 Usuario: <?php /* echo $_SESSION['usuario']; */ ?>
+	 Usuario: <?php echo $_SESSION['usuario']; ?>
 	</span>	
   </span>
 
@@ -151,8 +151,8 @@ if($query2->num_rows==0){
 	  
 	  <th class='table-header' width='15%'>Usuarios</th>
 	  <th class='table-header' width='15%'>Contraseña</th>
-    <th class='table-header' width='20%'>Rol</th>
-    <th class='table-header' width='30%'>Nombre</th>
+    <th class='table-header' width='20%'>Cargo</th>
+    <th class='table-header' width='30%'>Nombre y Apellido</th>
 	  <th class='table-header' width='20%'>Enlace</th>
 	
 	</tr>
@@ -170,11 +170,11 @@ if($query2->num_rows==0){
 		  
 			<td><?php echo utf8_decode($row2['usuario'])?></td>
 			<td><?php echo $row2['contrasena']?></td>
-      <td><?php echo $row2['rol']?></td>
-      <td><?php echo  utf8_decode($row2['nombre'])?></td>
+      <td><?php echo $row2['cargo']?></td>
+      <td><?php echo  utf8_decode($row2['nombre_apellido'])?></td>
 			<td>
 
-        <a href="#" onclick="Validar3(<?php echo $row2['id_usuario']?>, '<?php echo $row2['usuario']?>', '<?php echo $row2['contrasena']?>', '<?php echo $row2['nombre']?>', '<?php echo $row2['rol']?>')">Editar | </a>
+        <a href="#" onclick="Validar3(<?php echo $row2['id_usuario']?>, '<?php echo $row2['usuario']?>', '<?php echo $row2['contrasena']?>', '<?php echo $row2['nombre_apellido']?>', '<?php echo $row2['cargo']?>')">Editar | </a>
         <a href="#" onclick="Validar4(<?php echo $row2['id_usuario']?>, '<?php echo $row2['usuario'] ?>')">Eliminar</a>
 
       </td>
@@ -205,7 +205,7 @@ if($query2->num_rows==0){
 <script>
 
 // Editar usuario
-function Validar3(id_usuario,usuario,contrasena,nombre,rol)
+function Validar3(id_usuario,usuario,contrasena,nombre_apellido,cargo)
 {
 
 // confirmation
@@ -221,7 +221,7 @@ buttons: {
 
            action: function(){
 
-	         window.location.href="usuario_menu_form_editar.php?id_usuario="+id_usuario+"&usuario="+usuario+"&contrasena="+contrasena+"&nombre="+nombre+"&rol="+rol;				     
+	         window.location.href="usuario_menu_form_editar.php?id_usuario="+id_usuario+"&usuario="+usuario+"&contrasena="+contrasena+"&nombre_apellido="+nombre_apellido+"&cargo="+cargo;				     
              
            } // action: function(){
 

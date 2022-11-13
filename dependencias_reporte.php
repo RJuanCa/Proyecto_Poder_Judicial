@@ -1,5 +1,5 @@
 <?php 
-/*require("coneccion/connection.php");
+require("coneccion/connection.php");
 session_start();
 
 // Si se cerro la sesión por otro lado
@@ -12,14 +12,14 @@ if ($definido==false){
          
 }
 
-if(isset($_GET['id_dependencia'])) {
+if(isset($_GET['id_dep'])) {
 
-    $id_dependencia=$_GET['id_dependencia'];
+    $id_dep=$_GET['id_dep'];
    
 }
 
 // Tabla dependencias
-$sql2="SELECT * FROM tab_dependencias WHERE (id_dependencia = $id_dependencia)";
+$sql2="SELECT * FROM dependencia WHERE (id_dep = $id_dep)";
 $query2 = $mysqli->query($sql2);
 
 if($query2->num_rows==0){
@@ -34,8 +34,8 @@ $row2=$query2->fetch_assoc();
 $valores_fecha_act = explode('-', $row2['fecha_reg']);
 $fecha_act=$valores_fecha_act[2]."-".$valores_fecha_act[1]."-".$valores_fecha_act[0];
 
-// echo $id_dependencia;
-// exit();*/
+// echo $id_dep;
+// exit();
 
 ?>
 
@@ -142,30 +142,18 @@ function printe(){
 
     <span class="clientelabel">Juzgado:</span>
     <span class="clientedato"><?php echo utf8_decode($row2['juzgado']) ?></span>
-    <br/>
-
-    <span class="clientelabel">Oficina:</span>
-    <span class="clientedato"><?php echo utf8_decode($row2['oficina']) ?></span>
-    <br/>
-
-    <span class="clientelabel">Teléfono:</span>
-    <span class="clientedato"><?php echo $row2['telefono'] ?></span>
-    <br/>
+    <br/>        
 
     <span class="clientelabel">Dirección:</span>
     <span class="clientedato"><?php echo utf8_decode($row2['direccion']) ?></span>
     <br/>
-
-    <span class="clientelabel">Correo:</span>
-    <span class="clientedato"><?php echo $row2['correo'] ?></span>
-    <br/>
-
+    
     <span class="clientelabel">Fecha Registro:</span>
-    <span class="clientedato"><?php /*echo $fecha_act*/ ?></span>
+    <span class="clientedato"><?php echo $fecha_act ?></span>
     <br/>
 
     <span class="clientelabel">Hora Registro:</span>
-    <span class="clientedato"><?php /* echo $row2['hora_reg'] */ ?></span>
+    <span class="clientedato"><?php echo $row2['hora_reg'] ?></span>
     <br/>
 
   </div> <!-- class="form-group" -->

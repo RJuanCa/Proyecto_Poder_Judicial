@@ -14,8 +14,7 @@ $_SESSION['clave_2']=$pass;
 $sql="SELECT * FROM usuarios WHERE (usuario = '$user') AND (contrasena = '$pass')";
 $row = $mysqli->query($sql);
 $fila = $row->fetch_assoc();
-echo var_dump($fila);
-exit;
+
 $_SESSION["usuario"] = $user;
 $_SESSION["id_usuario"] = $fila["id_usuario"];
 

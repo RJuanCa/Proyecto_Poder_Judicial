@@ -46,10 +46,10 @@ if ($_POST["contrasena"] == "") {
     $_SESSION['usuario_mensaje']='si';
 
     $id_usuario=$_SESSION['id_usuario2'];
-    $usuario = $_POST['usuario'];
+    $usuario = $_POST['usuario2'];
     $contrasena =  $_SESSION['contrasena2'];
-    $nombre = $_POST['nombre_apellido'];
-    $cargo = $_POST['cargo'];
+    $nombre = $_POST['nombre_apellido2'];
+    $cargo = $_POST['cargo2'];
 
     echo "<script>location.href = 'usuario_menu_form_editar.php?id_usuario=$id_usuario&usuario=$usuario&contrasena=$contrasena&nombre_apellido=$nombre&cargo=$cargo'</script>";    
     exit();
@@ -62,10 +62,10 @@ if ($_POST["nombre_apellido"] == "") {
     $_SESSION['usuario_mensaje']='si';
 
     $id_usuario=$_SESSION['id_usuario2'];
-    $usuario = $_POST['usuario'];
-    $contrasena = $_POST['contrasena'];
+    $usuario = $_POST['usuario2'];
+    $contrasena = $_POST['contrasena2'];
     $nombre = $_SESSION['nombre_apellido2'];
-    $cargo = $_POST['cargo'];
+    $cargo = $_POST['cargo2'];
 
     echo "<script>location.href = 'usuario_menu_form_editar.php?id_usuario=$id_usuario&usuario=$usuario&contrasena=$contrasena&nombre_apellido=$nombre&cargo=$cargo'</script>";    
     exit();
@@ -78,9 +78,9 @@ if ($_POST["cargo"] == "") {
     $_SESSION['usuario_mensaje']='si';
 
     $id_usuario=$_SESSION['id_usuario2'];
-    $usuario = $_POST['usuario'];
-    $contrasena = $_POST['contrasena'];
-    $nombre = $_POST['nombre_apellido'];
+    $usuario = $_POST['usuario2'];
+    $contrasena = $_POST['contrasena2'];
+    $nombre = $_POST['nombre_apellido2'];
     $cargo = $_SESSION['cargo2'];
 
     echo "<script>location.href = 'usuario_menu_form_editar.php?id_usuario=$id_usuario&usuario=$usuario&contrasena=$contrasena&nombre_apellido=$nombre&cargo=$cargo'</script>";    
@@ -89,8 +89,8 @@ if ($_POST["cargo"] == "") {
 }
 
 // Guarda datos 
-$sql="UPDATE tab_usuarios SET usuario = '".utf8_encode($usuario)."', contrasena = '".$contrasena."', nombre_apellido = '".utf8_encode($nombre)."', cargo = '".$cargo."' ";
-$sql.="WHERE (tab_usuarios.id_usuario = ".$id_usuario.")"; 
+$sql="UPDATE usuarios SET usuario = '".utf8_encode($usuario)."', contrasena = '".$contrasena."', nombre_apellido = '".utf8_encode($nombre)."', cargo = '".$cargo."' ";
+$sql.="WHERE (usuarios.id_usuario = ".$id_usuario.")"; 
 
 $query = $mysqli->query($sql);
 

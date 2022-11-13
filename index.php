@@ -56,8 +56,8 @@ if($diferencia_dias<0){
 
 }else{
 
-    // Guarda datos en tab_fecha_pc
-    // $sql3="UPDATE tab_fecha_pc SET fecha_pc='$fecha_act_g'";
+    // Guarda datos en fecha_pc
+    // $sql3="UPDATE fecha_pc SET fecha_pc='$fecha_act_g'";
     // $query3=$mysqli->query($sql3);   
 
 }

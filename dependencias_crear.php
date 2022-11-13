@@ -180,9 +180,9 @@ if(isset($_GET['nac'])) {
 
 	 <span class="encab">
    <span class="text-danger">
-    Fecha: <?php /* echo $_SESSION['fecha']; */ ?>
+    Fecha: <?php echo $_SESSION['fecha']; ?>
 	  <br/>
-	  Usuario: <?php /* echo $_SESSION['usuario']; */ ?>
+	  Usuario: <?php echo $_SESSION['usuario'];  ?>
    </span>  
 	 </span>	
 
