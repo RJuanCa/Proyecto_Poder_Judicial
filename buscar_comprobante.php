@@ -176,7 +176,7 @@ return $tfecha;
 	if(!empty($_POST['search']['keyword'])) {
 		$search_keyword = $_POST['search']['keyword'];
 	}
-	$sql = 'SELECT * FROM tab_facturas WHERE (nro_factura LIKE :keyword OR fecha_reg LIKE :keyword OR total LIKE :keyword OR descuento LIKE :keyword OR total_desc LIKE :keyword) AND (id_dep = '.$_SESSION['id_dep'].') ORDER BY fecha_reg DESC, id_factura DESC';
+	$sql = 'SELECT * FROM articulos_entregados WHERE (num_transferencia LIKE :keyword OR id_articulo LIKE :keyword OR total LIKE :keyword OR descuento LIKE :keyword OR total_desc LIKE :keyword) AND (id_dep = '.$_SESSION['id_dep'].') ORDER BY id_articulo DESC, id_factura DESC';
 	
 	/* Pagination Code starts */
 	$per_page_html = '';
@@ -265,7 +265,7 @@ return $tfecha;
 		<td><?php echo $fecha_reg; ?></td>
 		<td><?php echo $row['anulado']; ?></td>
 		<td>
-			<a href="factura_reporte.php?id_factura=<?php echo $row['id_factura'] ?>&nro_factura=<?php echo $row['nro_factura'] ?>&fecha_reg=<?php echo $fecha_reg ?>&total=<?php echo $row['total'] ?>&descuento=<?php echo $row['descuento'] ?>&total_desc=<?php echo $row['total_desc'] ?>">Vista | </a> 
+			<a href="comprobante_reporte.php?id_factura=<?php echo $row['id_factura'] ?>&nro_factura=<?php echo $row['nro_factura'] ?>&fecha_reg=<?php echo $fecha_reg ?>&total=<?php echo $row['total'] ?>&descuento=<?php echo $row['descuento'] ?>&total_desc=<?php echo $row['total_desc'] ?>">Vista | </a> 
 			<?php
 			
 				if($row['anulado']=='no'){

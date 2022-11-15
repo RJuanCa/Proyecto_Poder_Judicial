@@ -18,7 +18,7 @@ if(isset($_GET['id_dep'])) {
    
 }
 
-// Tabla dependencias
+// Tabla dependencia
 $sql2="SELECT * FROM dependencia WHERE (id_dep = $id_dep)";
 $query2 = $mysqli->query($sql2);
 

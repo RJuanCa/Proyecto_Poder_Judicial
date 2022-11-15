@@ -196,8 +196,8 @@ return $tfecha;
 	<tr class='th_color'>
 	  	  
 	  <th class='table-header' width='30%'>Juzgado</th>
-	  <th class='table-header' width='30%'>Oficina</th>
-	  <th class='table-header' width='14%'>Responsable</th>
+	  <th class='table-header' width='30%'>Responsable</th>
+	  <th class='table-header' width='14%'>Direccion</th>
 	  <th class='table-header' width='26%'>Acción</th>
 
 	</tr>

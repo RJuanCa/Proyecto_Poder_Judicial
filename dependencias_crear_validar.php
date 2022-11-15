@@ -18,28 +18,9 @@ if ($definido==false){
 //validación
 $error_form = "";
 
-if ($_POST["nac"] == "") {
-
-	$_SESSION['contenido_mensaje_dependencia']='Debes escribir el campo antes ';
-    $_SESSION['dependencia_mensaje']='si';
-    $_SESSION['responsable']='si';
-   $_SESSION['dependencia']=$_POST["dependencia"];    
-    $_SESSION['cargo']=$_POST["cargo"];
-    $_SESSION['direccion']=$_POST["direccion"];
-    
-   
-    echo "<script>location.href = 'dependencias_crear.php?nac=$nac'</script>";    
-    exit();
-
-}else{
-
-    $nac=$_POST["nac"];
-
-}
-
 if ($_POST["id_dep"] == "") {
 
-    $_SESSION['contenido_mensaje_dependencia']='Debes escribir ';
+    $_SESSION['contenido_mensaje_dependencia']='Debes escribir Id de la Dependencia ';
     $_SESSION['dependencia_mensaje']='si';
    $_SESSION['responsable']=$_POST["responsable"];
     $_SESSION['nom_depen']=$_POST["nom_depen"];    
@@ -47,7 +28,7 @@ if ($_POST["id_dep"] == "") {
     $_SESSION['direccion']=$_POST["direccion"];
     
 
-    echo "<script>location.href = 'dependencias_crear.php?nac=$nac'</script>";    
+    echo "<script>location.href = 'dependencias_crear.php?id_dep=$id_dep'</script>";    
     exit();
 
 }else{
@@ -56,45 +37,11 @@ if ($_POST["id_dep"] == "") {
 
 }
 
-$id_dep_numero =  is_numeric($_POST["id_dep"]);
-if ($id_dep_numero==false){
-
-    $_SESSION['contenido_mensaje_dependencia']='';
-    $_SESSION['dependencia_mensaje']='si';
-    $_SESSION['responsable']=$_POST["responsable"];
-    $_SESSION['nom_depen']=$_POST["nom_depen"];    
-    $_SESSION['cargo']=$_POST["cargo"];
-    $_SESSION['direccion']=$_POST["direccion"];
-    
-
-    echo "<script>location.href = 'dependencias_crear.php?nac=$nac'</script>";    
-    exit();
-
-}
-
-$id_dep=($_POST["id_dep"]);
-$id_dep = explode('.', $id_dep);
-
-if ($id_dep){
-
-    $_SESSION['contenido_mensaje_dependencia']='';
-    $_SESSION['dependencia_mensaje']='si';
-    $_SESSION['responsable']=$_POST["responsable"];
-    $_SESSION['nom_depen']=$_POST["nom_depen"];    
-    $_SESSION['cargo']=$_POST["cargo"];
-    $_SESSION['direccion']=$_POST["direccion"];
-    
-
-    echo "<script>location.href = 'dependencias_crear.php?nac=$nac'</script>";    
-    exit();
-
-}
-
 
 if ($_POST["responsable"] != "") {
 
-    $responsable_numero =  is_numeric($_POST["responsable"]);
-    if ($responsable_numero==false){
+    $responsable = ($_POST["responsable"]);
+    if ($responsable==false){
         
         $_SESSION['dependencia_mensaje']='si';
         $_SESSION['responsable']='si';       
@@ -103,7 +50,7 @@ if ($_POST["responsable"] != "") {
         $_SESSION['direccion']=$_POST["direccion"];
        
 
-        echo "<script>location.href = 'dependencias_crear.php?nac=$nac'</script>";    
+        echo "<script>location.href = 'dependencias_crear.php?id_dep=$id_dep'</script>";    
         exit();
 
     }
@@ -130,7 +77,7 @@ if ($_POST["dependencia"] == "") {
     $_SESSION['direccion']=$_POST["direccion"];
    
 
-    echo "<script>location.href = 'dependencias_crear.php?nac=$nac'</script>";    
+    echo "<script>location.href = 'dependencias_crear.php?id_dep=$id_dep'</script>";    
     exit();
 
 }else{
@@ -141,7 +88,7 @@ if ($_POST["dependencia"] == "") {
 
 if ($_POST["cargo"] == "") {
 
-    $_SESSION['contenido_mensaje_dependencia']='Debes escribir el Teléfono';
+    $_SESSION['contenido_mensaje_dependencia']='Debes escribir el Cargo';
     $_SESSION['dependencia_mensaje']='si';
     $_SESSION['responsable']=$_POST["responsable"];
     $_SESSION['nom_depen']=$_POST["nom_depen"];    
@@ -149,7 +96,7 @@ if ($_POST["cargo"] == "") {
     $_SESSION['direccion']=$_POST["direccion"];
     
 
-    echo "<script>location.href = 'dependencias_crear.php?nac=$nac'</script>";    
+    echo "<script>location.href = 'dependencias_crear.php?id_dep=$id_dep'</script>";    
     exit();
 
 }else{
@@ -168,7 +115,7 @@ if ($_POST["direccion"] == "") {
     $_SESSION['direccion']="";
    
 
-    echo "<script>location.href = 'dependencias_crear.php?nac=$nac'</script>";    
+    echo "<script>location.href = 'dependencias_crear.php?id_dep=$id_dep'</script>";    
     exit();
 
 }else{
@@ -198,7 +145,7 @@ if ($query20->num_rows!=0) {
     $_SESSION['direccion']=$_POST["direccion"];
     
 
-    echo "<script>location.href = 'dependencias_crear.php?nac=$nac'</script>";    
+    echo "<script>location.href = 'dependencias_crear.php?id_dep=$id_dep'</script>";    
     exit();
 
 }
@@ -210,8 +157,8 @@ $hora_actual=$_SESSION['hora_actual'];
 $id_dep_cp=$_SESSION["id_dep"];
 
 // Guarda datos 
-$sql="INSERT INTO dependencia (id_dep, nom_depen, cargo, direccion, fecha_reg, hora_reg, id_dep) ";
-$sql.="VALUES ('$id_dep','$nom_depen','$cargo','$direccion','$fecha_act','$hora_actual','$id_dep_cp')";
+$sql="INSERT INTO dependencia (id_dep, nom_depen, cargo, direccion, fecha_reg, hora_reg,);
+$sql.=VALUES ('$id_dep','$nom_depen','$cargo','$direccion','$fecha_act','$hora_actual')";
 
 // echo $sql;
 // exit();
@@ -219,8 +166,8 @@ $sql.="VALUES ('$id_dep','$nom_depen','$cargo','$direccion','$fecha_act','$hora_
 $query = $mysqli->query($sql);
 
 // Chequea si la dependencia tiene movimientos
-$sql8="SELECT movimiento "; 
-$sql8.="FROM dependencia WHERE (id_dep = $id_dep)";
+$sql8="SELECT movimiento; 
+$sql8.=FROM dependencia WHERE (id_dep = $id_dep)";
 
 $query8 = $mysqli->query($sql8);
 $row8=$query8->fetch_assoc();
@@ -228,8 +175,8 @@ $movimiento8=$row8['movimiento'];
 
 if($movimiento8=='no'){
 
-    $sql9="UPDATE dependencia SET movimiento = 'si' ";
-    $sql9.="WHERE (id_dep = ".$id_dep.")"; 
+    $sql9="UPDATE dependencia SET movimiento = 'si' ;
+    $sql9.=WHERE (id_dep = ".$id_dep.")"; 
 
     $query9 = $mysqli->query($sql9);
 

@@ -224,7 +224,7 @@ if(isset($_GET['nac'])) {
 
       <div class="form-group">
         <div class="col-md-1 col-md-offset-2">
-          <button id="btn-enviar" class="btn btn-success" /><b>Guardar</b></button>
+          <button id="btn-enviar" class="btn btn-success"><b>Guardar</b></button>
         </div>
       </div>
 

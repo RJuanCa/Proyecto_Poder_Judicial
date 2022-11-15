@@ -12,11 +12,11 @@ if ($definido==false){
          
 }
 
-if(isset($_GET['id_dependencia'])) {
+if(isset($_GET['id_dep'])) {
 
-    $id_dependencia=$_GET['id_dependencia'];
+    $id_dep=$_GET['id_dep'];
 
-    $sql="SELECT * FROM dependencias WHERE (id_dep = ".$id_dep.")";
+    $sql="SELECT * FROM dependencia WHERE (id_dep = ".$id_dep.")";
 
     $query = $mysqli->query($sql);
     $row = $query->fetch_assoc(); 
@@ -53,7 +53,7 @@ if(isset($_GET['id_dependencia'])) {
       $responsable=utf8_decode($row['responsable']);
       $cargo=$row['cargo'];
       $direccion=utf8_decode($row['direccion']);
-      $_SESSION['id_dependencia2']=$id_dependencia;
+      $_SESSION['id_dep2']=$id_dep;
      $_SESSION['dependencia2']=$dependencia;     
       $_SESSION['responsable2']=$responsable;
       $_SESSION['cargo2']=$cargo;
@@ -268,7 +268,7 @@ if(isset($_GET['id_dependencia'])) {
         </div>
       </div>      
 
-      <input id="id_dependencia" class="form-control" type="hidden" name="id_dependencia" value="<?php echo $id_dependencia ?>"/>
+      <input id="id_dep" class="form-control" type="hidden" name="id_dep" value="<?php echo $id_dep ?>"/>
 
       <div class="form-group">
         <div class="col-md-1 col-md-offset-2">
@@ -316,10 +316,7 @@ if(isset($_GET['id_dependencia'])) {
 
 <div class="panel-footer">
   <div class="container">
-    <?php 
-  	// mini Sistemas RJC
-  	require("mini.php"); 
-	?>
+    
   </div>
 </div>
 </body>
