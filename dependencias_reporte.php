@@ -1,13 +1,13 @@
 <?php 
 require("coneccion/connection.php");
-session_start();
+   session_start();
 
 // Si se cerro la sesión por otro lado
 $definido=isset($_SESSION['usuario']);
 // No está definido la variable
 if ($definido==false){
 
-    header("Location:error1.php");
+    header("Location:index.php");
     exit();
          
 }
@@ -34,8 +34,8 @@ $row2=$query2->fetch_assoc();
 $valores_fecha_act = explode('-', $row2['fecha_reg']);
 $fecha_act=$valores_fecha_act[2]."-".$valores_fecha_act[1]."-".$valores_fecha_act[0];
 
-// echo $id_dep;
-// exit();
+ echo $id_dep;
+ exit();
 
 ?>
 
@@ -51,11 +51,9 @@ $fecha_act=$valores_fecha_act[2]."-".$valores_fecha_act[1]."-".$valores_fecha_ac
 <script src="js/jquery-latest.js"></script>
 <link rel="stylesheet" type="text/css" href="css/jquery-confirm.css"/>
 <script type="text/javascript" src="js/jquery-confirm.js"></script>
-
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="fonts/style.css">
-
 <link rel="shortcut icon" href="imagen/logoPoderJud150x550.png" />
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 

@@ -23,33 +23,13 @@ if(isset($_GET['id_dep'])) {
 
     if ($query->num_rows!=0) {
 
-      $_SESSION['dependencia_actual2']=$row['dependencia'];
+      $_SESSION['dependencia']=$row['dependencia'];
 
       $valores_dependencia = explode('-', $row['dependencia']);
 
-      $nac=$valores_dependencia[0];
-      $dependencia=$valores_dependencia[1];
+      $dependencia=$valores_dependencia;
+      $dependencia=$valores_dependencia;
 
-      if(isset($valores_dependencia[2])){
-
-        $rif_inicial=$valores_dependencia[2];
-
-      }else{
-
-        $rif_inicial="";                
-
-      }
-      if(isset($valores_dependencia[2])){
-
-        $rif_final=$valores_dependencia[2];
-
-      }else{
-
-        $rif_final="";                
-
-      }
-
-      
       $responsable=utf8_decode($row['responsable']);
       $cargo=$row['cargo'];
       $direccion=utf8_decode($row['direccion']);
@@ -82,11 +62,9 @@ if(isset($_GET['id_dep'])) {
 <script src="js/jquery-latest.js"></script>
 <link rel="stylesheet" type="text/css" href="css/jquery-confirm.css"/>
 <script type="text/javascript" src="js/jquery-confirm.js"></script>
-
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="fonts/style.css">
-
 <link rel="shortcut icon" href="imagen/avatar.png" />
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 

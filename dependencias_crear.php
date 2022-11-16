@@ -13,10 +13,10 @@ if ($definido==false){
 }
 
 // Viene de valida dependencias crear
-if(isset($_GET['nac'])) {
+if(isset($_GET['nom_depen'])) {
 
-    $dependencia=$_SESSION['dependencia'];    
-    $responsable=$_SESSION['responsable'];
+    $nom_depen=$_SESSION['nom_depen'];    
+    $responsable_dep=$_SESSION['responsable_dep'];
     $cargo=$_SESSION['cargo'];
     $direccion=$_SESSION['direccion'];
     
@@ -24,8 +24,8 @@ if(isset($_GET['nac'])) {
 }else{
 
   
-  $dependencia="";  
-  $responsable="";
+  $nom_depen="";  
+  $responsable_dep="";
   $cargo="";
   $direccion="";
 } 
@@ -43,13 +43,11 @@ if(isset($_GET['nac'])) {
 <script src="js/jquery-latest.js"></script>
 <link rel="stylesheet" type="text/css" href="css/jquery-confirm.css"/>
 <script type="text/javascript" src="js/jquery-confirm.js"></script>
-
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 <script src="bootstrap/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="fonts/style.css">
-
+<link rel="stylesheet" href="fonts/style.css"/>
 <link rel="shortcut icon" href="imagen/avatar.png" />
-<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 
 <style type="text/css">
 
@@ -193,7 +191,7 @@ if(isset($_GET['nac'])) {
         <div class="col-md-1">
           
             <div class="input-group">
-            <input id="dependencia" style="width:420px" class="form-control" type="text" name="dependencia" size="200" maxlength="200" value="<?php echo $dependencia ?>"/>
+            <input id="dependencia" style="width:420px" class="form-control" type="text" name="dependencia" size="200" maxlength="200" value="<?php echo $nom_depen ?>"/>
             </div>
             <span class="input-group-addon">por ejemplo: JUZGADO DE FALTAS</span>
 
@@ -202,9 +200,9 @@ if(isset($_GET['nac'])) {
       </div>      
 
       <div class="form-group">
-        <label for="oficina" class="control-label col-md-2">Responsable:</label>
+        <label for="responsable" class="control-label col-md-2">responsable:</label>
         <div class="col-md-9">
-          <input id="responsable" class="form-control" type="text" name="responsable" value="<?php echo $responsable ?>" size="20" maxlength="20" />
+          <input id="responsable_dep" class="form-control" type="text" name="responsable_dep" value="<?php echo $responsable_dep ?>" size="20" maxlength="20" />
         </div>
       </div>
 
