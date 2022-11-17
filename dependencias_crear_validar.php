@@ -18,88 +18,70 @@ if ($definido==false){
 //validación
 $error_form = "";
 if ($_POST["dependencia"] == "") {
-
-    $_SESSION['contenido_mensaje_dependencia']='Debes escribir la dependencia';
-    $_SESSION['dependencia_mensaje']='si';
-   $_SESSION['responsable_dep']=$_POST["responsable_dep"];
-    $_SESSION['nom_depen']="";    
-    $_SESSION['cargo']=$_POST["cargo"];
-    $_SESSION['direccion']=$_POST["direccion"];
-   
-
-    echo "<script>location.href = 'dependencias_crear.php?nom_depen=$nom_depen'</script>";    
-    exit();
-
-}else{
-
-    $dependencia=utf8_encode($_POST["dependencia"]);
-
-}
-
-if ($_POST["responsable_dep"] != "") {
-
-    $responsable_dep = ($_POST["responsable_dep"]);
-    if ($responsable_dep==false){
-        $_SESSION['contenido_mensaje_dependencia']='Debes escribir el responsable';
+    $dependencia = ($_POST["dependencia"]);
+    if ($dependencia==false) {
+        $_SESSION['contenido_mensaje_dependencia']='Debes escribir la dependencia';
         $_SESSION['dependencia_mensaje']='si';
+        $_SESSION['responsable_dep']=$_POST["responsable_dep"];
         $_SESSION['nom_depen']=$_POST["nom_depen"];
-        $_SESSION['responsable_dep']='si';       
         $_SESSION['cargo']=$_POST["cargo"];
         $_SESSION['direccion']=$_POST["direccion"];
-       
 
-        echo "<script>location.href = 'dependencias_crear.php?nom_depen=$nom_depen'</script>";    
+        echo "<script>location.href = 'dependencias_crear.php?nom_depen=$nom_depen'</script>";
         exit();
-
+    } else {
+        $dependencia=($_POST["dependencia"]);
     }
-
 }
-
 if ($_POST["responsable_dep"] == "") {
+    $responsable_dep = ($_POST["responsable_dep"]);
+    if ($dependencia==false) {
+        $_SESSION['contenido_mensaje_dependencia']='Debes escribir el responsable de la Dependencia';
+        $_SESSION['dependencia_mensaje']='si';
+        $_SESSION['responsable_dep']=$_POST["responsable_dep"];
+        $_SESSION['nom_depen']=$_POST["nom_depen"];
+        $_SESSION['cargo']=$_POST["cargo"];
+        $_SESSION['direccion']=$_POST["direccion"];
 
-    $responsable_dep="";
-
-}else{
-
-    $responsable_dep=$_POST["responsable_dep"];
+        echo "<script>location.href = 'dependencias_crear.php?nom_depen=$nom_depen'</script>";
+        exit();
+    } else {
+        $responsable_dep=($_POST["responsable_dep"]);
+    }
 }
 
 if ($_POST["cargo"] == "") {
+    $cargo = ($_POST["cargo"]);
+    if ($cargo==false) {
+        $_SESSION['contenido_mensaje_dependencia']='Debes escribir la dependencia';
+        $_SESSION['dependencia_mensaje']='si';
+        $_SESSION['responsable_dep']=$_POST["responsable_dep"];
+        $_SESSION['nom_depen']=$_POST["nom_depen"];
+        $_SESSION['cargo']=$_POST["cargo"];
+        $_SESSION['direccion']=$_POST["direccion"];
 
-    $_SESSION['contenido_mensaje_dependencia']='Debes escribir el Cargo';
-    $_SESSION['dependencia_mensaje']='si';
-    $_SESSION['responsable_dep']=$_POST["responsable_dep"];
-    $_SESSION['nom_depen']=$_POST["nom_depen"];    
-    $_SESSION['cargo']="";
-    $_SESSION['direccion']=$_POST["direccion"];
-    
-
-    echo "<script>location.href = 'dependencias_crear.php?nom_depen=$nom_depen'</script>";    
-    exit();
-
-}else{
-
-    $cargo=$_POST["cargo"];
-
+        echo "<script>location.href = 'dependencias_crear.php?nom_depen=$nom_depen'</script>";
+        exit();
+    } else {
+        $cargo=($_POST["cargo"]);
+    }
 }
 
 if ($_POST["direccion"] == "") {
+    $direccion = ($_POST["direccion"]);
+    if ($dependencia==false) {
+        $_SESSION['contenido_mensaje_dependencia']='Debes escribir la dependencia';
+        $_SESSION['dependencia_mensaje']='si';
+        $_SESSION['responsable_dep']=$_POST["responsable_dep"];
+        $_SESSION['nom_depen']=$_POST["nom_depen"];
+        $_SESSION['cargo']=$_POST["cargo"];
+        $_SESSION['direccion']=$_POST["direccion"];
 
-    $_SESSION['contenido_mensaje_dependencia']='Debes escribir la Dirección';
-    $_SESSION['dependencia_mensaje']='si';
-    $_SESSION['nom_depen']=$_POST["nom_depen"];    
-    $_SESSION['responsable_dep']=$_POST["responsable_dep"];
-    $_SESSION['cargo']=$_POST["cargo"];
-    $_SESSION['direccion']="";
-   
-
-    echo "<script>location.href = 'dependencias_crear.php?nom_depen=$nom_depen'</script>";    
-    exit();
-
-}else{
-
-    $direccion=utf8_encode($_POST["direccion"]);
-
+        echo "<script>location.href = 'dependencias_crear.php?nom_depen=$nom_depen'</script>";
+        exit();
+    } else {
+        $direccion=($_POST["direccion"]);
+    }
 }
 
 // Chequea que existe la dependencia
