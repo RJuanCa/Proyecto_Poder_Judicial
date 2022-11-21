@@ -1,5 +1,5 @@
 <?php 
-/*
+
 require("coneccion/connection.php");
 session_start();
 
@@ -8,15 +8,13 @@ $definido=isset($_SESSION['usuario']);
 // No está definido la variable
 if ($definido==false){
 
-    header("Location:error1.php");
+    header("Location:panel.php");
     exit();
          
 }
 
-// Totaliza los renglones de la factura segun la cantidad del producto
-$sql3="SELECT id_producto, producto, descripcion, precio_compra, precio_final, ganancia, cantidad_existencia FROM tab_productos ";
-
-$sql3.="GROUP BY id_producto";
+// Totaliza los renglones del comprobante segun la cantidad del articulos
+$sql3="SELECT * FROM articulos GROUP BY id_articulo ASC";
 
 $query3 = $mysqli->query($sql3);
 
@@ -27,24 +25,24 @@ if($query3->num_rows==0){
 
 }
 
-// Lista los totales de las cantidades del producto
+// Lista los totales de las cantidades de los articulo
 $i=0;
 while ($row3=$query3->fetch_assoc()) {
 
   $i=$i+1;
-  $id_producto_4=$row3['id_producto'];
+  $id_producto_4=$row3['id_articulo'];
 
   if ($i==1){
       
-    $productos_a = array(
+    $articulo = array(
 
       $i => array(
-        
-        'nombre_p' => $row3['producto'],
-        'descripcion_p' => $row3['descripcion'],
-        'precio_compra_p' => $row3['precio_compra'],
-        'precio_final_p' => $row3['precio_final'],
-        'ganancia_p' => $row3['ganancia'],
+        'id_articulo_p' => $row3['id_articulo'],        
+        'nombre_articulo_p' => $row3['nombre_articulo'],
+        'id_subrubro_p' => $row3['id_subrubro'],
+        'id_rubro_p' => $row3['id_rubro'],
+        'marca_p' => $row3['marca'],
+        'modelo_p' => $row3['modelo'],
         'cantidad_existencia_p' => $row3['cantidad_existencia'],
 
       ),
@@ -55,15 +53,16 @@ while ($row3=$query3->fetch_assoc()) {
 
   if ($i>1){
 
-    array_push($productos_a, 
+    array_push($articulo_a, 
 
       array(
-
-        'nombre_p' => $row3['producto'],
-        'descripcion_p' => $row3['descripcion'],
-        'precio_compra_p' => $row3['precio_compra'],
-        'precio_final_p' => $row3['precio_final'],
-        'ganancia_p' => $row3['ganancia'],
+        'id_articulo_p'=>$row3['id_articulo'],
+        'nombre_articulo_p' => $row3['nombre_articulo'],
+        'descripcion_p' => $row3['id_subrubro'],
+        'id_rubro_p' => $row3['id_rubro'],
+        'marca_p' => $row3['marca'],
+        'modelo_p' => $row3['modelo'],
+        'estado_p'=>$row3['estado'],
         'cantidad_existencia_p' => $row3['cantidad_existencia'],
        
       )
@@ -109,7 +108,7 @@ function array_sort($array, $on, $order=SORT_ASC)
 
     return $new_array;
 }
-*/
+
 ?>
 
 <!DOCTYPE html>
@@ -124,11 +123,9 @@ function array_sort($array, $on, $order=SORT_ASC)
 <script src="js/jquery-latest.js"></script>
 <link rel="stylesheet" type="text/css" href="css/jquery-confirm.css"/>
 <script type="text/javascript" src="js/jquery-confirm.js"></script>
-
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="fonts/style.css">
-
 <link rel="shortcut icon" href="imagen/Logo-Poder-Judicial-Ctes.png" />
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
@@ -139,11 +136,6 @@ function array_sort($array, $on, $order=SORT_ASC)
     font-size:16px; 
     text-align:right;
     
-  }
-  .monto{
-
-  text-align:right;   
-
   }
   .cantidad{
 
@@ -211,9 +203,13 @@ function printe(){
  <thead>
   <tr>
     
-    <th class='table-header' width='25%' style="vertical-align:middle">Cod. Artículo</th>
-    <th class='table-header' width='40%' style="vertical-align:middle">Artículo</th>
-    <th class='table-header' width='35%' style="vertical-align:middle">Descripción</th>
+    <th class='table-header' width='15%' style="vertical-align:middle">Id Artículo</th>
+    <th class='table-header' width='40%' style="vertical-align:middle">Nombre Articulo</th>
+    <th class='table-header' width='15%' style="vertical-align:middle">Id Subrubro</th>
+    <th class='table-header' width='15%' style="vertical-align:middle">Id Rubro</th>
+    <th class='table-header' width='35%' style="vertical-align:middle">Marca</th>
+    <th class='table-header' width='35%' style="vertical-align:middle">Modelo</th>
+    <th class='table-header' width='25%' style="vertical-align:middle">Estado</th>
     <th class='table-header' width='10%' style="vertical-align:middle">Existencia</th>
             
   </tr>
@@ -222,46 +218,49 @@ function printe(){
    <tbody id='table-body'>
 
     <?php
-/*
-      $new_array_2 = array();
-      $new_array_2 = array_sort($productos_a, 'nombre_p', SORT_ASC);
 
-      $total_ganacia=0;
+      $new_array_2 = array();
+      $new_array_2 = array_sort($articulo, 'nombre_articulo_p', SORT_ASC);
+
+      $total_enviado = 0;
       $nro_pp=0;
       $pp3=0;
       $pp4=0;
       $pp5=0;
       $pp6=0;
-      foreach($new_array_2 as $id=>$a){
-
+      foreach ($new_array_2 as $id=> $a){
         $p="";
         foreach($a as $b=>$c){
-   
-          $p.="|||".$c;
-   
+          $p .="|||" . $c;
         }
-
         $nro_pp=$nro_pp+1;
-        
-        $pp = explode("|||", $p);
+        $pp=explode("|||", $p);
 
-        // Total precio compra
-        $pp3=$pp3+$pp[3];
-        // Total precio final
-        $pp4=$pp4+$pp[4];
-        // Total ganancia
-        $pp5=$pp5+$pp[5];
-        // Total cantidad
+        //Total cantidad
         $pp6=$pp6+$pp[6];
-      */    
-    ?>
+        ?>
+        <tr class="table-row">
+          <td><?php echo $nro_pp;;?></td>
+          <td><?php echo utf8_decode($pp[1]);?></td>
+          <td><?php echo utf8_decode($pp[2]);?></td>
+          <td>
+            <div class="cantidad"><?php echo ($pp[6])?></div>
+          </td>
+        </tr>
+      <?php
+      }
+      ?>
 
+      
     <tr class='table-row'>
       
-      <td><?php /* echo $nro_pp;;*/ ?></td>
-      <td><?php /* echo utf8_decode($pp[1]); */ ?></td>
-      <td><?php /* echo utf8_decode($pp[2]); */ ?></td>
-      <td><div class="cantidad"><?php /* echo $pp[6] */ ?></div></td>
+      <td><?php  ?></td>
+      <td><?php   ?></td>
+      <td><?php  ?></td>
+      <td><?php  ?></td>
+      <td><?php  ?></td>
+      <td><?php  ?></td>
+      <td><div class="cantidad"><?php  ?></div></td>
       
     </tr>
 
@@ -273,15 +272,7 @@ function printe(){
    </tbody>
 
 </table>
-
-  <div class="productodato">
-   <?php
-
-      // echo "<b>Total Ganancia: </b>".number_format($total_ganacia,2,',','.');
-
-    ?>
-  </div>  
-
+  
 </div>  
 
 </div>

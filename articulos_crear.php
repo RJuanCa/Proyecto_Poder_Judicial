@@ -1,5 +1,4 @@
 <?php 
-
 require("coneccion/connection.php");
 session_start();
 
@@ -8,20 +7,28 @@ $definido=isset($_SESSION['usuario']);
 // No está definido la variable
 if ($definido==false){
 
-    header("Location:error1.php");
+    header("Location:panel.php");
     exit();
          
 }
 
-if(isset($_GET['fecha_inicial'])) {
+if(isset($_GET['nombre_articulo'])) {
 
-    $fecha_inicial=$_GET['fecha_inicial'];
-    $fecha_final=$_GET['fecha_final'];
+    $nombre_articulo=$_GET['nombre_articulo'];
+    $id_subrubro=$_GET['id_subrubro'];
+    $id_rubro=$_GET['id_rubro'];
+    $marca=$_GET['marca'];
+    $modelo=$_GET['modelo'];
+    $estado=$_GET['estado'];
    
 }else{
 
-  $fecha_inicial="";
-  $fecha_final="";
+  $nombre_articulo="";
+  $id_subrubro="";
+  $id_rubro="";
+  $marca="";
+  $modelo="";
+  $estado="";
 
 }
 
@@ -31,7 +38,7 @@ if(isset($_GET['fecha_inicial'])) {
 <head>
 
 <meta charset="utf-8">
-<title>Dir. de Arquitectur - Reporte - Salidas - Form</title>
+<title>Direccion de Arquitectura - articulo - Crear - Form</title>
 
 <link rel="stylesheet" href="demo/libs/bundled.css">
 <script src="demo/libs/bundled.js"></script>
@@ -43,52 +50,51 @@ if(isset($_GET['fecha_inicial'])) {
 <link rel="stylesheet" href="fonts/style.css">
 <link rel="shortcut icon" href="imagen/avatar.png" />
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-
 <style type="text/css">
 
-  .usuario3 {
+.usuario3 {
 
-    color:black;
-    font-size:16px;
-  
-  }
+color:black;
+font-size:16px;
 
-  .th_color{
+}
+.th_color{
 
-    background: green;
+  background: #0a3172;
 
-  }
-  .navbar{
+}
+.navbar{
 
-    background: #0a3172;
+  background: blue;
 
-  }
-  .body1{
+}
+.body1{
 
-    background:silver;
+  background:silver;
 
-  }
-  .menu2{
+}
+.menu2{
 
-    font-size:24px;
-    color:black;
+  font-size:24px;
+  color:black;
 
-  }
-  .encab{
+}
+.encab{
 
-    font-size:18px;
+  font-size:18px;
 
-  }
-  @media screen and (max-width:400px ) {
+}
 
-  .menu2{
+@media screen and (max-width:400px ) {
 
-    font-size:19px;
-    color:black;
+.menu2{
 
-   }
-   
-  }   
+  font-size:19px;
+  color:black;
+
+}	
+
+}
 
 </style>
 
@@ -101,7 +107,7 @@ if(isset($_GET['fecha_inicial'])) {
       // confirmation
       $.confirm({
       title: 'Mensaje',
-      content: '¿Confirma en generar reporte?',
+      content: '¿Confirma en guardar?',
       animation: 'scale',
       closeAnimation: 'zoom',
         buttons: {
@@ -111,12 +117,12 @@ if(isset($_GET['fecha_inicial'])) {
 
             action: function(){
 
-               var url = "reportes_salidas_validar.php";     
+               var url = "articulos_crear_validar.php";     
 
                $.ajax({                        
                type: "POST",                 
                url: url,                    
-               data: $("#formulario_reporte").serialize(),
+               data: $("#formulario_producto").serialize(),
                beforeSend: function () {
                 $("#resp").html("<img src='imagen/loader-small.gif'/><font color='green'>&nbsp&nbspProcesando, por favor espere...</font>");
                },
@@ -152,9 +158,9 @@ if(isset($_GET['fecha_inicial'])) {
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       
-      <p class="navbar-brand"><span class="menu2">Dir. de Arquitectura</span></p> 
-      <p class="navbar-brand"><span class="menu2"><a href="panel.php">Menú</a></span></p> 
-      <p class="navbar-brand"><span class="menu2"><a href="reportes.php">Volver</a></span></p> 
+      <p class="navbar-brand"><span class="menu2">Direccion de Arquitectura</span></p> 
+      <p class="navbar-brand"><span class="menu2"><a href="panel.php">Menu</a></span></p> 
+      <p class="navbar-brand"><span class="menu2"><a href="artucilos.php">Volver</a></span></p> 
 
   </div>
     
@@ -169,27 +175,41 @@ if(isset($_GET['fecha_inicial'])) {
 
 	 <span class="encab">
    <span class="text-danger">
-    Fecha: <?php  echo $_SESSION['fecha'];  ?>
+    Fecha: <?php echo $_SESSION['fecha']; ?>
 	  <br/>
-	  Usuario: <?php  echo $_SESSION['usuario'];  ?>
+	  Usuario: <?php echo $_SESSION['usuario']; ?>
    </span>  
 	 </span>	
 
   </p>
 
-  <h4>Reportes - Salidas - Artículos</h4>
+  <h4>Ingresar Articulo</h4>
 
-    <form id="formulario_reporte" class="form-horizontal" method="post" action="return false" onsubmit="return false">
+    <form id="formulario_producto" class="form-horizontal" method="post" action="return false" onsubmit="return false">
+
+      <div class="form-group">
+        <label for="articulo" class="control-label col-md-2">articulo:</label>
+        <div class="col-md-9">
+          <input id="articulo" class="form-control" type="text" name="articulo" value="<?php echo $nombre_articulo ?>" size="100" maxlength="100" autofocus />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="id_subrubro" class="control-label col-md-2">Id Subrobro:</label>
+        <div class="col-md-9">
+          <input id="id_subrubro" class="form-control" type="text" name="id_subrubro" value="<?php echo $id_subrubro ?>" size="250" maxlength="250" />
+        </div>
+      </div>
 
       <div class="form-group">
 
-        <label for="fecha_inicial" class="control-label col-md-2">Fecha Inicial:</label>
+        <label for="id_rubro" class="control-label col-md-2">Id Rubro:</label>
         <div class="col-md-7">
         <table>    
         <tr>    
           <td>
-          <input id="fecha_inicial" class="form-control" type="text" name="fecha_inicial" value="<?php echo $fecha_inicial  ?>" size="20" maxlength="15" />
-          </td>
+          <input id="id_rubro" class="form-control" type="text" name="id_rubro" value="<?php echo $id_rubro ?>" size="20" maxlength="15" />
+          </td>           
         </tr>    
         </table>  
         </div>
@@ -197,26 +217,49 @@ if(isset($_GET['fecha_inicial'])) {
       </div>
 
       <div class="form-group">
-        <label for="fecha_final" class="control-label col-md-2">Fecha Final:</label>
+        <label for="marca" class="control-label col-md-2">Marca: </label>
         <div class="col-md-7">
         <table>  
         <tr>  
           <td>
-          <input id="fecha_final" class="form-control" type="text" name="fecha_final" value="<?php  echo $fecha_final  ?>" size="20" maxlength="15" />
+          <input id="marca" class="form-control" type="text" name="marca" value="<?php echo $marca ?>" size="20" maxlength="15" />
           </td>
-        </tr>  
-        <tr>  
-          <td>
-            &nbsp&nbsppor ejemplo: 01-01-2020
-          </td>            
-        </tr>  
+        </tr>        
         </table>  
         </div>
       </div>
 
       <div class="form-group">
+        <label for="modelo" class="control-label col-md-2">Modelo: </label>
+        <div class="col-md-7">
+        <table>  
+        <tr>  
+          <td>
+          <input id="modelo" class="form-control" type="text" name="modelo" value="<?php echo $modelo ?>" size="20" maxlength="15" />
+          </td>
+        </tr>        
+        </table>  
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="estado" class="control-label col-md-2">Estado: </label>
+        <div class="col-md-7">
+        <table>  
+        <tr>  
+          <td>
+          <input id="estado" class="form-control" type="text" name="estado" value="<?php echo $estado ?>" size="20" maxlength="15" />
+          </td>
+        </tr>        
+        </table>  
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
         <div class="col-md-1 col-md-offset-2">
-          <button id="btn-enviar" class="btn btn-success" ><b>Reporte</b></button>
+          <button id="btn-enviar" class="btn btn-success" ><b>Guardar</b></button>
         </div>
       </div>
 
@@ -232,10 +275,10 @@ if(isset($_GET['fecha_inicial'])) {
 
 <?php 
 
-    if ( isset($_SESSION['reporte_mensaje']) && $_SESSION['reporte_mensaje'] == "si" ) {
+    if ( isset($_SESSION['producto_mensaje']) && $_SESSION['producto_mensaje'] == "si" ) {
 
-      $_SESSION['reporte_mensaje']='no';
-      $contenido_mensaje=$_SESSION['contenido_mensaje_repor'];
+      $_SESSION['producto_mensaje']='no';
+      $contenido_mensaje=$_SESSION['contenido_mensaje_prod'];
       echo "<script>
         
         $.alert({

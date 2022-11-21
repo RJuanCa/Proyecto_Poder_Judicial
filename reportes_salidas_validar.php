@@ -26,7 +26,7 @@ if ($_POST["fecha_inicial"] == "") {
     $fecha_inicial="";
     $fecha_final=$_POST["fecha_final"];
 
-    echo "<script>location.href = 'reportes_ventas.php?fecha_inicial=$fecha_inicial&fecha_final=$fecha_final'</script>";    
+    echo "<script>location.href = 'reportes_salidas.php?fecha_inicial=$fecha_inicial&fecha_final=$fecha_final'</script>";    
     exit();
 
 }else{
@@ -43,7 +43,7 @@ if ($_POST["fecha_final"] == "") {
     $fecha_inicial=$_POST["fecha_inicial"];
     $fecha_final="";
 
-    echo "<script>location.href = 'reportes_ventas.php?fecha_inicial=$fecha_inicial&fecha_final=$fecha_final'</script>";    
+    echo "<script>location.href = 'reportes_salidas.php?fecha_inicial=$fecha_inicial&fecha_final=$fecha_final'</script>";    
     exit();
 
 }else{
@@ -90,7 +90,7 @@ if ($error_fecha=="fecha no valido"){
     $fecha_inicial=$_POST["fecha_inicial"];
     $fecha_final=$_POST["fecha_final"];
 
-    echo "<script>location.href = 'reportes_ventas.php?fecha_inicial=$fecha_inicial&fecha_final=$fecha_final'</script>";    
+    echo "<script>location.href = 'reportes_salidas.php?fecha_inicial=$fecha_inicial&fecha_final=$fecha_final'</script>";    
     exit();
 
 }
@@ -133,7 +133,7 @@ if ($error_fecha=="fecha no valido"){
     $fecha_inicial=$_POST["fecha_inicial"];
     $fecha_final=$_POST["fecha_final"];
 
-    echo "<script>location.href = 'reportes_ventas.php?fecha_inicial=$fecha_inicial&fecha_final=$fecha_final'</script>";    
+    echo "<script>location.href = 'reportes_salidas.php?fecha_inicial=$fecha_inicial&fecha_final=$fecha_final'</script>";    
     exit();
 
 }
@@ -151,12 +151,12 @@ if($diferencia_dias<0){
     $fecha_inicial=$_POST["fecha_inicial"];
     $fecha_final=$_POST["fecha_final"];
 
-    echo "<script>location.href = 'reportes_ventas.php?fecha_inicial=$fecha_inicial&fecha_final=$fecha_final'</script>";    
+    echo "<script>location.href = 'reportes_salidas.php?fecha_inicial=$fecha_inicial&fecha_final=$fecha_final'</script>";    
     exit();   
 
 }
 
-echo "<script>location.href = 'reportes_ventas_vista.php?fecha_inicial=$fecha_inicial&fecha_final=$fecha_final'</script>";    
+echo "<script>location.href = 'reportes_salidas_vista.php?fecha_inicial=$fecha_inicial&fecha_final=$fecha_final'</script>";    
 
 function compararFechas($primera, $segunda)
  {

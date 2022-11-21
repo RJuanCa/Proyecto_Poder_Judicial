@@ -1,5 +1,5 @@
 <?php 
-/*
+
 require("coneccion/connection.php");
 session_start();
 
@@ -8,19 +8,19 @@ $definido=isset($_SESSION['usuario']);
 // No está definido la variable
 if ($definido==false){
 
-    header("Location:error1.php");
+    header("Location:panel.php");
     exit();
          
 }
 
-if(isset($_GET['id_producto'])) {
+if(isset($_GET['id_articulo'])) {
 
-    $id_producto=$_GET['id_producto'];
+    $id_articulo=$_GET['id_articulo'];
    
 }
 
 // Tabla productos
-$sql2="SELECT * FROM tab_productos WHERE (id_producto = $id_producto)";
+$sql2="SELECT * FROM articulos WHERE (id_articulo = $id_articulo)";
 $query2 = $mysqli->query($sql2);
 
 if($query2->num_rows==0){
@@ -31,27 +31,26 @@ if($query2->num_rows==0){
 }
 
 $row2=$query2->fetch_assoc();
-// echo $row2['producto'];
+// echo $row2['id_articulo'];
 
 /*
-  producto,
-  descripcion,
-  precio_compra,
-  precio_final,
-  ganancia,
-  cantidad_producto,
-  cantidad_venta,
+  id_articulo,
+  nombre_articulo,
+  id_subrubro,
+  id_rubro,
+  marca,
+  modelo,
+  estado,
   cantidad_existencia,
-  fecha_compra,
   id_usuario
 */
-/*
+
 $valores_fecha_act = explode('-', $row2['fecha_reg']);
 $fecha_act=$valores_fecha_act[2]."-".$valores_fecha_act[1]."-".$valores_fecha_act[0];
 
-// echo $id_producto;
+// echo $id_articulo;
 //exit();
-*/
+
 ?>
 
 <!DOCTYPE html>
@@ -66,11 +65,9 @@ $fecha_act=$valores_fecha_act[2]."-".$valores_fecha_act[1]."-".$valores_fecha_ac
 <script src="js/jquery-latest.js"></script>
 <link rel="stylesheet" type="text/css" href="css/jquery-confirm.css"/>
 <script type="text/javascript" src="js/jquery-confirm.js"></script>
-
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="fonts/style.css">
-
 <link rel="shortcut icon" href="imagen/avatar.png" />
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
@@ -151,40 +148,44 @@ function printe(){
 
   <div class="form-group">
  
-    <span class="productolabel">Código:</span>
-    <span class="productodato"><?php /* echo $row2['cod_producto_2'] */ ?></span>
+    <span class="productolabel">Id Artículo:</span>
+    <span class="productodato"><?php  echo $row2['id_articulo']  ?></span>
     <br/>
  
-    <span class="productolabel">Artículo:</span>
-    <span class="productodato"><?php /* echo utf8_decode($row2['producto']) */ ?></span>
+    <span class="productolabel">Nombre Articulo: </span>
+    <span class="productodato"><?php  echo utf8_decode($row2['nombre_articulo'])  ?></span>
     <br/>
 
-    <span class="productolabel">Descripción:</span>
-    <span class="productodato"><?php /* echo utf8_decode($row2['descripcion']) */ ?></span>
+    <span class="productolabel">Id Subrubro:</span>
+    <span class="productodato"><?php echo utf8_decode($row2['id_subrubro']) ?></span>
     <br/>
 
-    <span class="productolabel">Precio Compra:</span>
-    <span class="productodato"><?php /* echo number_format($row2['precio_compra'],2,',','.') */ ?></span>
+    <span class="productolabel">Marca:</span>
+    <span class="productodato"><?php  echo utf8_decode($row2['marca']) ?></span>
     <br/>
 
-    <span class="productolabel">Cantidad Producto:</span>
-    <span class="productodato"><?php /* echo number_format($row2['cantidad_producto'],2,',','.') */ ?></span>
+    <span class="productolabel">Modelo:</span>
+    <span class="productodato"><?php echo utf8_decode($row2['modelo']) ?></span>
+    <br/>
+
+    <span class="productolabel">Estado:</span>
+    <span class="productodato"><?php echo utf8_decode($row2['estado']) ?></span>
     <br/>
 
     <span class="productolabel">Cantidad Enviada:</span>
-    <span class="productodato"><?php /* echo number_format($row2['cantidad_enviada'],2,',','.') */ ?></span>
+    <span class="productodato"><?php  echo number_format($row2['cantidad_enviada']) ?></span>
     <br/>
 
     <span class="productolabel">Existencia:</span>
-    <span class="productodato"><?php /* echo number_format($row2['cantidad_existencia'],2,',','.') */ ?></span>
+    <span class="productodato"><?php echo number_format($row2['cantidad_existencia'],2,',','.') ?></span>
     <br/>
 
     <span class="productolabel">Fecha Registro:</span>
-    <span class="productodato"><?php /* echo $fecha_act */ ?></span>
+    <span class="productodato"><?php echo $fecha_act  ?></span>
     <br/>
 
     <span class="productolabel">Hora Registro:</span>
-    <span class="productodato"><?php /* echo $row2['hora_reg'] */ ?></span>
+    <span class="productodato"><?php  echo $row2['hora_reg']  ?></span>
     <br/>
 
   </div> <!-- class="form-group" -->

@@ -29,11 +29,9 @@ $nro=0;
 <script src="js/jquery-latest.js"></script>
 <link rel="stylesheet" type="text/css" href="css/jquery-confirm.css"/>
 <script type="text/javascript" src="js/jquery-confirm.js"></script>
-
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="fonts/style.css">
-
 <link rel="shortcut icon" href="imagen/avatar.png" />
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
@@ -49,16 +47,6 @@ $nro=0;
 	color:black;
 	font-size:16px;
 	
-  }
-  .monto{
-
-	text-align:right;  	
-
-  }
-  .monto2{
-
-	text-align:center;  	
-
   }
   .th_color{
 
@@ -147,7 +135,7 @@ return $tfecha;
 	if(!empty($_POST['search']['keyword'])) {
 		$search_keyword = $_POST['search']['keyword'];
 	}
-	$sql = 'SELECT * FROM articulos WHERE (nombre_articulo_2 LIKE :keyword OR articulo LIKE :keyword OR nombre LIKE :keyword) ORDER BY nombre_articulo ASC ';
+	$sql = 'SELECT * FROM articulos  ORDER BY id_articulo ASC ';
 	
 	/* Pagination Code starts */
 	$per_page_html = '';
@@ -155,14 +143,14 @@ return $tfecha;
 	$start=0;
 	if(!empty($_POST["page"])) {
 		$page = $_POST["page"];
-		$start=($page-1) /* NRO_REGISTROS*/;
+		$start=($page-1) * NRO_REGISTROS ;
     $nro=$start;
 	}
    
 	$limit=" limit " . $start . "," . NRO_REGISTROS;
 	$pagination_statement = $pdo_conn->prepare($sql);
 	$pagination_statement->bindValue(':keyword', '%' . $search_keyword . '%', PDO::PARAM_STR);
-	$pagination_statement->execute();
+	/*$pagination_statement->execute();*/
 
 	$row_count = $pagination_statement->rowCount();
 	if(!empty($row_count)){
@@ -183,16 +171,17 @@ return $tfecha;
 	$query = $sql.$limit;
 	$pdo_statement = $pdo_conn->prepare($query);
 	$pdo_statement->bindValue(':keyword', '%' . $search_keyword . '%', PDO::PARAM_STR);
-	$pdo_statement->execute();
+	/*$pdo_statement->execute(); */
 	$resultados = $pdo_statement->fetchAll();
   
 ?>
 <form name='frmSearch' action='' method='post'>
 <div style='text-align:right;margin:20px 0px;'>
 
-<!--<input type='text' name='search[keyword]' value="<?php echo $search_keyword; ?>" id='keyword' maxlength='25'>-->
 
-<div class="row"><div class="col-lg-6"></div>
+
+<div class="row">
+  <div class="col-lg-6"></div>
   <div class="col-lg-6">
     <div class="input-group">
       <input type="text" class="form-control" placeholder="Buscar..."  name='search[keyword]' value="<?php echo $search_keyword; ?>" id='keyword' maxlength='50'>
@@ -210,9 +199,13 @@ return $tfecha;
 <table class="table table-bordered table-hover">
   <thead>
 	<tr class='th_color'>
-	  <th class='table-header' width='15%'>Cod. Artículo</th>
-	  <th class='table-header' width='25%'>Artículo</th>
-	  <th class='table-header' width='30%'>Descripción</th>
+  <th class='table-header' width='15%'>id Artículo</th>
+	  <th class='table-header' width='25%'>Nom. Artículo</th>
+	  <th class='table-header' width='15%'>Subrubro</th>
+	  <th class='table-header' width='10%'>Rubro</th>
+    <th class='table-header' width='20%'>Marca</th>
+    <th class='table-header' width='20%'>Modelo</th>
+    <th class='table-header' width='10%'>Estado</th>
     <th class='table-header' width='10%'>Existencia</th>
     <th class='table-header' width='20%'>Acción</th>
 	</tr>
@@ -230,11 +223,11 @@ return $tfecha;
         echo $nro; 
       ?>
     </td>
-    <td><?php echo $row['id_articulo']; ?></td>
+    <td><?php echo $row['nombre_articulo']; ?></td>
 		<td>
       <?php 
-      $descripcione=$row['descripcion'];
-      echo $descripcione; 
+      $marca=$row['marca'];
+      echo $marca; 
       ?>
     </td>
     <td>
@@ -245,6 +238,8 @@ return $tfecha;
     
 		<td>
      <a href="articulos_reporte.php?id_articulo=<?php echo $row['id_articulo']?>">Ver |</a>
+     <a href="#" onclick="Validar3(<?php echo $row['id_articulo']?>, '<?php echo $nro?>', '<?php echo $row['nombre_articulo']?>','<?php echo $row['id_subrubro']?>', '<?php echo $row['id_rubro']?>', '<?php echo $row['marca']?>', '<?php echo $row['modelo']?>', '<?php echo $row['estado']?>)">Editar</a>
+     <a href="#" onclick="Validar4(<?php echo $row['id_articulo']?>, '<?php echo $nro?>')">Eliminar</a>
     </td>
 
 	  </tr>
@@ -261,12 +256,12 @@ Página <?php echo $page; ?>
 
 </div>
 </div>
-  </div>
+</div>
 </div>
 <script>
 
-// Editar id_articulo
-function Validar3(id_articulo, nombre_articulo, id_subrubro, id_rubro, marca, modelo, estado)
+// Editar articulo
+function Validar3(id_articulo, nombre_articulo, id_subrubro, id_rubro, marca, modelo, estado,existencia)
 {
 
 $.confirm({
@@ -313,7 +308,7 @@ buttons: {
 
            action: function(){
 
-           window.location.href="articulos_eliminar_validar.php?id_articulo="+id_articulo;           
+           window.location.href="articulos_eliminar_validar.php?nombre_articulo="+nombre_articulo;           
              
            } // action: function(){
 
@@ -373,15 +368,15 @@ if ( isset($_SESSION['articulo_eliminado']) && $_SESSION['articulo_eliminado'] =
 
 }
 
-if ( isset($_SESSION['articulo_tiene_factura']) && $_SESSION['articulo_tiene_factura'] == "si" ) {
+if ( isset($_SESSION['articulo_tiene_comprobante']) && $_SESSION['articulo_tiene_comprobante'] == "si" ) {
 
-    unset($_SESSION['articulo_tiene_factura']);
+    unset($_SESSION['articulo_tiene_comprobante']);
     
     echo "<script>
 
     $.confirm({
       title: 'Mensaje',
-      content: '<span style=color:red>No se puede eliminar el articulo <br/>porque tiene facturas.</span>',
+      content: '<span style=color:red>No se puede eliminar el articulo <br/>porque tiene comprobantes.</span>',
       autoClose: 'Cerrar|3000',
       buttons: {
           Cerrar: function () {

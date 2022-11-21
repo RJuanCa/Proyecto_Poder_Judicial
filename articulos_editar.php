@@ -7,26 +7,28 @@ $definido=isset($_SESSION['usuario']);
 // No está definido la variable
 if ($definido==false){
 
-    header("Location:error1.php");
+    header("Location:panel.php");
     exit();
          
 }
 
-if(isset($_GET['id_nombre_articulo'])) {
+if(isset($_GET['id_articulo'])) {
 
-    $id_nombre_articulo=$_GET['id_articulo'];
+    $id_articulo=$_GET['id_articulo'];
     $nombre_articulo=$_GET['nombre_articulo'];
     $id_subrubro=$_GET['id_subrubro'];
     $id_rubro=$_GET['id_rubro'];
-    $precio_compra=$_GET['precio_compra'];
-    $precio_final=$_GET['precio_final'];
+    $marca=$_GET['marca'];
+    $modelo=$_GET['modelo'];
+    $estado=$_GET['estado'];
     
-    $_SESSION['id_nombre_articulo2']=$id_nombre_articulo;
+    $_SESSION['id_articulo2']=$id_articulo;
     $_SESSION['nombre_articulo2']=$nombre_articulo;
     $_SESSION['id_subrubro2']=$id_subrubro;
     $_SESSION['id_rubro2']=$id_rubro;
-    $_SESSION['precio_compra2']=$precio_compra;
-    $_SESSION['precio_final2']=$precio_final;
+    $_SESSION['marca2']=$marca;
+    $_SESSION['modelo2']=$modelo;
+    $_SESSION['estado2']=$estado;
 
 }
 
@@ -36,7 +38,7 @@ if(isset($_GET['id_nombre_articulo'])) {
 <head>
 
 <meta charset="utf-8">
-<title>Venezon - nombre_articulo - Editar - Form</title>
+<title>Dir. de Arquitectura - articulo - Editar - Form</title>
 
 <link rel="stylesheet" href="demo/libs/bundled.css">
 <script src="demo/libs/bundled.js"></script>
@@ -52,58 +54,55 @@ if(isset($_GET['id_nombre_articulo'])) {
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
 <style type="text/css">
-
+  .pagina {
+   padding:8px 16px;
+   border:1px solid #ccc;
+   color:#000;
+   font-weight:bold;
+  }
   .usuario3 {
 
-    color:black;
-    font-size:16px;
-  
+	color:black;
+	font-size:16px;
+	
   }
-
   .th_color{
 
-    background: green;
+  	background: #0a3172;
 
   }
   .navbar{
 
-    background: yellow;
+  	background: blue;
 
   }
   .body1{
 
-    background:silver;
+  	background:silver;
 
   }
   .menu2{
 
-    font-size:24px;
-    color:black;
+  	font-size:24px;
+  	color:black;
 
   }
   .encab{
 
-    font-size:18px;
-
-  }
-  .nombre_articulo
-  {
-
-    font-size:17px;
-    color:blue;
+  	font-size:18px;
 
   }
 
-  @media screen and (max-width:400px ) {
+ @media screen and (max-width:400px ) {
 
-  .menu2{
+ .menu2{
 
-    font-size:19px;
-    color:black;
+  	font-size:19px;
+  	color:black;
 
-   }
-   
-  }   
+  }	
+
+ }
 
 </style>
 
@@ -126,7 +125,7 @@ if(isset($_GET['id_nombre_articulo'])) {
 
             action: function(){
 
-               var url = "nombre_articulos_editar_validar.php";     
+               var url = "articulos_editar_validar.php";     
 
                $.ajax({                        
                type: "POST",                 
@@ -167,7 +166,7 @@ if(isset($_GET['id_nombre_articulo'])) {
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       
-      <p class="navbar-brand"><span class="menu2">Venezon</span></p> 
+      <p class="navbar-brand"><span class="menu2">Dir. de Arquitectura</span></p> 
       <p class="navbar-brand"><span class="menu2"><a href="panel.php">Menu</a></span></p> 
       <p class="navbar-brand"><span class="menu2"><a href="nombre_articulos.php">Volver</a></span></p> 
 
@@ -193,62 +192,56 @@ if(isset($_GET['id_nombre_articulo'])) {
   </p>
 
   <h4>Editar nombre_articulo</h4>
-  <span class="nombre_articulo">Código: <?php echo $id_rubro; ?></span>
+  <span class="nombre_articulo">id_articulo: <?php echo $id_articulo; ?></span>
   <br/><br/>
 
     <form id="formulario_nombre_articulo" class="form-horizontal" method="post" action="return false" onsubmit="return false">
 
       <div class="form-group">
-        <label for="nombre_articulo" class="control-label col-md-2">nombre_articulo:</label>
+        <label for="nombre_articulo" class="control-label col-md-2">Nombre Artículo:</label>
         <div class="col-md-9">
           <input id="nombre_articulo" class="form-control" type="text" name="nombre_articulo" value="<?php echo $nombre_articulo ?>" size="100" maxlength="100" autofocus />
         </div>
       </div>
 
       <div class="form-group">
-        <label for="id_subrubro" class="control-label col-md-2">Descripción:</label>
+        <label for="id_subrubro" class="control-label col-md-2">Id Subrubro:</label>
         <div class="col-md-9">
           <input id="id_subrubro" class="form-control" type="text" name="id_subrubro" value="<?php echo $id_subrubro ?>" size="250" maxlength="250" />
         </div>
       </div>
 
       <div class="form-group">
-        <label for="precio_compra" class="control-label col-md-2">Precio Compra:</label>
+        <label for="marca" class="control-label col-md-2">Marca:</label>
         <div class="col-md-7">
         <table>    
         <tr>    
           <td>  
-          <input id="precio_compra" class="form-control" type="text" name="precio_compra" value="<?php echo number_format($precio_compra,2,'.','') ?>" size="20" maxlength="15" />
-        </td>
-          <td>
-            &nbsp&nbsppor ejemplo: 1200.71
-          </td> 
+          <input id="marca" class="form-control" type="text" name="marca" value="<?php echo($marca) ?>" size="20" maxlength="15" />
+        </td> 
         </tr>    
         </table>          
         </div>
       </div>
 
       <div class="form-group">
-        <label for="precio_final" class="control-label col-md-2">Precio Final:</label>
+        <label for="modelo" class="control-label col-md-2">Modelo:</label>
         <div class="col-md-7">
         <table>  
         <tr>  
           <td>
-          <input id="precio_final" class="form-control" type="text" name="precio_final" value="<?php echo number_format($precio_final,2,'.','') ?>" size="20" maxlength="15" />
-          </td>
-          <td>
-            &nbsp&nbsppor ejemplo: 12528400.25
-          </td>  
+          <input id="modelo" class="form-control" type="text" name="modelo" value="<?php echo ($modelo) ?>" size="20" maxlength="15" />
+          </td>          
         </tr>        
         </table>  
         </div>
       </div>
 
-      <input id="id_nombre_articulo" class="form-control" type="hidden" name="id_nombre_articulo" value="<?php echo $id_nombre_articulo ?>"/>
+      <input id="id_articulo" class="form-control" type="hidden" name="id_articulo" value="<?php echo $id_articulo ?>"/>
 
       <div class="form-group">
         <div class="col-md-1 col-md-offset-2">
-          <button id="btn-enviar" class="btn btn-success" /><b>Guardar</b></button>
+          <button id="btn-enviar" class="btn btn-success" ><b>Guardar</b></button>
         </div>
       </div>
 
@@ -292,10 +285,7 @@ if(isset($_GET['id_nombre_articulo'])) {
 
 <div class="panel-footer">
   <div class="container">
-    <?php 
-  	// mini Sistemas cjcv
-  	require("mini.php"); 
-	?>
+    
   </div>
 </div>
 </body>

@@ -1,5 +1,5 @@
 <?php
-/*
+
 session_start();
 
 // Si se cerro la sesión por otro lado
@@ -12,7 +12,6 @@ if ($definido==false){
   exit();
          
 }
-*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,7 +22,6 @@ if ($definido==false){
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="fonts/style.css">
-
 <link rel="shortcut icon" href="imagen/avatar.png" />
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
@@ -105,9 +103,9 @@ if ($definido==false){
 
  	<span class="encab">
  	<span class="text-danger">
-	Fecha: <?php /*echo $_SESSION['fecha'];*/ ?>
+	Fecha: <?php echo $_SESSION['fecha']; ?>
 	<br/>
-	Usuario: <?php /*echo $_SESSION['usuario'];*/ ?>
+	Usuario: <?php echo $_SESSION['usuario']; ?>
 	</span>
 	</span>
 

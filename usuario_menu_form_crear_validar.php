@@ -103,8 +103,8 @@ if ($_POST["cargo"] == "") {
 }
 
 // Guarda datos 
-$sql="INSERT INTO usuarios (usuario, contrasena, nombre_apellido, cargo) ";
-$sql.="VALUES ('$usuario','$contrasena','$nombre_apellido','$cargo')";
+$sql="INSERT INTO usuarios (usuario, contrasena, nombre_apellido, cargo) ;
+$sql.=VALUES ('$usuario','$contrasena','$nombre_apellido','$cargo')";
 
 $query = $mysqli->query($sql);
 
