@@ -14,7 +14,7 @@ if ($definido==false){
 }
 
 // Totaliza los renglones del comprobante segun la cantidad del articulos
-$sql3="SELECT * FROM articulos GROUP BY id_articulo ASC";
+$sql3="SELECT id_articulo, nombre_articulo, id_subrubro, id_rubro, marca, modelo, estado, cantidad_art, cantidad_existencia FROM articulos GROUP BY id_articulo ";
 
 $query3 = $mysqli->query($sql3);
 
@@ -30,11 +30,11 @@ $i=0;
 while ($row3=$query3->fetch_assoc()) {
 
   $i=$i+1;
-  $id_producto_4=$row3['id_articulo'];
+  $id_producto=$row3['id_articulo'];
 
   if ($i==1){
       
-    $articulo = array(
+    $id_articulo = array(
 
       $i => array(
         'id_articulo_p' => $row3['id_articulo'],        
@@ -53,7 +53,7 @@ while ($row3=$query3->fetch_assoc()) {
 
   if ($i>1){
 
-    array_push($articulo_a, 
+    array_push($id_articulo, 
 
       array(
         'id_articulo_p'=>$row3['id_articulo'],
@@ -220,50 +220,46 @@ function printe(){
     <?php
 
       $new_array_2 = array();
-      $new_array_2 = array_sort($articulo, 'nombre_articulo_p', SORT_ASC);
+      $new_array_2 = array_sort($id_articulo, 'id_articulo_p', SORT_ASC);
 
       $total_enviado = 0;
       $nro_pp=0;
+      $pp1=0;
+      $pp2=0;
       $pp3=0;
       $pp4=0;
       $pp5=0;
       $pp6=0;
-      foreach ($new_array_2 as $id=> $a){
+      $pp7=0;
+      $pp8=0;
+      foreach ($new_array_2 as $id_articulo=> $a){
         $p="";
         foreach($a as $b=>$c){
           $p .="|||" . $c;
         }
-        $nro_pp=$nro_pp+1;
+        $nro_pp=$nro_pp;
         $pp=explode("|||", $p);
 
         //Total cantidad
-        $pp6=$pp6+$pp[6];
+         /*$pp6=$pp6+$pp[6]; */
         ?>
         <tr class="table-row">
-          <td><?php echo $nro_pp;;?></td>
           <td><?php echo utf8_decode($pp[1]);?></td>
           <td><?php echo utf8_decode($pp[2]);?></td>
-          <td>
-            <div class="cantidad"><?php echo ($pp[6])?></div>
-          </td>
+          <td><?php echo utf8_decode($pp[3]);?></td>
+          <td><?php echo utf8_decode($pp[4]);?></td>
+          <td><?php echo utf8_decode($pp[5]);?></td>
+          <td><?php echo utf8_decode($pp[6]);?></td>
+          <td><?php echo utf8_decode($pp[7]);?></td>
+          <td><div class="cantidad"><?php echo $pp[0];?></div></td>
+          
         </tr>
       <?php
       }
       ?>
 
       
-    <tr class='table-row'>
-      
-      <td><?php  ?></td>
-      <td><?php   ?></td>
-      <td><?php  ?></td>
-      <td><?php  ?></td>
-      <td><?php  ?></td>
-      <td><?php  ?></td>
-      <td><div class="cantidad"><?php  ?></div></td>
-      
-    </tr>
-
+    
     <?php
 
       

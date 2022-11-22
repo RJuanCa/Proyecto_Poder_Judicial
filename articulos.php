@@ -135,7 +135,7 @@ return $tfecha;
 	if(!empty($_POST['search']['keyword'])) {
 		$search_keyword = $_POST['search']['keyword'];
 	}
-	$sql = 'SELECT * FROM articulos  ORDER BY id_articulo ASC ';
+	$sql = 'SELECT * FROM articulos  ORDER BY id_articulo ';
 	
 	/* Pagination Code starts */
 	$per_page_html = '';
@@ -223,7 +223,7 @@ return $tfecha;
         echo $nro; 
       ?>
     </td>
-    <td><?php echo $row['nombre_articulo']; ?></td>
+    <td><?php echo $row['id_articulo']; ?></td>
 		<td>
       <?php 
       $marca=$row['marca'];

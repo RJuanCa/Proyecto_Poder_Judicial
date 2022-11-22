@@ -157,7 +157,7 @@ function printe(){
     <br/>
 
     <span class="productolabel">Id Subrubro:</span>
-    <span class="productodato"><?php echo utf8_decode($row2['id_subrubro']) ?></span>
+    <span class="productodato"><?php echo ($row2['id_subrubro']) ?></span>
     <br/>
 
     <span class="productolabel">Marca:</span>
@@ -180,14 +180,7 @@ function printe(){
     <span class="productodato"><?php echo number_format($row2['cantidad_existencia'],2,',','.') ?></span>
     <br/>
 
-    <span class="productolabel">Fecha Registro:</span>
-    <span class="productodato"><?php echo $fecha_act  ?></span>
-    <br/>
-
-    <span class="productolabel">Hora Registro:</span>
-    <span class="productodato"><?php  echo $row2['hora_reg']  ?></span>
-    <br/>
-
+    
   </div> <!-- class="form-group" -->
 
   <div class="form-group">
