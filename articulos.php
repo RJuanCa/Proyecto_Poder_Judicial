@@ -135,7 +135,7 @@ return $tfecha;
 	if(!empty($_POST['search']['keyword'])) {
 		$search_keyword = $_POST['search']['keyword'];
 	}
-	$sql = 'SELECT * FROM articulos  ORDER BY id_articulo ';
+	$sql = "SELECT * FROM articulos  ORDER BY id_articulo ";
 	
 	/* Pagination Code starts */
 	$per_page_html = '';
@@ -150,7 +150,7 @@ return $tfecha;
 	$limit=" limit " . $start . "," . NRO_REGISTROS;
 	$pagination_statement = $pdo_conn->prepare($sql);
 	$pagination_statement->bindValue(':keyword', '%' . $search_keyword . '%', PDO::PARAM_STR);
-	/*$pagination_statement->execute();*/
+	// $pagination_statement->execute();
 
 	$row_count = $pagination_statement->rowCount();
 	if(!empty($row_count)){
@@ -171,14 +171,14 @@ return $tfecha;
 	$query = $sql.$limit;
 	$pdo_statement = $pdo_conn->prepare($query);
 	$pdo_statement->bindValue(':keyword', '%' . $search_keyword . '%', PDO::PARAM_STR);
-	/*$pdo_statement->execute(); */
+	// $pdo_statement->execute(); 
 	$resultados = $pdo_statement->fetchAll();
   
 ?>
 <form name='frmSearch' action='' method='post'>
 <div style='text-align:right;margin:20px 0px;'>
 
-
+<!--<imput type='text' name='search[keyword]' value="<?php echo $search_keyword;?>"id='keyword' maxlength='25'>-->
 
 <div class="row">
   <div class="col-lg-6"></div>
