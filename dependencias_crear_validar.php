@@ -17,72 +17,70 @@ if ($definido==false){
 
 //validación
 $error_form = "";
-if ($_POST["dependencia"] == "") {
-    $nom_depen = ($_POST["dependencia"]);
-    if ($nom_depen==false) {
+
+if ($_POST["nom_depen"] == "") {
+    
         $_SESSION['contenido_mensaje_dependencia']='Debes escribir la dependencia';
         $_SESSION['dependencia_mensaje']='si';
-        $_SESSION['responsable_dep']=$_POST["responsable_dep"];
-         $_SESSION['nom_depen']=$_POST["nom_depen"];
+        $nom_depen=$_POST["nom_depen"];
+        $_SESSION['nom_depen']='';
+        $_SESSION['responsable_dep']=$_POST["responsable_dep"];         
         $_SESSION['cargo']=$_POST["cargo"];
         $_SESSION['direccion']=$_POST["direccion"];
 
         echo "<script>location.href = 'dependencias_crear.php?nom_depen=$nom_depen'</script>";
         exit();
-    } else {
+} else {
         $nom_depen=($_POST["dependencia"]);
     }
-}
-if ($_POST["responsable_dep"] == "") {
-    $responsable_dep = ($_POST["responsable_dep"]);
-    if ($responsable_dep==false) {
-        $_SESSION['contenido_mensaje_dependencia']='Debes escribir el responsable de la Dependencia';
+
+    if ($_POST["responsable_dep"] == "") {
+    
+        $_SESSION['contenido_mensaje_dependencia']='Debes escribir la dependencia';
         $_SESSION['dependencia_mensaje']='si';
-        $_SESSION['responsable_dep']=$_POST["responsable_dep"];
-        $_SESSION['nom_depen']=$_POST["nom_depen"];
+        $nom_depen=$_POST["nom_depen"];
+        $_SESSION['nom_depen']=$_POST['nom_depen'];
+        $_SESSION['responsable_dep']='';         
         $_SESSION['cargo']=$_POST["cargo"];
         $_SESSION['direccion']=$_POST["direccion"];
 
-        echo "<script>location.href = 'dependencias_crear.php?nom_depen=$nom_depen'</script>";
+        echo "<script>location.href = 'dependencias_crear.php?responsable_dep=$responsable_dep'</script>";
         exit();
-    } else {
+} else {
         $responsable_dep=($_POST["responsable_dep"]);
     }
-}
 
-if ($_POST["cargo"] == "") {
-    $cargo = ($_POST["cargo"]);
-    if ($cargo==false) {
+    if ($_POST["cargo"] == "") {
+    
         $_SESSION['contenido_mensaje_dependencia']='Debes escribir la dependencia';
         $_SESSION['dependencia_mensaje']='si';
-        $_SESSION['responsable_dep']=$_POST["responsable_dep"];
-        $_SESSION['nom_depen']=$_POST["nom_depen"];
-        $_SESSION['cargo']=$_POST["cargo"];
+        $nom_depen=$_POST["nom_depen"];
+        $_SESSION['nom_depen']=$_POST['nom_depen'];
+        $_SESSION['responsable_dep']=$_POST['responsable_dep'];         
+        $_SESSION['cargo']="";
         $_SESSION['direccion']=$_POST["direccion"];
 
-        echo "<script>location.href = 'dependencias_crear.php?nom_depen=$nom_depen'</script>";
+        echo "<script>location.href = 'dependencias_crear.php?cargo=$cargo'</script>";
         exit();
-    } else {
+} else {
         $cargo=($_POST["cargo"]);
     }
-}
 
-if ($_POST["direccion"] == "") {
-    $direccion = ($_POST["direccion"]);
-    if ($direccion==false) {
+    if ($_POST["cargo"] == "") {
+    
         $_SESSION['contenido_mensaje_dependencia']='Debes escribir la dependencia';
         $_SESSION['dependencia_mensaje']='si';
-        $_SESSION['responsable_dep']=$_POST["responsable_dep"];
-        $_SESSION['nom_depen']=$_POST["nom_depen"];
-        $_SESSION['cargo']=$_POST["cargo"];
-        $_SESSION['direccion']=$_POST["direccion"];
+        $nom_depen=$_POST["nom_depen"];
+        $_SESSION['nom_depen']=$_POST['nom_depen'];
+        $_SESSION['responsable_dep']=$_POST['responsable_dep'];         
+        $_SESSION['cargo']=$_POST['cargo'];
+        $_SESSION['direccion']="";
 
-        echo "<script>location.href = 'dependencias_crear.php?nom_depen=$nom_depen'</script>";
+        echo "<script>location.href = 'dependencias_crear.php?direccion=$direccion'</script>";
         exit();
-    } else {
+} else {
         $direccion=($_POST["direccion"]);
     }
-}
 
 // Chequea que existe la dependencia
 $sql20="SELECT nom_depen FROM dependencia WHERE (nom_depen = $nom_depen)";
@@ -119,8 +117,7 @@ $sql21.=VALUES ('$nom_depen','$responsable_dep','$cargo','$direccion','$fecha_ac
 $query = $mysqli->query($sql);
 
 // Chequea si la dependencia tiene movimientos
-$sql8="SELECT movimiento; 
-$sql8.=FROM dependencia WHERE (nom_depen = $nom_depen)";
+$sql8="SELECT movimiento FROM dependencia WHERE (nom_depen = $nom_depen)";
 
 $query8 = $mysqli->query($sql8);
 $row8=$query8->fetch_assoc();

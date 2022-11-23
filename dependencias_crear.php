@@ -121,13 +121,13 @@ if(isset($_GET['nom_depen'])) {
                $.ajax({                        
                type: "POST",                 
                url: url,                    
-               data: $("#formulario_dependencia").serialize(),
+               data: $("#formulario_dependencias_crear").serialize(),
                beforeSend: function () {
-                $("#resp").html("<img src='imagen/loader-small.gif'/><font color='green'>&nbsp&nbspProcesando, por favor espere...</font>");
+                $("#resultado").html("<img src='imagen/loader-small.gif'/><font color='green'>&nbsp&nbspProcesando, por favor espere...</font>");
                },
                success: function(data)            
                {
-                $('#resp').html(data);           
+                $('#resultado').html(data);           
                }
                });          
              
@@ -191,7 +191,7 @@ if(isset($_GET['nom_depen'])) {
         <div class="col-md-1">
           
             <div class="input-group">
-            <input id="dependencia" style="width:420px" class="form-control" type="text" name="dependencia" size="200" maxlength="200" value="<?php echo $nom_depen ?>"/>
+            <input id="dependencia" style="width:420px" class="form-control" type="text" name="dependencia" size="200" maxlength="200" autofocus value="<?php echo $nom_depen ?>"/>
             </div>
             <span class="input-group-addon">por ejemplo: JUZGADO DE FALTAS</span>
 
@@ -202,21 +202,21 @@ if(isset($_GET['nom_depen'])) {
       <div class="form-group">
         <label for="responsable" class="control-label col-md-2">responsable:</label>
         <div class="col-md-9">
-          <input id="responsable_dep" class="form-control" type="text" name="responsable_dep" value="<?php echo $responsable_dep ?>" size="20" maxlength="20" />
+          <input id="responsable_dep" style="width:420px" class="form-control" type="text" name="responsable_dep" value="<?php echo $responsable_dep ?>" size="20" maxlength="20" />
         </div>
       </div>
 
       <div class="form-group">
         <label for="cargo" class="control-label col-md-2">Cargo:</label>
         <div class="col-md-9">
-          <input id="cargo" class="form-control" type="text" name="cargo" value="<?php  echo $cargo  ?>" size="50" maxlength="50" />
+          <input id="cargo" style="width:420px" class="form-control" type="text" name="cargo" value="<?php  echo $cargo  ?>" size="50" maxlength="50" />
         </div>
       </div>
 
       <div class="form-group">
         <label for="direccion" class="control-label col-md-2">Dirección:</label>
         <div class="col-md-9">
-          <input id="direccion" class="form-control" type="text" name="direccion" value="<?php  echo $direccion  ?>" size="100" maxlength="100" />
+          <input id="direccion" style="width:420px" class="form-control" type="text" name="direccion" value="<?php  echo $direccion  ?>" size="100" maxlength="100" />
         </div>
       </div>      
 
@@ -225,15 +225,13 @@ if(isset($_GET['nom_depen'])) {
           <button id="btn-enviar" class="btn btn-success"><b>Guardar</b></button>
         </div>
       </div>
-
-      <div>&nbsp&nbsp</div>
-      <div id="resp"></div>
+      
+      <div id="resultado"></div>
 
     </form>
 
 </div>
 
-<div id="resultado"></div>
 <br/>
 
 <?php 
@@ -263,5 +261,11 @@ if(isset($_GET['nom_depen'])) {
     }
 
 ?>
+<div class="panel-footer">
+  <div class="container">
+    
+  </div>
+</div>
+
 </body>
 </html>

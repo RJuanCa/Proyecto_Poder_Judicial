@@ -19,22 +19,16 @@ if(isset($_GET['usuario'])) {
     $usuario=utf8_decode($_SESSION['usuario2']);
     $contrasena=$_SESSION['contrasena2'];
     $nombre=utf8_decode($_SESSION['nombre_apellido2']);
-    $cargo=$_SESSION['cargo2'];
+    $rol=$_SESSION['rol2'];
     
 }else{
 
     $usuario="";
     $contrasena="";
     $nombre="";
-    $cargo="";
+    $rol="";
   
 }
-
-//echo $_SESSION['usuario2'];
-//echo "...";
-//exit();
-
-
 
 ?>
 <!DOCTYPE html>
@@ -179,7 +173,7 @@ if(isset($_GET['usuario'])) {
 <div class="container">
 
   <p class="usuario3">
-<!--
+
 	 <span class="encab">
    <span class="text-danger">
     Fecha: <?php  echo $_SESSION['fecha']; ?>
@@ -187,7 +181,7 @@ if(isset($_GET['usuario'])) {
 	  Usuario: <?php  echo $_SESSION['usuario']; ?>
    </span>  
 	 </span>	
--->
+
   </p>
 
   <h4>Agregar Usuario</h4>
@@ -216,9 +210,9 @@ if(isset($_GET['usuario'])) {
       </div>
 
       <div class="form-group">
-        <label for="cargo" class="control-label col-md-2">Cargo: </label>
+        <label for="rol" class="control-label col-md-2">Cargo: </label>
         <div class="col-md-4">
-          <input id="cargo" class="form-control" type="text" name="cargo" size="20" maxlength="20" value="<?php  echo $cargo  ?>"/>
+          <input id="rol" class="form-control" type="text" name="rol" size="20" maxlength="20" value="<?php  echo $rol  ?>"/>
         </div>
       </div>
 

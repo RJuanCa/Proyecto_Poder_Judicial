@@ -49,7 +49,7 @@ if ($definido==false){
   }
   .th_color{
 
-  	background: blue;
+  	background: #0a3172;
 
   }
   .navbar{

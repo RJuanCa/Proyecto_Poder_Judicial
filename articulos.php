@@ -41,12 +41,7 @@ if ($definido==false){
   color:black;
   font-size:16px;
   
-  }
-  .monto{
-
-	text-align:right;  	
-
-  }
+  }  
   .th_color{
 
     background: #0a3172;
