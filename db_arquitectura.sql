@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-11-2022 a las 21:33:19
--- Versión del servidor: 10.4.25-MariaDB
--- Versión de PHP: 8.0.23
+-- Tiempo de generación: 23-11-2022 a las 03:47:50
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,24 +35,29 @@ CREATE TABLE `articulos` (
   `marca` varchar(70) DEFAULT NULL,
   `modelo` varchar(70) DEFAULT NULL,
   `estado` varchar(70) DEFAULT NULL,
+  `cantidad_art` int(11) DEFAULT 0,
+  `cantidad_env` int(11) DEFAULT 0,
+  `cantidad_existencia` int(11) DEFAULT 0,
+  `comprobantes` varchar(2) CHARACTER SET utf8 DEFAULT 'no',
   `alta_articulo` datetime DEFAULT NULL,
-  `baja_articulo` datetime DEFAULT NULL
+  `baja_articulo` datetime DEFAULT NULL,
+  `id_usuario` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `articulos`
 --
 
-INSERT INTO `articulos` (`id_articulo`, `nombre_articulo`, `id_subrubro`, `id_rubro`, `marca`, `modelo`, `estado`, `alta_articulo`, `baja_articulo`) VALUES
-(3518, 'ACONDICIONADOR DE AIRE SPLIT 2100/3000 FGS.', 441, 21, '', '', 'Nuevo', '2022-11-04 15:37:46', '0000-00-00 00:00:00'),
-(3572, 'ACONDICIONADOR DE AIRE PORTATIL FGS.', 441, 21, '', '', 'Nuevo', '2022-11-04 15:38:00', '0000-00-00 00:00:00'),
-(3879, 'ACONDICIONADOR DE AIRE SPLIT 4300/4500 FGS.', 441, 21, '', '', 'Nuevo', '2022-11-04 15:38:22', '0000-00-00 00:00:00'),
-(3880, 'ACONDICIONADOR DE AIRE SPLIT 5500/6000 FGS.', 441, 21, '', '', 'Nuevo', '2022-11-04 15:38:34', '0000-00-00 00:00:00'),
-(3881, 'ACONDICIONADOR DE AIRE SPLIT 8000/9000 FGS.', 441, 21, '', '', 'Nuevo', '2022-11-04 15:38:45', '0000-00-00 00:00:00'),
-(3882, 'ACONDICIONADOR DE AIRE SPLIT DE 9001 HASTA 18000 F', 441, 21, '', '', 'NUEVO', '2022-11-04 15:50:21', '0000-00-00 00:00:00'),
-(3883, 'ACONDICIONADOR DE AIRE VENTANA 2100/3000 FGS.', 441, 21, '', '', 'Nuevo', '2022-11-04 15:38:56', '0000-00-00 00:00:00'),
-(3884, 'ACONDICIONADOR DE AIRE VENTANA 4300/4500 FGS.', 441, 21, '', '', 'Nuevo', '2022-11-04 15:39:06', '0000-00-00 00:00:00'),
-(3885, 'ACONDICIONADOR DE AIRE VENTANA 5500/6000 FGS.', 441, 21, '', '', 'Nuevo', '2022-11-04 15:39:17', '0000-00-00 00:00:00');
+INSERT INTO `articulos` (`id_articulo`, `nombre_articulo`, `id_subrubro`, `id_rubro`, `marca`, `modelo`, `estado`, `cantidad_art`, `cantidad_env`, `cantidad_existencia`, `comprobantes`, `alta_articulo`, `baja_articulo`, `id_usuario`) VALUES
+(3518, 'ACONDICIONADOR DE AIRE SPLIT 2100/3000 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 0, 'no', '2022-11-04 15:37:46', '0000-00-00 00:00:00', 0),
+(3572, 'ACONDICIONADOR DE AIRE PORTATIL FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 0, 'no', '2022-11-04 15:38:00', '0000-00-00 00:00:00', 0),
+(3879, 'ACONDICIONADOR DE AIRE SPLIT 4300/4500 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 0, 'no', '2022-11-04 15:38:22', '0000-00-00 00:00:00', 0),
+(3880, 'ACONDICIONADOR DE AIRE SPLIT 5500/6000 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 0, 'no', '2022-11-04 15:38:34', '0000-00-00 00:00:00', 0),
+(3881, 'ACONDICIONADOR DE AIRE SPLIT 8000/9000 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 0, 'no', '2022-11-04 15:38:45', '0000-00-00 00:00:00', 0),
+(3882, 'ACONDICIONADOR DE AIRE SPLIT DE 9001 HASTA 18000 F', 441, 21, '', '', 'NUEVO', 0, 0, 0, 'no', '2022-11-04 15:50:21', '0000-00-00 00:00:00', 0),
+(3883, 'ACONDICIONADOR DE AIRE VENTANA 2100/3000 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 0, 'no', '2022-11-04 15:38:56', '0000-00-00 00:00:00', 0),
+(3884, 'ACONDICIONADOR DE AIRE VENTANA 4300/4500 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 0, 'no', '2022-11-04 15:39:06', '0000-00-00 00:00:00', 0),
+(3885, 'ACONDICIONADOR DE AIRE VENTANA 5500/6000 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 0, 'no', '2022-11-04 15:39:17', '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -107,6 +112,38 @@ INSERT INTO `climatizacion` (`id_climatizacion`, `id_rubro`, `id_subrubro`, `id_
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `comprobantes`
+--
+
+CREATE TABLE `comprobantes` (
+  `nro_comprobante` int(11) NOT NULL DEFAULT 0,
+  `fecha_reg` date NOT NULL,
+  `id_dep` int(11) NOT NULL,
+  `cantidad_enviada` int(11) NOT NULL,
+  `anulado` varchar(2) CHARACTER SET latin1 DEFAULT 'no',
+  `id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comprobantes_reng`
+--
+
+CREATE TABLE `comprobantes_reng` (
+  `id_compte_reng` int(11) NOT NULL,
+  `num_transferencia` int(11) NOT NULL,
+  `nro_renglon` int(11) NOT NULL,
+  `id_articulo` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `nom_depen` int(11) NOT NULL,
+  `responsable_dep` varchar(70) CHARACTER SET utf8 DEFAULT NULL,
+  `direccion` varchar(70) CHARACTER SET utf8 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `dependencia`
 --
 
@@ -115,8 +152,27 @@ CREATE TABLE `dependencia` (
   `nom_depen` varchar(70) DEFAULT NULL,
   `direccion` varchar(70) DEFAULT NULL,
   `responsable_dep` varchar(70) DEFAULT NULL,
-  `cargo` varchar(70) DEFAULT NULL
+  `cargo` varchar(70) DEFAULT NULL,
+  `movimiento` varchar(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `fecha_pc`
+--
+
+CREATE TABLE `fecha_pc` (
+  `Id_fecha_pc` int(11) NOT NULL,
+  `fecha_pc` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `fecha_pc`
+--
+
+INSERT INTO `fecha_pc` (`Id_fecha_pc`, `fecha_pc`) VALUES
+(1, '2022-11-14');
 
 -- --------------------------------------------------------
 
@@ -164,10 +220,19 @@ INSERT INTO `subrubro` (`id_rubro`, `id_subrubro`, `nombre_subrubro`) VALUES
 CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
   `usuario` varchar(70) DEFAULT NULL,
-  `contraseña` varchar(70) DEFAULT NULL,
+  `contrasena` varchar(70) DEFAULT NULL,
   `nombre_apellido` varchar(70) DEFAULT NULL,
-  `cargo` varchar(50) DEFAULT NULL
+  `rol` varchar(50) DEFAULT NULL,
+  `estado` varchar(9) CHARACTER SET utf8 DEFAULT 'activo',
+  `movimiento` varchar(2) CHARACTER SET utf8 DEFAULT 'no'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `usuario`, `contrasena`, `nombre_apellido`, `rol`, `estado`, `movimiento`) VALUES
+(0, 'RomeroR', 'RomeroR', 'ROMERO R. Juan Carlos', 'admin', 'activo', 'no');
 
 --
 -- Índices para tablas volcadas
@@ -202,10 +267,22 @@ ALTER TABLE `climatizacion`
   ADD KEY `id_articulo` (`id_articulo`);
 
 --
+-- Indices de la tabla `comprobantes_reng`
+--
+ALTER TABLE `comprobantes_reng`
+  ADD PRIMARY KEY (`id_compte_reng`);
+
+--
 -- Indices de la tabla `dependencia`
 --
 ALTER TABLE `dependencia`
   ADD PRIMARY KEY (`id_dep`);
+
+--
+-- Indices de la tabla `fecha_pc`
+--
+ALTER TABLE `fecha_pc`
+  ADD PRIMARY KEY (`Id_fecha_pc`);
 
 --
 -- Indices de la tabla `rubro`
@@ -231,10 +308,28 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `articulos_entregados`
+--
+ALTER TABLE `articulos_entregados`
+  MODIFY `num_transferencia` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `climatizacion`
 --
 ALTER TABLE `climatizacion`
   MODIFY `id_climatizacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `comprobantes_reng`
+--
+ALTER TABLE `comprobantes_reng`
+  MODIFY `id_compte_reng` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `fecha_pc`
+--
+ALTER TABLE `fecha_pc`
+  MODIFY `Id_fecha_pc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
