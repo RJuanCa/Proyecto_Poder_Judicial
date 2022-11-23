@@ -170,11 +170,11 @@ if($query2->num_rows==0){
 		  
 			<td><?php echo utf8_decode($row2['usuario'])?></td>
 			<td><?php echo $row2['contrasena']?></td>
-      <td><?php echo $row2['cargo']?></td>
+      <td><?php echo $row2['rol']?></td>
       <td><?php echo  utf8_decode($row2['nombre_apellido'])?></td>
 			<td>
 
-        <a href="#" onclick="Validar3(<?php echo $row2['id_usuario']?>, '<?php echo $row2['usuario']?>', '<?php echo $row2['contrasena']?>', '<?php echo $row2['nombre_apellido']?>', '<?php echo $row2['cargo']?>')">Editar | </a>
+        <a href="#" onclick="Validar3(<?php echo $row2['id_usuario']?>, '<?php echo $row2['usuario']?>', '<?php echo $row2['contrasena']?>', '<?php echo $row2['nombre_apellido']?>', '<?php echo $row2['rol']?>')">Editar | </a>
         <a href="#" onclick="Validar4(<?php echo $row2['id_usuario']?>, '<?php echo $row2['usuario'] ?>')">Eliminar</a>
 
       </td>
@@ -205,7 +205,7 @@ if($query2->num_rows==0){
 <script>
 
 // Editar usuario
-function Validar3(id_usuario,usuario,contrasena,nombre_apellido,cargo)
+function Validar3(id_usuario,usuario,contrasena,nombre_apellido,rol)
 {
 
 // confirmation
@@ -221,7 +221,7 @@ buttons: {
 
            action: function(){
 
-	         window.location.href="usuario_menu_form_editar.php?id_usuario="+id_usuario+"&usuario="+usuario+"&contrasena="+contrasena+"&nombre_apellido="+nombre_apellido+"&cargo="+cargo;				     
+	         window.location.href="usuario_menu_form_editar.php?id_usuario="+id_usuario+"&usuario="+usuario+"&contrasena="+contrasena+"&nombre_apellido="+nombre_apellido+"&rol="+rol;				     
              
            } // action: function(){
 
