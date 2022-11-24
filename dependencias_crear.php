@@ -15,10 +15,10 @@ if ($definido==false){
 // Viene de valida dependencias crear
 if(isset($_GET['nom_depen'])) {
 
-    $nom_depen=$_SESSION['nom_depen'];    
-    $responsable_dep=$_SESSION['responsable_dep'];
-    $cargo=$_SESSION['cargo'];
-    $direccion=$_SESSION['direccion'];
+    $nom_depen=$_SESSION['nom_depen2'];    
+    $responsable_dep=$_SESSION['responsable_dep2'];
+    $cargo=$_SESSION['cargo2'];
+    $direccion=$_SESSION['direccion2'];
     
    
 }else{
@@ -121,7 +121,7 @@ if(isset($_GET['nom_depen'])) {
                $.ajax({                        
                type: "POST",                 
                url: url,                    
-               data: $("#formulario_dependencias_crear").serialize(),
+               data: $("#dependencias_crear").serialize(),
                beforeSend: function () {
                 $("#resultado").html("<img src='imagen/loader-small.gif'/><font color='green'>&nbsp&nbspProcesando, por favor espere...</font>");
                },
@@ -226,8 +226,6 @@ if(isset($_GET['nom_depen'])) {
         </div>
       </div>
       
-      <div id="resultado"></div>
-
     </form>
 
 </div>

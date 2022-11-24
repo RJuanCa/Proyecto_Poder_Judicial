@@ -6,7 +6,7 @@ require("coneccion/connection.php");
 session_start();
 
 // Si se cerro la sesión por otro lado
-$definido=isset($_SESSION['dependencias']);
+$definido=isset($_SESSION['usuario']);
 // No está definido la variable
 if ($definido==false){
 
@@ -30,13 +30,13 @@ if ($_POST["nom_depen"] == "") {
 
         echo "<script>location.href = 'dependencias_crear.php?nom_depen=$nom_depen'</script>";
         exit();
-} else {
-        $nom_depen=($_POST["dependencia"]);
+    } else {
+        $nom_depen=($_POST["nom_depen"]);
     }
 
     if ($_POST["responsable_dep"] == "") {
     
-        $_SESSION['contenido_mensaje_dependencia']='Debes escribir la dependencia';
+        $_SESSION['contenido_mensaje_dependencia']='Debes escribir el responsable de la Dependencia';
         $_SESSION['dependencia_mensaje']='si';
         $nom_depen=$_POST["nom_depen"];
         $_SESSION['nom_depen']=$_POST['nom_depen'];
@@ -46,13 +46,13 @@ if ($_POST["nom_depen"] == "") {
 
         echo "<script>location.href = 'dependencias_crear.php?responsable_dep=$responsable_dep'</script>";
         exit();
-} else {
+    } else {
         $responsable_dep=($_POST["responsable_dep"]);
     }
 
     if ($_POST["cargo"] == "") {
     
-        $_SESSION['contenido_mensaje_dependencia']='Debes escribir la dependencia';
+        $_SESSION['contenido_mensaje_dependencia']='Debes escribir qué cargo tiene el responsable de la Dependencia';
         $_SESSION['dependencia_mensaje']='si';
         $nom_depen=$_POST["nom_depen"];
         $_SESSION['nom_depen']=$_POST['nom_depen'];
@@ -66,9 +66,9 @@ if ($_POST["nom_depen"] == "") {
         $cargo=($_POST["cargo"]);
     }
 
-    if ($_POST["cargo"] == "") {
+    if ($_POST["direccion"] == "") {
     
-        $_SESSION['contenido_mensaje_dependencia']='Debes escribir la dependencia';
+        $_SESSION['contenido_mensaje_dependencia']='Debes escribir la dirección de la Dependencia';
         $_SESSION['dependencia_mensaje']='si';
         $nom_depen=$_POST["nom_depen"];
         $_SESSION['nom_depen']=$_POST['nom_depen'];
@@ -108,8 +108,8 @@ $hora_actual=$_SESSION['hora_actual'];
 $nom_depen=$_SESSION["nom_depen"];
 
 // Guarda datos 
-$sql21="INSERT INTO dependencia (nom_depen,responsable_dep, cargo, direccion, fecha_reg, hora_reg,);
-$sql21.=VALUES ('$nom_depen','$responsable_dep','$cargo','$direccion','$fecha_act','$hora_actual')";
+$sql21="INSERT INTO dependencia (nom_depen,responsable_dep, cargo, direccion);
+$sql21.=VALUES ('$nom_depen','$responsable_dep','$cargo','$direccion')";
 
  echo $sql21;
  exit();
@@ -126,7 +126,7 @@ $movimiento8=$row8['movimiento'];
 if($movimiento8=='no'){
 
     $sql9="UPDATE dependencia SET movimiento = 'si' ;
-    $sql9.=WHERE (nom_depen = ".$nom_depen.")"; 
+    $sql9.=WHERE (nom_depen = $nom_depen)"; 
     $query9 = $mysqli->query($sql9);
 }
 

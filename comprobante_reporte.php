@@ -1,10 +1,8 @@
 <?php 
 require("coneccion/connection.php");
 session_start();
-
-
 Nota:
-echo $_SESSION['productos2'][1]['id_producto'];
+echo $_SESSION['articulo2'][1]['id_articulo'];
 exit();
 
 
@@ -13,7 +11,7 @@ $definido=isset($_SESSION['usuario']);
 // No está definido la variable
 if ($definido==false){
 
-    header("Location:error1.php");
+    header("Location:index.php");
     exit();
          
 }
@@ -42,14 +40,12 @@ if(isset($_GET['num_transferencia'])){
 	$_SESSION['id_usuario']=$id_usuario;
 	$_SESSION['fecha_envio']=$fecha_envio;
 
-	$sql="SELECT articulos_entrgados.num_transferencia, articulos_entrgados.id_articulo,;
-  	$sql.=articulos_entrgados.id_rubro, articulos_entrgados.id_producto, ;
-  	$sql.=articulos.producto, articulos.descripcion, ;
-  	$sql.=articulos_entrgados.cantidad, articulos_entrgados.precio_unitario, ;
-  	$sql.=articulos_entrgados.precio_total FROM articulos ;
-    $sql.=INNER JOIN articulos_entrgados ON (articulos.id_producto = articulos_entrgados.id_producto) ;
-	$sql.=WHERE (articulos_entrgados.num_transferencia = ".$num_transferencia.") ;
-	$sql.=ORDER BY articulos_entrgados.id_rubro";
+	$sql="SELECT articulos_entregados.num_transferencia, articulos_entregados.id_articulo;
+  	$sql.=articulos_entregados.id_rubro, articulos_entregados.cantidad;
+  	$sql.= FROM articulos_entregados ;
+    $sql.=INNER JOIN articulos ON (articulos.id_articulo = articulos_entregados.id_articulo) ;
+	$sql.=WHERE (articulos_entregados.num_transferencia = $num_transferencia) ;
+	$sql.=ORDER BY articulos_entregados.id_articulo";
 
 	$row = $mysqli->query($sql);
 	//$fila = $row->fetch_assoc();
@@ -66,7 +62,7 @@ if(isset($_GET['num_transferencia'])){
 <head>
 
 <meta charset="utf-8">
-<title>Venezon - Factura - Vista</title>
+<title>Dir. de Arquitectura - Comprobante - Vista</title>
 
 <link rel="stylesheet" href="demo/libs/bundled.css">
 <script src="demo/libs/bundled.js"></script>
@@ -146,7 +142,7 @@ function printe(){
 
 <div align ="right" style="float:right;">
 
-<img src='imagen/imgvenezon3.jpg' alt='logo venezon' width='50%' height='auto'>
+<img src='imagen/logoPoderJud150x550.png' alt='logo venezon' width='50%' height='auto'>
 
 </div>
 
@@ -154,17 +150,13 @@ function printe(){
 
 <p class="usuario3">
 
-	<b>Factura Nro.:</b> <?php echo $id_articulo; ?>
+	<b>Comprobante Nro.:</b> <?php echo $num_transferencia; ?>
 	<br/>	
-	Fecha Factura: <?php echo $id_rubro; ?>
+	Fecha Comprobante: <?php echo $fecha_envio; ?>
 	<br/>
-	Cliente: <?php echo $_SESSION['cliente'] ; ?>
+	Responsable: <?php echo $_SESSION['responsable_dep'] ; ?>
 	<br/>
-	Cédula o Rif: <?php echo $_SESSION['cedula']; ?>
-	<br/>
-	Teléfono: <?php echo $_SESSION['telefono']; ?>
-	<br/>
-	Moneda: <?php echo $_SESSION['moneda_base']; ?>
+	Cantidad Enviada: <?php echo $_SESSION['cantidad']; ?>
 	<br/>
 	
 </p>
@@ -175,9 +167,9 @@ function printe(){
 
 <div class="table-responsive">
 
-<?php if(isset($_SESSION['productos2'])) { ?>
+<?php if(isset($_SESSION['articulos2'])) { ?>
 
-<form id="formulario_renglones" method="post" action="crear_factura.php">
+<form id="formulario_renglones" method="post" action="crear_comprobante.php">
 
 <table class="table table-bordered">
 
@@ -209,27 +201,25 @@ function printe(){
 		$nro_reng2++;
 		$nro_reglon=$nro_reng2;
 		
-		//$subtotal=$_SESSION['productos2'][$nro_reglon]['cantidad']*$_SESSION['productos2'][$nro_reglon]['precio'];
+		//$subtotal=$_SESSION['articulo2'][$nro_reglon]['cantidad']*$_SESSION['articulo2'][$nro_reglon]['precio'];
 		//$totalprice+=$subtotal;
 
-		$cantidad2+=$_SESSION['productos2'][$nro_reglon]['cantidad'];
+		$cantidad2+=$_SESSION['articulo2'][$nro_reglon]['cantidad'];
 
 ?>
 
 	<tr class='table-row'>
 		  
-		<td><?php echo $_SESSION['productos2'][$nro_reglon]['orden'] ?></td>
-		<td><?php echo $_SESSION['productos2'][$nro_reglon]['producto'] ?></td>
-		<td><?php echo $_SESSION['productos2'][$nro_reglon]['descripcion'] ?></td>
-		<td><div class="cantidad"><?php echo $_SESSION['productos2'][$nro_reglon]['cantidad'] ?></div></td>
-		<td><div class="monto"><?php echo number_format($_SESSION['productos2'][$nro_reglon]['precio'],2,',','.') ?></div></td>
-		<td><div class="monto"><?php echo number_format($_SESSION['productos2'][$nro_reglon]['cantidad']*$_SESSION['productos2'][$nro_reglon]['precio'],2,',','.'); ?></div></td>
+		<td><?php echo $_SESSION['articulo2'][$nro_reglon]['orden'] ?></td>
+		<td><?php echo $_SESSION['articulo2'][$nro_reglon]['articulo'] ?></td>
+		<td><?php echo $_SESSION['articulo2'][$nro_reglon]['descripcion'] ?></td>
+		<td><div class="cantidad"><?php echo $_SESSION['articulo2'][$nro_reglon]['cantidad'] ?></div></td>
 		
 	</tr>
 
 <?php
 
-	} // for($i=0;$i<$_SESSION['total_productos'];$i++)
+	} // for($i=0;$i<$_SESSION['total_articulo'];$i++)
 
 	//$_SESSION['totalprice']=$totalprice;
 
@@ -240,11 +230,11 @@ function printe(){
 
 <div class="total_factura">
 
-	<b>Dependencia</b>: <?php echo number_format($_SESSION['id_dep'],2,',','.'); ?>
+	<b>Dependencia: </b> <?php echo $_SESSION['id_dep']; ?>
 	<br/>
-	<b>marca</b>: <?php echo number_format($_SESSION['marca'],2,',','.'); ?>
+	<b>marca: </b> <?php echo $_SESSION['marca']; ?>
 	<br/>
-	<b>feha</b>: <?php echo number_format($_SESSION['fecha_envio'],2,',','.'); ?>
+	<b>feha: </b> <?php echo $_SESSION['fecha_envio']; ?>
 	<br/>
 	<b>Cantidad de artículos:</b> <?php echo number_format($cantidad2,0,',','.'); ?>
 	
@@ -254,7 +244,7 @@ function printe(){
 
 <?php 
 
-} // if(isset($_SESSION['productos2']))
+} // if(isset($_SESSION['articulo2']))
 
 ?>
 
@@ -262,7 +252,7 @@ function printe(){
 
 
 <div class="usuario3">
-<a id="menu" href="panel.php">Menu</a>
+<a id="menu" href="panel.php">Menú</a>
 <a id="volver" href="buscar_comprobante.php?id_dep=<?php echo $_SESSION['id_dep'] ?>">Volver</a>
 <a href="#" id="Imprimir" onclick="printe()">Imprimir</a> 
 </div>
