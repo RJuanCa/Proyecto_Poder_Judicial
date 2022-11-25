@@ -135,7 +135,7 @@ $search_keyword = '';
 </div><!-- /.row -->
 </div>
 <div class="table-responsive">
-<p><span class="encab"><a href="reportes_inventario_vista.php">Actualizar Artículo</a></span></p>
+<p><span class="encab"><a href="reporte_inventario_vista.php">Actualizar Artículo</a></span></p>
 <table class="table table-bordered table-hover">
 
 
