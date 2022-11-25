@@ -10,7 +10,7 @@ $definido=isset($_SESSION['usuario']);
 // No está definido la variable
 if ($definido==false){
 
-	header("Location:error1.php");
+	header("Location:index.php");
 	exit();
          
 }
@@ -41,9 +41,7 @@ if ($_POST["contrasena"] == "") {
 
     $_SESSION['contenido_usuario_mensaje']='Debes escribir la Contraseña';
     $_SESSION['usuario_mensaje']='si';
-
-    $usuario=$_POST["usuario"];
-    
+    $usuario=$_POST["usuario"];    
     $_SESSION['usuario2']=$_POST["usuario"];
     $_SESSION['contrasena2']="";
     $_SESSION['nombre_apellido2']=$_POST["nombre_apellido"];
@@ -101,8 +99,8 @@ if ($_POST["rol"] == "") {
 }
 
 // Guarda datos 
-$sql="INSERT INTO usuarios (usuario, contrasena, nombre_apellido, rol) ;
-$sql.=VALUES ('$usuario','$contrasena','$nombre_apellido','$rol')";
+$sql="INSERT INTO usuarios (usuario, contrasena, nombre_apellido, rol)";
+$sql.="VALUES ('$usuario','$contrasena','$nombre_apellido','$rol')";
 
 $query = $mysqli->query($sql);
 

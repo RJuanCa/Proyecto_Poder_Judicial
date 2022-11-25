@@ -15,15 +15,14 @@ if ($definido==false){
 // Viene de valida dependencias crear
 if(isset($_GET['nom_depen'])) {
 
-    $nom_depen=$_SESSION['nom_depen2'];    
-    $responsable_dep=$_SESSION['responsable_dep2'];
-    $cargo=$_SESSION['cargo2'];
-    $direccion=$_SESSION['direccion2'];
+    $nom_depen=$_SESSION['nom_depen'];    
+    $responsable_dep=$_SESSION['responsable_dep'];
+    $cargo=$_SESSION['cargo'];
+    $direccion=$_SESSION['direccion'];
     
    
 }else{
-
-  
+    
   $nom_depen="";  
   $responsable_dep="";
   $cargo="";
@@ -121,13 +120,13 @@ if(isset($_GET['nom_depen'])) {
                $.ajax({                        
                type: "POST",                 
                url: url,                    
-               data: $("#dependencias_crear").serialize(),
+               data: $("#formulario_dependencia").serialize(),
                beforeSend: function () {
-                $("#resultado").html("<img src='imagen/loader-small.gif'/><font color='green'>&nbsp&nbspProcesando, por favor espere...</font>");
+                $("#resp").html("<img src='imagen/loader-small.gif'/><font color='green'>&nbsp&nbspProcesando, por favor espere...</font>");
                },
                success: function(data)            
                {
-                $('#resultado').html(data);           
+                $('#resp').html(data);           
                }
                });          
              
@@ -200,7 +199,7 @@ if(isset($_GET['nom_depen'])) {
       </div>      
 
       <div class="form-group">
-        <label for="responsable" class="control-label col-md-2">responsable:</label>
+        <label for="responsable" class="control-label col-md-2">Responsable:</label>
         <div class="col-md-9">
           <input id="responsable_dep" style="width:420px" class="form-control" type="text" name="responsable_dep" value="<?php echo $responsable_dep ?>" size="20" maxlength="20" />
         </div>
@@ -225,11 +224,15 @@ if(isset($_GET['nom_depen'])) {
           <button id="btn-enviar" class="btn btn-success"><b>Guardar</b></button>
         </div>
       </div>
+
+      <div>&nbsp&nbsp</div>
+      <div id="resp"></div>
       
     </form>
 
 </div>
 
+<div id="resultado"></div>
 <br/>
 
 <?php 

@@ -10,7 +10,7 @@ $definido=isset($_SESSION['usuario']);
 // No está definido la variable
 if ($definido==false){
 
-	header("Location:error1.php");
+	header("Location:index.php");
 	exit();
          
 }
@@ -18,7 +18,7 @@ if ($definido==false){
 $id_usuario = $_POST['id_usuario'];
 $usuario = $_POST['usuario'];
 $contrasena = $_POST['contrasena'];
-$nombre = $_POST['nombre_apellido'];
+$nombre_apellido = $_POST['nombre_apellido'];
 $cargo = $_POST['cargo'];
 
 //validación
@@ -32,10 +32,10 @@ if ($_POST["usuario"] == "") {
     $id_usuario=$_SESSION['id_usuario2'];
     $usuario = $_SESSION['usuario2'];
     $contrasena = $_POST['contrasena'];
-    $nombre = $_POST['nombre_apellido'];
+    $nombre_apellido = $_POST['nombre_apellido'];
     $cargo = $_POST['cargo'];
 
-    echo "<script>location.href = 'usuario_menu_form_editar.php?id_usuario=$id_usuario&usuario=$usuario&contrasena=$contrasena&nombre_apellido=$nombre&cargo=$cargo'</script>";    
+    echo "<script>location.href = 'usuario_menu_form_editar.php?id_usuario=$id_usuario&usuario=$usuario&contrasena=$contrasena&nombre_apellido=$nombre_apellido&cargo=$cargo'</script>";    
 	exit();
 
 }
@@ -48,10 +48,10 @@ if ($_POST["contrasena"] == "") {
     $id_usuario=$_SESSION['id_usuario2'];
     $usuario = $_POST['usuario2'];
     $contrasena =  $_SESSION['contrasena2'];
-    $nombre = $_POST['nombre_apellido2'];
+    $nombre_apellido = $_POST['nombre_apellido2'];
     $cargo = $_POST['cargo2'];
 
-    echo "<script>location.href = 'usuario_menu_form_editar.php?id_usuario=$id_usuario&usuario=$usuario&contrasena=$contrasena&nombre_apellido=$nombre&cargo=$cargo'</script>";    
+    echo "<script>location.href = 'usuario_menu_form_editar.php?id_usuario=$id_usuario&usuario=$usuario&contrasena=$contrasena&nombre_apellido=$nombre_apellido&cargo=$cargo'</script>";    
     exit();
 
 }
@@ -64,10 +64,10 @@ if ($_POST["nombre_apellido"] == "") {
     $id_usuario=$_SESSION['id_usuario2'];
     $usuario = $_POST['usuario2'];
     $contrasena = $_POST['contrasena2'];
-    $nombre = $_SESSION['nombre_apellido2'];
+    $nombre_apellido = $_SESSION['nombre_apellido2'];
     $cargo = $_POST['cargo2'];
 
-    echo "<script>location.href = 'usuario_menu_form_editar.php?id_usuario=$id_usuario&usuario=$usuario&contrasena=$contrasena&nombre_apellido=$nombre&cargo=$cargo'</script>";    
+    echo "<script>location.href = 'usuario_menu_form_editar.php?id_usuario=$id_usuario&usuario=$usuario&contrasena=$contrasena&nombre_apellido=$nombre_apellido&cargo=$cargo'</script>";    
     exit();
 
 }
@@ -80,16 +80,16 @@ if ($_POST["cargo"] == "") {
     $id_usuario=$_SESSION['id_usuario2'];
     $usuario = $_POST['usuario2'];
     $contrasena = $_POST['contrasena2'];
-    $nombre = $_POST['nombre_apellido2'];
+    $nombre_apellido = $_POST['nombre_apellido2'];
     $cargo = $_SESSION['cargo2'];
 
-    echo "<script>location.href = 'usuario_menu_form_editar.php?id_usuario=$id_usuario&usuario=$usuario&contrasena=$contrasena&nombre_apellido=$nombre&cargo=$cargo'</script>";    
+    echo "<script>location.href = 'usuario_menu_form_editar.php?id_usuario=$id_usuario&usuario=$usuario&contrasena=$contrasena&nombre_apellido=$nombre_apellido&cargo=$cargo'</script>";    
     exit();
 
 }
 
 // Guarda datos 
-$sql="UPDATE usuarios SET usuario = '".utf8_encode($usuario)."', contrasena = '".$contrasena."', nombre_apellido = '".utf8_encode($nombre)."', cargo = '".$cargo."' ";
+$sql="UPDATE usuarios SET usuario = '".utf8_encode($usuario)."', contrasena = '".$contrasena."', nombre_apellido = '".($nombre_apellido)."', cargo = '".$cargo."' ";
 $sql.="WHERE (usuarios.id_usuario = ".$id_usuario.")"; 
 
 $query = $mysqli->query($sql);

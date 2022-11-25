@@ -16,16 +16,16 @@ if ($definido==false){
 // Viene de valida usuario crear
 if(isset($_GET['usuario'])) {
 
-    $usuario=utf8_decode($_SESSION['usuario2']);
+    $usuario=$_SESSION['usuario2'];
     $contrasena=$_SESSION['contrasena2'];
-    $nombre=utf8_decode($_SESSION['nombre_apellido2']);
+    $nombre_apellido=$_SESSION['nombre_apellido2'];
     $rol=$_SESSION['rol2'];
     
 }else{
 
     $usuario="";
     $contrasena="";
-    $nombre="";
+    $nombre_apellido="";
     $rol="";
   
 }
@@ -205,7 +205,7 @@ if(isset($_GET['usuario'])) {
       <div class="form-group">
         <label for="nombre_apellido" class="control-label col-md-2">Nombres y Apellido: </label>
         <div class="col-md-7">
-          <input id="nombre_apellido" class="form-control" type="text" name="nombre_apellido" size="50" maxlength="50" value="<?php  echo $nombre  ?>"/>
+          <input id="nombre_apellido" class="form-control" type="text" name="nombre_apellido" size="50" maxlength="50" value="<?php  echo $nombre_apellido  ?>"/>
         </div>
       </div>
 

@@ -127,12 +127,12 @@ if ($definido==false){
 <p><span class="#"><a href="usuario_menu_form_crear.php">Agregar Usuario</a></span></p>
 <div class="table-responsive">
 
-<form id="formulario_usuarios" method="post" action="crear_factura.php">
+<form id="formulario_usuarios" method="post" action="crear_comprobante.php">
 
 <?php
 
 
-$sql2="SELECT * FROM usuarios ORDER BY usuario";
+$sql2="SELECT * FROM usuarios ORDER BY id_usuario";
 $query2 = $mysqli->query($sql2);
 
 if($query2->num_rows==0){
@@ -168,10 +168,10 @@ if($query2->num_rows==0){
 
 		<tr class='table-row'>
 		  
-			<td><?php echo utf8_decode($row2['usuario'])?></td>
+			<td><?php echo ($row2['usuario'])?></td>
 			<td><?php echo $row2['contrasena']?></td>
       <td><?php echo $row2['rol']?></td>
-      <td><?php echo  utf8_decode($row2['nombre_apellido'])?></td>
+      <td><?php echo ($row2['nombre_apellido'])?></td>
 			<td>
 
         <a href="#" onclick="Validar3(<?php echo $row2['id_usuario']?>, '<?php echo $row2['usuario']?>', '<?php echo $row2['contrasena']?>', '<?php echo $row2['nombre_apellido']?>', '<?php echo $row2['rol']?>')">Editar | </a>

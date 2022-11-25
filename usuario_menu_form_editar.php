@@ -1,5 +1,5 @@
 <?php 
-/*
+
 require("coneccion/connection.php");
 session_start();
 
@@ -8,7 +8,7 @@ $definido=isset($_SESSION['usuario']);
 // No está definido la variable
 if ($definido==false){
 
-    header("Location:error1.php");
+    header("Location:index.php");
     exit();
          
 }
@@ -18,17 +18,17 @@ if(isset($_GET['id_usuario'])) {
     $id_usuario=$_GET['id_usuario'];
     $usuario=utf8_decode($_GET['usuario']);
     $contrasena=$_GET['contrasena'];
-    $nombre=utf8_decode($_GET['nombre']);
-    $cargo=$_GET['cargo'];
+    $nombre_apellido=utf8_decode($_GET['nombre_apellido']);
+    $rol=$_GET['rol'];
 
     $_SESSION['id_usuario2']=$id_usuario;
     $_SESSION['usuario2']=$usuario;
     $_SESSION['contrasena2']=$contrasena;
-    $_SESSION['nombre2']=$nombre;
-    $_SESSION['cargo2']=$cargo;
+    $_SESSION['nombre_apellido2']=$nombre_apellido;
+    $_SESSION['rol2']=$rol;
  
 }
-*/
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -152,14 +152,14 @@ if(isset($_GET['id_usuario'])) {
       <div class="form-group">
         <label for="nombre_apellido" class="control-label col-md-2">Nombres y Apellido: </label>
         <div class="col-md-7">
-          <input id="nombre_apellido" class="form-control" type="text" name="nombre_apellido" size="50" maxlength="50" value="<?php  echo $nombre  ?>"/>
+          <input id="nombre_apellido" class="form-control" type="text" name="nombre_apellido" size="50" maxlength="50" value="<?php  echo $nombre_apellido  ?>"/>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="cargo" class="control-label col-md-2">cargo:</label>
+        <label for="rol" class="control-label col-md-2">cargo:</label>
         <div class="col-md-4">
-          <input id="cargo" class="form-control" type="text" name="cargo" size="20" maxlength="20" value="<?php  echo $cargo  ?>"/>
+          <input id="rol" class="form-control" type="text" name="rol" size="20" maxlength="20" value="<?php  echo $rol  ?>"/>
         </div>
       </div>
 
@@ -167,7 +167,7 @@ if(isset($_GET['id_usuario'])) {
 
       <div class="form-group">
         <div class="col-md-1 col-md-offset-2">
-          <button class="btn btn-success" name="submit2" onclick="Validar(document.getElementById('id_usuario').value,document.getElementById('usuario').value,document.getElementById('contrasena').value,document.getElementById('nombre').value,document.getElementById('cargo').value);"><b>Guardar</b></button></p>
+          <button class="btn btn-success" name="submit2" onclick="Validar(document.getElementById('id_usuario').value,document.getElementById('usuario').value,document.getElementById('contrasena').value,document.getElementById('nombre_apellido').value,document.getElementById('rol').value);"><b>Guardar</b></button></p>
         </div>
 
       </div>
@@ -180,7 +180,7 @@ if(isset($_GET['id_usuario'])) {
 <script>
 
 // Boton Guardar
-function Validar(id_usuario,usuario,contrasena,nombre,cargo) {
+function Validar(id_usuario,usuario,contrasena,nombre_apellido,rol) {
   
 // confirmation
 $.confirm({
@@ -198,7 +198,7 @@ buttons: {
           $.ajax({
             url: "usuario_menu_form_editar_validar.php",
             type: "POST",
-            data: "id_usuario="+id_usuario+"&usuario="+usuario+"&contrasena="+contrasena+"&nombre="+nombre+"&cargo="+cargo,
+            data: "id_usuario="+id_usuario+"&usuario="+usuario+"&contrasena="+contrasena+"&nombre_apellido="+nombre_apellido+"&rol="+rol,
             beforeSend: function () {
                 $("#resultado").html("<img src='imagen/loader-small.gif'/><font color='green'>&nbsp&nbspProcesando, por favor espere...</font>");
               },

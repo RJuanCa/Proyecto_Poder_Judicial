@@ -23,7 +23,7 @@ if ($_POST["nom_depen"] == "") {
         $_SESSION['contenido_mensaje_dependencia']='Debes escribir la dependencia';
         $_SESSION['dependencia_mensaje']='si';
         $nom_depen=$_POST["nom_depen"];
-        $_SESSION['nom_depen']='';
+        $_SESSION['nom_depen']="";
         $_SESSION['responsable_dep']=$_POST["responsable_dep"];         
         $_SESSION['cargo']=$_POST["cargo"];
         $_SESSION['direccion']=$_POST["direccion"];
@@ -31,7 +31,7 @@ if ($_POST["nom_depen"] == "") {
         echo "<script>location.href = 'dependencias_crear.php?nom_depen=$nom_depen'</script>";
         exit();
     } else {
-        $nom_depen=($_POST["nom_depen"]);
+        $nom_depen=utf8_encode($_POST["nom_depen"]);
     }
 
     if ($_POST["responsable_dep"] == "") {
@@ -40,14 +40,14 @@ if ($_POST["nom_depen"] == "") {
         $_SESSION['dependencia_mensaje']='si';
         $nom_depen=$_POST["nom_depen"];
         $_SESSION['nom_depen']=$_POST['nom_depen'];
-        $_SESSION['responsable_dep']='';         
+        $_SESSION['responsable_dep']="";         
         $_SESSION['cargo']=$_POST["cargo"];
         $_SESSION['direccion']=$_POST["direccion"];
 
         echo "<script>location.href = 'dependencias_crear.php?responsable_dep=$responsable_dep'</script>";
         exit();
     } else {
-        $responsable_dep=($_POST["responsable_dep"]);
+        $responsable_dep=utf8_encode($_POST["responsable_dep"]);
     }
 
     if ($_POST["cargo"] == "") {
@@ -63,7 +63,7 @@ if ($_POST["nom_depen"] == "") {
         echo "<script>location.href = 'dependencias_crear.php?cargo=$cargo'</script>";
         exit();
 } else {
-        $cargo=($_POST["cargo"]);
+        $cargo=utf8_encode($_POST["cargo"]);
     }
 
     if ($_POST["direccion"] == "") {
@@ -79,13 +79,13 @@ if ($_POST["nom_depen"] == "") {
         echo "<script>location.href = 'dependencias_crear.php?direccion=$direccion'</script>";
         exit();
 } else {
-        $direccion=($_POST["direccion"]);
+        $direccion=utf8_encode($_POST["direccion"]);
     }
 
 // Chequea que existe la dependencia
 $sql20="SELECT nom_depen FROM dependencia WHERE (nom_depen = $nom_depen)";
 $query20 = $mysqli->query($sql20);
-//$row20=$query20->fetch_assoc();
+$row20=$query20->fetch_assoc();
 
 if ($query20->num_rows!=0) {
 
@@ -108,8 +108,8 @@ $hora_actual=$_SESSION['hora_actual'];
 $nom_depen=$_SESSION["nom_depen"];
 
 // Guarda datos 
-$sql21="INSERT INTO dependencia (nom_depen,responsable_dep, cargo, direccion);
-$sql21.=VALUES ('$nom_depen','$responsable_dep','$cargo','$direccion')";
+$sql21="INSERT INTO dependencia (nom_depen,responsable_dep, cargo, direccion)";
+$sql21.="VALUES ('$nom_depen','$responsable_dep','$cargo','$direccion')";
 
  echo $sql21;
  exit();
@@ -125,8 +125,8 @@ $movimiento8=$row8['movimiento'];
 
 if($movimiento8=='no'){
 
-    $sql9="UPDATE dependencia SET movimiento = 'si' ;
-    $sql9.=WHERE (nom_depen = $nom_depen)"; 
+    $sql9="UPDATE dependencia SET movimiento = 'si' ";
+    $sql9.="WHERE (nom_depen = $nom_depen)"; 
     $query9 = $mysqli->query($sql9);
 }
 
