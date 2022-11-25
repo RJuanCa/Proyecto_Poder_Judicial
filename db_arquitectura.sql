@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2022 a las 03:47:50
+-- Tiempo de generación: 25-11-2022 a las 01:16:37
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.13
 
@@ -116,7 +116,7 @@ INSERT INTO `climatizacion` (`id_climatizacion`, `id_rubro`, `id_subrubro`, `id_
 --
 
 CREATE TABLE `comprobantes` (
-  `nro_comprobante` int(11) NOT NULL DEFAULT 0,
+  `nro_transferencia` int(11) NOT NULL DEFAULT 0,
   `fecha_reg` date NOT NULL,
   `id_dep` int(11) NOT NULL,
   `cantidad_enviada` int(11) NOT NULL,
@@ -214,6 +214,18 @@ INSERT INTO `subrubro` (`id_rubro`, `id_subrubro`, `nombre_subrubro`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tab_correlativos`
+--
+
+CREATE TABLE `tab_correlativos` (
+  `Id_correlativo` int(11) NOT NULL,
+  `nro_comprobante` int(11) NOT NULL,
+  `id_articulo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -267,6 +279,12 @@ ALTER TABLE `climatizacion`
   ADD KEY `id_articulo` (`id_articulo`);
 
 --
+-- Indices de la tabla `comprobantes`
+--
+ALTER TABLE `comprobantes`
+  ADD PRIMARY KEY (`nro_transferencia`);
+
+--
 -- Indices de la tabla `comprobantes_reng`
 --
 ALTER TABLE `comprobantes_reng`
@@ -296,6 +314,12 @@ ALTER TABLE `rubro`
 ALTER TABLE `subrubro`
   ADD PRIMARY KEY (`id_subrubro`),
   ADD KEY `id_rubro` (`id_rubro`);
+
+--
+-- Indices de la tabla `tab_correlativos`
+--
+ALTER TABLE `tab_correlativos`
+  ADD PRIMARY KEY (`Id_correlativo`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -330,6 +354,12 @@ ALTER TABLE `comprobantes_reng`
 --
 ALTER TABLE `fecha_pc`
   MODIFY `Id_fecha_pc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `tab_correlativos`
+--
+ALTER TABLE `tab_correlativos`
+  MODIFY `Id_correlativo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
