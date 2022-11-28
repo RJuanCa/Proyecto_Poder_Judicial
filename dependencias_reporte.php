@@ -135,11 +135,11 @@ function printe(){
   <div class="form-group">
  
     <span class="clientelabel">Responsable:</span>
-    <span class="clientedato"><?php echo $row2['responsable'] ?></span>
+    <span class="clientedato"><?php echo $row2['responsable_dep'] ?></span>
     <br/>
 
     <span class="clientelabel">Juzgado:</span>
-    <span class="clientedato"><?php echo utf8_decode($row2['juzgado']) ?></span>
+    <span class="clientedato"><?php echo utf8_decode($row2['nom_depen']) ?></span>
     <br/>        
 
     <span class="clientelabel">Dirección:</span>

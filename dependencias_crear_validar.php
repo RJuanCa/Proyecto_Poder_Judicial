@@ -23,7 +23,7 @@ if ($_POST["nom_depen"] == "") {
         $_SESSION['contenido_mensaje_dependencia']='Debes escribir la dependencia';
         $_SESSION['dependencia_mensaje']='si';
         $nom_depen=$_POST["nom_depen"];
-        $_SESSION['nom_depen']="";
+        
         $_SESSION['responsable_dep']=$_POST["responsable_dep"];         
         $_SESSION['cargo']=$_POST["cargo"];
         $_SESSION['direccion']=$_POST["direccion"];
@@ -85,7 +85,7 @@ if ($_POST["nom_depen"] == "") {
 // Chequea que existe la dependencia
 $sql20="SELECT nom_depen FROM dependencia WHERE (nom_depen = $nom_depen)";
 $query20 = $mysqli->query($sql20);
-$row20=$query20->fetch_assoc();
+//$row20=$query20->fetch_assoc();
 
 if ($query20->num_rows!=0) {
 
@@ -105,14 +105,14 @@ if ($query20->num_rows!=0) {
 $valores_fecha_act = explode('-', $_SESSION['fecha']);
 $fecha_act=$valores_fecha_act[2]."-".$valores_fecha_act[1]."-".$valores_fecha_act[0];
 $hora_actual=$_SESSION['hora_actual'];
-$nom_depen=$_SESSION["nom_depen"];
+$id_usuario_cp=$_SESSION["id_usuario"];
 
 // Guarda datos 
 $sql21="INSERT INTO dependencia (nom_depen,responsable_dep, cargo, direccion)";
 $sql21.="VALUES ('$nom_depen','$responsable_dep','$cargo','$direccion')";
 
- echo $sql21;
- exit();
+ //echo $sql21;
+ //exit();
 
 $query = $mysqli->query($sql);
 

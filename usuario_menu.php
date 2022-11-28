@@ -91,7 +91,7 @@ if ($definido==false){
 
 <nav class="navbar navbar-default">
   <div class="container"> 
-    <!-- Brand and toggle get grouped for better mobile display -->
+    <!-- Marca y alternar se agrupan para una mejor visualización móvil -->
     <div class="navbar-header">
       
       <p class="navbar-brand"><span class="menu2">Dir. de Arquitectura</span></p> 
@@ -124,7 +124,7 @@ if ($definido==false){
 <div class="row">
 <div class="col-md-12">
 
-<p><span class="#"><a href="usuario_menu_form_crear.php">Agregar Usuario</a></span></p>
+<p><span class="#"><a href="usuario_menu_form_crear.php"><b>Agregar Usuario</b></a></span></p>
 <div class="table-responsive">
 
 <form id="formulario_usuarios" method="post" action="crear_comprobante.php">
@@ -151,7 +151,7 @@ if($query2->num_rows==0){
 	  
 	  <th class='table-header' width='15%'>Usuarios</th>
 	  <th class='table-header' width='15%'>Contraseña</th>
-    <th class='table-header' width='20%'>Cargo</th>
+    <th class='table-header' width='20%'>Rol </th>
     <th class='table-header' width='30%'>Nombre y Apellido</th>
 	  <th class='table-header' width='20%'>Enlace</th>
 	
@@ -169,7 +169,7 @@ if($query2->num_rows==0){
 		<tr class='table-row'>
 		  
 			<td><?php echo ($row2['usuario'])?></td>
-			<td><?php echo $row2['contrasena']?></td>
+			<td><?php echo $row2['contrasena']?></td>      
       <td><?php echo $row2['rol']?></td>
       <td><?php echo ($row2['nombre_apellido'])?></td>
 			<td>
@@ -192,7 +192,7 @@ if($query2->num_rows==0){
 
 <?php
 
- // if($query2->num_rows==0)
+  if($query2->num_rows==0)
 
 ?>
 

@@ -16,9 +16,9 @@ if ($definido==false){
 // Viene de valida usuario crear
 if(isset($_GET['usuario'])) {
 
-    $usuario=$_SESSION['usuario2'];
+    $usuario=utf8_decode($_SESSION['usuario2']);
     $contrasena=$_SESSION['contrasena2'];
-    $nombre_apellido=$_SESSION['nombre_apellido2'];
+    $nombre_apellido=utf8_decode($_SESSION['nombre_apellido2']);
     $rol=$_SESSION['rol2'];
     
 }else{
@@ -29,6 +29,10 @@ if(isset($_GET['usuario'])) {
     $rol="";
   
 }
+//echo $_SESSION['usuario2'];
+//echo "...";
+//exit();
+
 
 ?>
 <!DOCTYPE html>
@@ -184,7 +188,7 @@ if(isset($_GET['usuario'])) {
 
   </p>
 
-  <h4>Agregar Usuario</h4>
+  <h4><b>Agregar Usuario</b></h4>
 
     <form id="formulario_usuario_crear" class="form-horizontal" method="post" action="return false" onsubmit="return false">
 

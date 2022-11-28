@@ -211,10 +211,10 @@ return $tfecha;
 		
 		<td><?php echo $row['nom_depen']; ?></td>
 		<td><?php echo $row['responsable_dep']; ?></td>
-		<td><?php echo $row['cargo']; ?></td>
+		<td><?php echo $row['direccion']; ?></td>
 		<td>
       
-      <a href="dependencia_reporte.php?id_dep=<?php echo $row['id_dep']?>">Ver| </a>
+      <a href="dependencias_reporte.php?id_dep=<?php echo $row['id_dep']?>">Ver| </a>
       <a href="#" onclick="Validar3(<?php  echo $row['id_dep'] ?>, '<?php  echo $row['nom_depen']  ?>')">Editar| </a>
       <a href="#" onclick="Validar4(<?php  echo $row['id_dep'] ?>, '<?php  echo $row['nom_depen']  ?>')">Eliminar| </a>
       <a href="buscar_comprobante.php?id_dep=<?php  echo $row['id_dep']  ?>">Comprobantes|</a>
