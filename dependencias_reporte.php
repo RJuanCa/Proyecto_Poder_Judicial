@@ -12,14 +12,14 @@ if ($definido==false){
          
 }
 
-if(isset($_GET['id_dep'])) {
+if(isset($_GET['nom_depen'])) {
 
-    $id_dep=$_GET['id_dep'];
+    $nom_depen=$_GET['nom_depen'];
    
 }
 
 // Tabla dependencia
-$sql2="SELECT * FROM dependencia WHERE (id_dep = $id_dep)";
+$sql2="SELECT * FROM dependencia WHERE (nom_depen = $nom_depen)";
 $query2 = $mysqli->query($sql2);
 
 if($query2->num_rows==0){
@@ -34,7 +34,7 @@ $row2=$query2->fetch_assoc();
 $valores_fecha_act = explode('-', $row2['fecha_reg']);
 $fecha_act=$valores_fecha_act[2]."-".$valores_fecha_act[1]."-".$valores_fecha_act[0];
 
- echo $id_dep;
+ echo $nom_depen;
  exit();
 
 ?>

@@ -18,12 +18,11 @@ if ($definido==false){
 //validación
 $error_form = "";
 
-if ($_POST["nom_depen"] == "") {
+if ($_POST['nom_depen'] == "") {
     
         $_SESSION['contenido_mensaje_dependencia']='Debes escribir la dependencia';
         $_SESSION['dependencia_mensaje']='si';
-        $nom_depen=$_POST["nom_depen"];
-        
+        $nom_depen=$_POST["nom_depen"];        
         $_SESSION['responsable_dep']=$_POST["responsable_dep"];         
         $_SESSION['cargo']=$_POST["cargo"];
         $_SESSION['direccion']=$_POST["direccion"];
@@ -31,7 +30,7 @@ if ($_POST["nom_depen"] == "") {
         echo "<script>location.href = 'dependencias_crear.php?nom_depen=$nom_depen'</script>";
         exit();
     } else {
-        $nom_depen=utf8_encode($_POST["nom_depen"]);
+        $nom_depen="nom_depen";
     }
 
     if ($_POST["responsable_dep"] == "") {
@@ -47,7 +46,7 @@ if ($_POST["nom_depen"] == "") {
         echo "<script>location.href = 'dependencias_crear.php?responsable_dep=$responsable_dep'</script>";
         exit();
     } else {
-        $responsable_dep=utf8_encode($_POST["responsable_dep"]);
+        $responsable_dep="responsable_dep";
     }
 
     if ($_POST["cargo"] == "") {
@@ -63,7 +62,7 @@ if ($_POST["nom_depen"] == "") {
         echo "<script>location.href = 'dependencias_crear.php?cargo=$cargo'</script>";
         exit();
 } else {
-        $cargo=utf8_encode($_POST["cargo"]);
+        $cargo="cargo";
     }
 
     if ($_POST["direccion"] == "") {
@@ -76,10 +75,10 @@ if ($_POST["nom_depen"] == "") {
         $_SESSION['cargo']=$_POST['cargo'];
         $_SESSION['direccion']="";
 
-        echo "<script>location.href = 'dependencias_crear.php?direccion=$direccion'</script>";
+        echo "<script>location.href = 'dependencias_crear.php ? direccion=$direccion'</script>";
         exit();
 } else {
-        $direccion=utf8_encode($_POST["direccion"]);
+        $direccion="direccion";
     }
 
 // Chequea que existe la dependencia
@@ -114,7 +113,7 @@ $sql21.="VALUES ('$nom_depen','$responsable_dep','$cargo','$direccion')";
  //echo $sql21;
  //exit();
 
-$query = $mysqli->query($sql);
+//$query = $mysqli->query($sql);
 
 // Chequea si la dependencia tiene movimientos
 $sql8="SELECT movimiento FROM dependencia WHERE (nom_depen = $nom_depen)";

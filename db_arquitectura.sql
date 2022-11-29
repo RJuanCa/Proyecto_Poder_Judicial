@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-11-2022 a las 01:16:37
+-- Tiempo de generación: 28-11-2022 a las 16:22:33
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.13
 
@@ -153,7 +153,10 @@ CREATE TABLE `dependencia` (
   `direccion` varchar(70) DEFAULT NULL,
   `responsable_dep` varchar(70) DEFAULT NULL,
   `cargo` varchar(70) DEFAULT NULL,
-  `movimiento` varchar(2) DEFAULT NULL
+  `movimiento` varchar(2) DEFAULT NULL,
+  `fecha_reg` date DEFAULT NULL,
+  `hora_reg` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
+  `id_usuario` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

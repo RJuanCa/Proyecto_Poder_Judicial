@@ -17,8 +17,8 @@ if ($definido==false){
 
 
 
-$nom_depen=$nom_depen = $_POST['nom_depen'];
-echo $nom_depen;
+$nom_depen = $_POST['nom_depen'];
+//echo $nom_depen;
 exit();
 
 $nom_depen;
@@ -40,12 +40,12 @@ if ($_POST["nom_depen"] == "") {
     $cargo=$_SESSION['cargo2'];
     $direccion=$_SESSION['direccion2'];    
 
-    echo "<script>location.href = 'dependencias_editar.php?id_dep=$id_dep'</script>";    
+    echo "<script>location.href = 'dependencias_editar.php?nom_depen=$nom_depen'</script>";    
     exit();
 
 }
 
-$nom_depen_decimal = explode('.', $nom_depen_decimal);
+$nom_depen = $nom_depen;
 
     echo "<script>location.href = 'dependencias_editar.php?nom_depen=$nom_depen'</script>";    
 	exit();
@@ -98,7 +98,7 @@ $nom_depen=$_POST['nom_depen'];
 
 if($nom_depen!=$_SESSION['nom_depen_actual2']){
     
-    $sql20="SELECT nom_depen FROM dependencias WHERE (nom_depen = '$nom_depen')";
+    $sql20="SELECT nom_depen FROM dependencia WHERE (nom_depen = '$nom_depen')";
     $query20 = $mysqli->query($sql20);
     // $row20=$query20->fetch_assoc();
 
@@ -118,17 +118,17 @@ if($nom_depen!=$_SESSION['nom_depen_actual2']){
 
 }
 
-$nom_depen=$_POST["nom_depen"];
+$nom_depen=$_POST['nom_depen'];
 $responsable_dep=utf8_encode($_POST['responsable_dep']);
 $cargo=$_POST['cargo'];
 $direccion=utf8_encode($_POST['direccion']);
 
 
 // Guarda datos 
-$sql="UPDATE dependencias SET nom_depen = $nom_depen, ;
+$sql="UPDATE dependencia SET nom_depen = $nom_depen, ;
 $sql.= responsable_dep = $responsable_dep, ;
 $sql.= cargo = $cargo, direccion = $direccion, ;
-$sql.= WHERE (dependencias.nom_depen = $nom_depen)";
+$sql.= WHERE (dependencia.nom_depen = $nom_depen)";
 $query = $mysqli->query($sql);
 $id_usuario=$_SESSION["id_usuario"];
 

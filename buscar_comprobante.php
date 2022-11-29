@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 define("NRO_REGISTROS",10);
 require_once('coneccion/conexion.php');
@@ -18,7 +19,7 @@ if(isset($_GET['id_dep'])){
 
 	$id_dep=$_GET['id_dep'];
 
-	$sql2='SELECT id_dep, nom_depen, direccion, responsable_dep, cargo FROM dependencia WHERE (id_dep = '.$id_dep.')';
+	$sql2='SELECT id_dep, nom_depen, direccion, responsable_dep, cargo FROM dependencia WHERE (nom_depen = '.$nom_depen.')';
     
 	$query2 = $pdo_conn -> prepare($sql2); 
 	$query2 -> execute(); 
@@ -158,7 +159,7 @@ if(isset($_GET['id_dep'])){
   </p>		
   <div class="row">
     <div class="col-md-12">
-      <h2>Comprobantes - Lista</h2>
+      <h2><b>Comprobantes - Lista</b></h2>
     </div>
   </div>
   <div class="row">
@@ -176,7 +177,7 @@ return $tfecha;
 	if(!empty($_POST['search']['keyword'])) {
 		$search_keyword = $_POST['search']['keyword'];
 	}
-	$sql = 'SELECT * FROM articulos_entregados WHERE (num_transferencia LIKE :keyword OR id_articulo LIKE :keyword OR total LIKE :keyword OR descuento LIKE :keyword OR total_desc LIKE :keyword) AND (id_dep = '.$_SESSION['id_dep'].') ORDER BY id_articulo DESC, id_factura DESC';
+	$sql = 'SELECT * FROM articulos_entregados WHERE (num_transferencia LIKE :keyword OR id_articulo LIKE :keyword OR cantidad LIKE :keyword OR responsable_dep LIKE :keyword OR id_articulo LIKE :keyword) AND (id_dep = '.$_SESSION['id_dep'].') ORDER BY num_transferencia DESC';
 	
 	/* Pagination Code starts */
 	$per_page_html = '';
@@ -232,14 +233,14 @@ return $tfecha;
 
 <div class="table-responsive">
 
-<p><span class="encab"><a href="crear_factura.php">Generar Comprobante</a></span></p>
+<p><span class="encab"><a href="crear_comprobante.php">Generar Comprobante</a></span></p>
 <table class="table table-bordered table-hover">
   <thead>
 	<tr class='th_color'>
 	  
 	  <th class='table-header' width='12%'>Nro. Comprobante</th>
 	  <th class='table-header' width='10%'>Fecha</th>
-	 	  <th class='table-header' width='10%'>Anulado</th>
+	  <th class='table-header' width='10%'>Anulado</th>
 	  <th class='table-header' width='20%'>Enlace</th>
 
 	</tr>
@@ -261,20 +262,20 @@ return $tfecha;
 	?>
 	  <tr class='table-row'>
 		
-		<td><?php echo $row['nro_factura']; ?></td>
+		<td><?php echo $row['nro_transferencia']; ?></td>
 		<td><?php echo $fecha_reg; ?></td>
 		<td><?php echo $row['anulado']; ?></td>
 		<td>
-			<a href="comprobante_reporte.php?id_factura=<?php echo $row['id_factura'] ?>&nro_factura=<?php echo $row['nro_factura'] ?>&fecha_reg=<?php echo $fecha_reg ?>&total=<?php echo $row['total'] ?>&descuento=<?php echo $row['descuento'] ?>&total_desc=<?php echo $row['total_desc'] ?>">Vista | </a> 
+			<a href="comprobante_reporte.php?num_transferencia=<?php echo $row['num_transferencia'] ?>&num_transferencia=<?php echo $row['num_transferencia'] ?>&fecha_reg=<?php echo $fecha_reg ?>&cantidad=<?php echo $row['cantidad'] ?>&responsable_dep=<?php echo $row['responsable_dep'] ?>&id_articulo=<?php echo $row['id_articulo'] ?>">Vista | </a> 
 			<?php
 			
 				if($row['anulado']=='no'){
 
-					$id_factura_anular=$row['id_factura'];
-					$nro_factura=$row['nro_factura'];
+					$num_transferencia_anular=$row['num_transferencia'];
+					$num_transferencia=$row['num_transferencia'];
 					$id_dep_a=$_SESSION['id_dep'];
 
-					echo "<a href='#' onclick='Validar4($id_factura_anular, $nro_factura, $id_dep_a)'>Anular</a>";
+					echo "<a href='#' onclick='Validar4($num_transferencia_anular, $num_transferencia, $id_dep_a)'>Anular</a>";
 			
 				}else{
 
@@ -303,13 +304,13 @@ return $tfecha;
 
 <script>
 
-// Anular factura
-function Validar4(id_factura, nro_factura, id_dep)
+// Anular comprobante
+function Validar4(num_transferencia, id_dep)
 {
 
 $.confirm({
 title: 'Mensaje',
-content: '¿Confirma en anular <br/> la factura nro. '+nro_factura+'?',
+content: '¿Confirma en anular <br/> el comprobante nro. '+num_transferencia+'?',
 animation: 'scale',
 closeAnimation: 'zoom',
 buttons: {
@@ -319,7 +320,7 @@ buttons: {
 
            action: function(){
 
-           window.location.href="anular_factura_validar.php?id_factura="+id_factura+"&id_dep="+id_dep;           
+           window.location.href="anular_comprobante_validar.php?num_transferencia="+num_transferencia+"&id_dep="+id_dep;           
              
            } // action: function(){
 
@@ -339,10 +340,10 @@ buttons: {
 
 <?php 
 
-    if ( isset($_SESSION['factura_guardada']) && $_SESSION['factura_guardada'] == "si" ) {
+    if ( isset($_SESSION['comprobante_guardada']) && $_SESSION['comprobante_guardada'] == "si" ) {
 
-    	unset($_SESSION['factura_guardada']);
-    	unset($_SESSION['descuento']);
+    	unset($_SESSION['comprobante_guardada']);
+    	unset($_SESSION['responsable_dep']);
 
         echo "<script>
 
@@ -364,15 +365,15 @@ buttons: {
 
 <?php 
 
-    if ( isset($_SESSION['factura_anulada']) && $_SESSION['factura_anulada'] == "si" ) {
+    if ( isset($_SESSION['comprobante_anulada']) && $_SESSION['comprobante_anulada'] == "si" ) {
 
-    	unset($_SESSION['factura_anulada']);
+    	unset($_SESSION['comprobante_anulada']);
     	
         echo "<script>
 
 		$.confirm({
     	title: 'Mensaje',
-    	content: '<span style=color:green>Factura anulado con éxito.</span>',
+    	content: '<span style=color:green>Comprobante anulado con éxito.</span>',
     	autoClose: 'Cerrar|3000',
     	buttons: {
         	Cerrar: function () {
@@ -388,10 +389,7 @@ buttons: {
 
 <div class="panel-footer">
   <div class="container">
-   	<?php 
-  	// mini Sistemas RJC
-  	require("mini.php"); 
-	?>
+   	
   </div>
 </div>
 </body>

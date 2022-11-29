@@ -13,12 +13,12 @@ if ($definido==false){
 }
 
 // Viene de valida dependencias crear
-if(isset($_GET['nom_depen'])) {
+if(isset($_POST["nom_depen"])) {
 
-    $nom_depen=$_SESSION['nom_depen'];    
-    $responsable_dep=$_SESSION['responsable_dep'];
-    $cargo=$_SESSION['cargo'];
-    $direccion=$_SESSION['direccion'];
+    $nom_depen=$_SESSION["nom_depen"];    
+    $responsable_dep=$_SESSION["responsable_dep"];
+    $cargo=$_SESSION["cargo"];
+    $direccion=$_SESSION["direccion"];
     
    
 }else{
@@ -126,7 +126,7 @@ if(isset($_GET['nom_depen'])) {
                },
                success: function(data)            
                {
-                $('#resp').html(data);           
+                $("#resp").html(data);           
                }
                });          
              
@@ -181,16 +181,16 @@ if(isset($_GET['nom_depen'])) {
 
   </p>
 
-  <h4>Crear Dependencia</h4>
+  <h4><b>Crear Dependencia</b></h4>
 
-    <form id="formulario_dependencia" class="form-horizontal" method="post" action="return false" onsubmit="return false">
+    <form id="formulario_dependencia" class="form-horizontal" method="POST" action="return false" onsubmit="return false">
 
       <div class="form-group">
-        <label for="dependencia" class="control-label col-md-2">Dependencia:</label>
+        <label for="nom_depen" class="control-label col-md-2">Dependencia:</label>
         <div class="col-md-1">
           
             <div class="input-group">
-            <input id="dependencia" style="width:420px" class="form-control" type="text" name="dependencia" size="200" maxlength="200" autofocus value="<?php echo $nom_depen ?>"/>
+            <input id="nom_depen" style="width:420px" class="form-control" type="text" name="nom_depen" size="200" maxlength="200" autofocus value="<?php echo $nom_depen ?>"/>
             </div>
             <span class="input-group-addon">por ejemplo: JUZGADO DE FALTAS</span>
 
@@ -199,23 +199,23 @@ if(isset($_GET['nom_depen'])) {
       </div>      
 
       <div class="form-group">
-        <label for="responsable" class="control-label col-md-2">Responsable:</label>
+        <label for="responsable_dep" class="control-label col-md-2">Responsable:</label>
         <div class="col-md-9">
-          <input id="responsable_dep" style="width:420px" class="form-control" type="text" name="responsable_dep" value="<?php echo $responsable_dep ?>" size="20" maxlength="20" />
+          <input id="responsable_dep" style="width:420px" class="form-control" type="text" name="responsable_dep" value="<?php echo  $responsable_dep ?>" size="20" maxlength="20" />
         </div>
       </div>
 
       <div class="form-group">
         <label for="cargo" class="control-label col-md-2">Cargo:</label>
         <div class="col-md-9">
-          <input id="cargo" style="width:420px" class="form-control" type="text" name="cargo" value="<?php  echo $cargo  ?>" size="50" maxlength="50" />
+          <input id="cargo" style="width:420px" class="form-control" type="text" name="cargo" value="<?php echo $cargo ?>" size="50" maxlength="50" />
         </div>
       </div>
 
       <div class="form-group">
         <label for="direccion" class="control-label col-md-2">Dirección:</label>
         <div class="col-md-9">
-          <input id="direccion" style="width:420px" class="form-control" type="text" name="direccion" value="<?php  echo $direccion  ?>" size="100" maxlength="100" />
+          <input id="direccion" style="width:420px" class="form-control" type="text" name="direccion" value="<?php echo $direccion ?>" size="100" maxlength="100" />
         </div>
       </div>      
 
