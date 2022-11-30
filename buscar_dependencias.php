@@ -136,7 +136,7 @@ return $tfecha;
 	if(!empty($_POST['search']['keyword'])) {
 		$search_keyword = $_POST['search']['keyword'];
 	}
-	$sql = 'SELECT * FROM dependencia WHERE nom_depen LIKE :keyword OR direccion LIKE :keyword OR responsable_dep LIKE :keyword ORDER BY nom_depen, responsable_dep ';
+	$sql = 'SELECT * FROM dependencia WHERE nom_depen LIKE :keyword OR direccion LIKE :keyword OR responsable_dep LIKE :keyword ORDER BY nom_depen';
 	
 	/* Pagination Code starts */
 	$per_page_html = '';
@@ -214,10 +214,10 @@ return $tfecha;
 		<td><?php echo $row['direccion']; ?></td>
 		<td>
       
-      <a href="dependencias_reporte.php?id_dep=<?php echo $row['id_dep']?>">Ver| </a>
-      <a href="#" onclick="Validar3(<?php  echo $row['id_dep'] ?>, '<?php  echo $row['nom_depen']  ?>')">Editar| </a>
-      <a href="#" onclick="Validar4(<?php  echo $row['id_dep'] ?>, '<?php  echo $row['nom_depen']  ?>')">Eliminar| </a>
-      <a href="buscar_comprobante.php?id_dep=<?php  echo $row['id_dep']  ?>">Comprobantes|</a>
+      <a href="dependencias_reporte.php?nom_depen=<?php echo $row['nom_depen']?>">Ver| </a>
+      <a href="#" onclick="Validar3(<?php  echo $row['nom_depen']  ?>)">Editar| </a>
+      <a href="#" onclick="Validar4(<?php  echo $row['nom_depen']  ?>)">Eliminar| </a>
+      <a href="buscar_comprobante.php?nom_depen=<?php  echo $row['nom_depen']  ?>">Comprobantes|</a>
 
     </td>
 
@@ -240,7 +240,7 @@ return $tfecha;
 <script>
 
 // Editar dependencia
-function Validar3(id_dep, nom_depen)
+function Validar3(nom_depen)
 {
 
 $.confirm({
@@ -255,7 +255,7 @@ buttons: {
 
            action: function(){
 
-           window.location.href="dependencias_editar.php?id_dep="+id_dep;           
+           window.location.href="dependencias_editar.php?nom_depen="+nom_depen;
              
            } // action: function(){
 
@@ -272,7 +272,7 @@ buttons: {
 }
 
 // Eliminar dependencia
-function Validar4(id_dep, nom_depen)
+function Validar4(nom_depen)
 {
 
 $.confirm({
@@ -287,7 +287,7 @@ buttons: {
 
            action: function(){
 
-           window.location.href="dependencia_eliminar_validar.php?id_dep="+id_dep;           
+           window.location.href="dependencia_eliminar_validar.php?nom_depen="+nom_depen;           
              
            } // action: function(){
 

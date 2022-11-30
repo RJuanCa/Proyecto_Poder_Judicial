@@ -13,9 +13,9 @@ if ($definido==false){
 }
 
 // Viene de valida dependencias crear
-if(isset($_POST["nom_depen"])) {
+if(isset($_GET["nom_depen"])) {
 
-    $nom_depen=$_SESSION["nom_depen"];    
+    $nom_depen=$_GET["nom_depen"];    
     $responsable_dep=$_SESSION["responsable_dep"];
     $cargo=$_SESSION["cargo"];
     $direccion=$_SESSION["direccion"];
@@ -181,7 +181,7 @@ if(isset($_POST["nom_depen"])) {
 
   </p>
 
-  <h4><b>Crear Dependencia</b></h4>
+  <h4><b>Agregar Dependencia</b></h4>
 
     <form id="formulario_dependencia" class="form-horizontal" method="POST" action="return false" onsubmit="return false">
 

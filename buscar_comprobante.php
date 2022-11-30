@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 define("NRO_REGISTROS",10);
 require_once('coneccion/conexion.php');
@@ -15,11 +14,11 @@ if ($definido==false){
          
 }
 
-if(isset($_GET['id_dep'])){
+if(isset($_GET['nom_depen'])){
 
-	$id_dep=$_GET['id_dep'];
+	$nom_depen=$_GET['nom_depen'];
 
-	$sql2='SELECT id_dep, nom_depen, direccion, responsable_dep, cargo FROM dependencia WHERE (nom_depen = '.$nom_depen.')';
+	$sql2='SELECT nom_depen, direccion, responsable_dep, cargo FROM dependencia WHERE (nom_depen = '.$nom_depen.')';
     
 	$query2 = $pdo_conn -> prepare($sql2); 
 	$query2 -> execute(); 
@@ -31,15 +30,14 @@ if(isset($_GET['id_dep'])){
 	
 	    $nom_depen = $result -> nom_depen." ".$result -> direccion;
 	    $_SESSION['nom_depen'] = $nom_depen;
-	    $_SESSION['responsable_dep'] = $result -> responsable_dep;
-	    $_SESSION['id_dep'] = $id_dep;
+	    $_SESSION['responsable_dep'] = $result -> responsable_dep;	    
 	    $_SESSION['cargo'] = $result -> cargo;
 
       } // foreach($results as $result)
 
     } // if($query2 -> rowCount() > 0)
 		
-} // if(isset($_GET['id_dep']))	
+} // if(isset($_GET['nom_depen']))	
 
 ?>
 <!DOCTYPE html>
@@ -177,7 +175,7 @@ return $tfecha;
 	if(!empty($_POST['search']['keyword'])) {
 		$search_keyword = $_POST['search']['keyword'];
 	}
-	$sql = 'SELECT * FROM articulos_entregados WHERE (num_transferencia LIKE :keyword OR id_articulo LIKE :keyword OR cantidad LIKE :keyword OR responsable_dep LIKE :keyword OR id_articulo LIKE :keyword) AND (id_dep = '.$_SESSION['id_dep'].') ORDER BY num_transferencia DESC';
+	$sql = 'SELECT * FROM articulos_entregados WHERE (num_transferencia LIKE :keyword OR id_articulo LIKE :keyword OR cantidad LIKE :keyword OR responsable_dep LIKE :keyword) AND (nom_depen = '.$_SESSION['nom_depen'].') ORDER BY num_transferencia DESC';
 	
 	/* Pagination Code starts */
 	$per_page_html = '';
@@ -190,7 +188,7 @@ return $tfecha;
 	$limit=" limit " . $start . "," . NRO_REGISTROS;
 	$pagination_statement = $pdo_conn->prepare($sql);
 	$pagination_statement->bindValue(':keyword', '%' . $search_keyword . '%', PDO::PARAM_STR);
-	$pagination_statement->execute();
+	//$pagination_statement->execute();
 
 	$row_count = $pagination_statement->rowCount();
 	if(!empty($row_count)){
@@ -211,7 +209,7 @@ return $tfecha;
 	$query = $sql.$limit;
 	$pdo_statement = $pdo_conn->prepare($query);
 	$pdo_statement->bindValue(':keyword', '%' . $search_keyword . '%', PDO::PARAM_STR);
-	$pdo_statement->execute();
+	//$pdo_statement->execute();
 	$resultados = $pdo_statement->fetchAll();
 ?>
 <form name='frmSearch' action='' method='post'>
@@ -273,9 +271,9 @@ return $tfecha;
 
 					$num_transferencia_anular=$row['num_transferencia'];
 					$num_transferencia=$row['num_transferencia'];
-					$id_dep_a=$_SESSION['id_dep'];
+					$nom_depen_a=$_SESSION['nom_depen'];
 
-					echo "<a href='#' onclick='Validar4($num_transferencia_anular, $num_transferencia, $id_dep_a)'>Anular</a>";
+					echo "<a href='#' onclick='Validar4($num_transferencia_anular, $num_transferencia, $nom_depen_a)'>Anular</a>";
 			
 				}else{
 
@@ -305,7 +303,7 @@ return $tfecha;
 <script>
 
 // Anular comprobante
-function Validar4(num_transferencia, id_dep)
+function Validar4(num_transferencia, nom_depen)
 {
 
 $.confirm({
@@ -320,7 +318,7 @@ buttons: {
 
            action: function(){
 
-           window.location.href="anular_comprobante_validar.php?num_transferencia="+num_transferencia+"&id_dep="+id_dep;           
+           window.location.href="anular_comprobante_validar.php?num_transferencia="+num_transferencia+"&nom_depen="+nom_depen;           
              
            } // action: function(){
 

@@ -90,7 +90,7 @@ if ($query20->num_rows!=0) {
 
     $_SESSION['contenido_mensaje_dependencia']='Dependencia ya existe';
     $_SESSION['dependencia_mensaje']='si';   
-    $_SESSION['nom_depen']=$_POST["nom_depen"];
+    $nom_depen=$_POST["nom_depen"];
     $_SESSION['responsable_dep']=$_POST["responsable_dep"];
     $_SESSION['cargo']=$_POST["cargo"];
     $_SESSION['direccion']=$_POST["direccion"];
@@ -107,16 +107,15 @@ $hora_actual=$_SESSION['hora_actual'];
 $id_usuario_cp=$_SESSION["id_usuario"];
 
 // Guarda datos 
-$sql21="INSERT INTO dependencia (nom_depen,responsable_dep, cargo, direccion)";
-$sql21.="VALUES ('$nom_depen','$responsable_dep','$cargo','$direccion')";
+$sql21="INSERT INTO dependencia (nom_depen,direccion,responsable_dep, cargo,fecha_reg, hora_reg, id_usuario)VALUES ('$nom_depen','$direccion','$responsable_dep','$cargo','$fecha_act','$hora_actual','$id_usuario_cp')";
 
- //echo $sql21;
- //exit();
+ echo $sql21;
+ exit();
 
-//$query = $mysqli->query($sql);
+$query = $mysqli->query($sql21);
 
-// Chequea si la dependencia tiene movimientos
-$sql8="SELECT movimiento FROM dependencia WHERE (nom_depen = $nom_depen)";
+// Chequea si el usuario tiene movimientos
+$sql8="SELECT movimiento FROM usuarios WHERE (id_usuario = $id_usuario_cp)";
 
 $query8 = $mysqli->query($sql8);
 $row8=$query8->fetch_assoc();
@@ -124,8 +123,8 @@ $movimiento8=$row8['movimiento'];
 
 if($movimiento8=='no'){
 
-    $sql9="UPDATE dependencia SET movimiento = 'si' ";
-    $sql9.="WHERE (nom_depen = $nom_depen)"; 
+    $sql9="UPDATE usuarios SET movimiento = 'si' ;
+    $sql9.=WHERE (id_usuario = $id_usuario_cp)"; 
     $query9 = $mysqli->query($sql9);
 }
 
