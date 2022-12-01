@@ -14,22 +14,22 @@ if ($definido==false){
 
 
 Nota:
-echo $_SESSION['carrito'][1]['id_articulo'];
+echo $_SESSION['carrito'][1]['nombre_articulo'];
 exit();
 
 
-if(isset($_GET['existencia'])) {
+if(isset($_GET['cantidad_existencia'])) {
 
-	$existencia=$_GET['existencia'];
+	$cantidad_existencia=$_GET['cantidad_existencia'];
 
-	if ($existencia!=0){
+	if ($cantidad_existencia!=0){
 
-		$hayexistencia="si";		
+		$haycantidad_existencia="si";		
 
 	}else{
 
-		$hayexistencia="no";
-		$articulo_e=$_GET['id_articulo'];
+		$haycantidad_existencia="no";
+		$nombre_articulo_e=$_GET['nombre_articulo'];
 
 	}
 
@@ -96,15 +96,16 @@ $articulo_agregado='no';
 $articulo_mensaje='no';
 
 // agregar articulo
-if(isset($_GET['id_articulo'])) {
+if(isset($_GET['nombre_articulo'])) {
 
 	// id del articulo
 	$id_articulo=$_GET['id_articulo'];
 	$nombre_articulo=$_GET['nombre_articulo'];
 	$id_subrubro=$_GET['id_subrubro'];
 	$marca=$_GET['marca'];
+	$modelo=$_GET['modelo'];
 
-	if ($hayexistencia=="si"){
+	if ($haycantidad_existencia=="si"){
 
 		if(isset($_SESSION['carrito'])) {
 
@@ -125,7 +126,7 @@ if(isset($_GET['id_articulo'])) {
 
 	}
 
-	if($articulo_agregado=='no' && $hayexistencia=="si"){
+	if($articulo_agregado=='no' && $haycantidad_existencia=="si"){
 
 		$_SESSION['total_articulos']++;	
 
@@ -136,6 +137,7 @@ if(isset($_GET['id_articulo'])) {
 			"nombre_articulo" => $nombre_articulo,
 			"id_subrubro" => $id_subrubro,
 			"marca" => $marca,
+			"modelo"=>$modelo,
 			"orden"  => $_SESSION['total_articulos']
 
 		);	
@@ -250,24 +252,24 @@ if(isset($_POST['submit'])){
 			$id_articulo_b=$_SESSION['carrito'][$key]['id_articulo'];
 
 			// Buscar id_articulo
-			$sql3="SELECT id_articulo, cantidad_existencia FROM articulos WHERE (id_articulo = ".$id_articulo_b.")";
+			$sql3="SELECT id_articulo, cantidad_existencia FROM articulos WHERE (nombre_articulo = ".$nombre_articulo_b.")";
 			$query3=$mysqli->query($sql3);
 			$row3=$query3->fetch_assoc();
 
 			if($query3->num_rows==0){
 
-    			$existencia_b=0;
+    			$cantidad_existencia_b=0;
 
 			}else{
 
-				$existencia_b=$row3["cantidad_existencia"];
+				$cantidad_existencia_b=$row3["cantidad_existencia"];
 
 			}
 
-			if ($existencia_b<$val){
+			if ($cantidad_existencia_b<$val){
 
 				$_SESSION['carrito'][$key]['cantidad']="";
-				$hayexistencia_cant="no";
+				$haycantidad_existencia="no";
 				$nombre_articulo_e=$_SESSION['carrito'][$key]['nombre_articulo'];
 				//$reglon_b=$_SESSION['carrito'][$key]['orden'];
 
@@ -288,89 +290,6 @@ if(isset($_POST['submit'])){
 	
 } // isset($_POST['submit'])
 
-// Boton vista moneda
-if(isset($_POST['submit3'])){
-
-	$k8['entro'][0]=0;
-	$kk8=0;
-	foreach($_POST['cantidad'] as $key => $val) {
-
-		$kk8=$kk8+1;
-
-		if ($val==0){
-
-			$val="";			
-
-		}
-
-		if ($val<0){
-
-			$val="";			
-
-		}
-
-		if (is_numeric($val)){	
-		
-    		//$_SESSION['orden3'][$key]=$key;		
-			$_SESSION['cantidad3'][$key]=$val;
-
-			if($val!=$_SESSION['carrito'][$key]['cantidad']){
-
-				$_SESSION['reglon_actualizado']="no";
-				$_SESSION['carrito'][$key]['cantidad']="";
-				$_SESSION['nro_reglon3']=$key;
-
-				$_SESSION['mensaje_no_actualizado']="El reglon nro. $key no se actualizó la cantidad";
-				$_SESSION['mensaje_vista_moneda']="no";
-				$_SESSION['guardar']="si";
-				$k8['entro'][$kk8]=1;
-
-			}else{
-
-				$k8['entro'][$kk8]=0;
-
-			}
-
-		}else{
-
-			$_SESSION['reglon_actualizado']="no";
-			$_SESSION['carrito'][$key]['cantidad']="";
-			$_SESSION['nro_reglon3']=$key;
-
-			$_SESSION['mensaje_no_actualizado']="El reglon nro. $key no se actualizó la Cantidad";
-			$_SESSION['mensaje_vista_moneda']="no";
-			$_SESSION['guardar']="si";
-
-			$k8['entro'][$kk8]=1;
-
-		}
-
-
-	}
-
-	$entro=0;
-	foreach($k8['entro'] as $kkey => $vval) {
-
-		if($vval==1){
-
-			$entro=$vval;
-
-		}
-
-	}
-
-	if($entro==0){
-
-		$_SESSION['mensaje_vista_moneda']="si";
-
-	}else{
-
-		$_SESSION['mensaje_vista_moneda']="no";
-
-	}
-
-	
-}
 
 ?>
 <!DOCTYPE html>
@@ -523,7 +442,7 @@ if(isset($_POST['submit3'])){
 	  <th class='table-header' width='32%'>Id Subrubro</th>
 	  <th class='table-header' width='32%'>Id Rubro</th>
 	  <th class='table-header' width='10%'>Cantidad</th>
-	  <th class='table-header' width='6%'>Enlace</th>
+	  <th class='table-header' width='16%'>Enlace</th>
 
 	</tr>
   </thead>
@@ -686,14 +605,14 @@ buttons: {
 
     }
 
-    if (isset($hayexistencia) && $hayexistencia=="no") {
+    if (isset($haycantidad_existencia) && $haycantidad_existencia=="no") {
 
     	echo "<script>
     		
     		$.alert({
 
                 title: 'Mensaje',
-                content: '<span style=color:red>$articulo_e no tiene existencia</span>',
+                content: '<span style=color:red>$nombre_articulo_e no tiene existencia</span>',
                 animation: 'scale',
                 closeAnimation: 'scale',
                 buttons: {
@@ -708,14 +627,14 @@ buttons: {
 
     }
 
-    if (isset($hayexistencia_cant) && $hayexistencia_cant=="no") {
+    if (isset($haycantidad_existencia) && $haycantidad_existencia=="no") {
 
     	echo "<script>
     		
     		$.alert({
 
                 title: 'Mensaje',
-                content: '<span style=color:red>$articulo_e no tiene existencia para esa cantida</span>',
+                content: '<span style=color:red>$nombre_articulo_e no tiene existencia para esa cantida</span>',
                 animation: 'scale',
                 closeAnimation: 'scale',
                 buttons: {
@@ -730,9 +649,9 @@ buttons: {
 
     }
 
-    if (isset($_SESSION['hay_existencia_b']) && $_SESSION['hay_existencia_b']=="no") {
+    if (isset($_SESSION['hay_cantidad_existencia_b']) && $_SESSION['hay_cantidad_existencia_b']=="no") {
 
-    	unset($_SESSION['hay_existencia_b']);
+    	unset($_SESSION['hay_cantidad_existencia_b']);
     	$orden_b=$_SESSION['orden_b'];
 
     	echo "<script>

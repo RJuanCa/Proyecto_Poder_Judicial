@@ -1,7 +1,8 @@
 <?php
+require('coneccion/conexion.php');
 session_start();
 define("NRO_REGISTROS",10);
-require_once('coneccion/conexion.php');
+
 
 // Si se cerro la sesión por otro lado
 $definido=isset($_SESSION['usuario']);

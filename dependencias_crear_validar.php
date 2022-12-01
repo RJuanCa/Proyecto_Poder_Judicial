@@ -30,7 +30,7 @@ if ($_POST['nom_depen'] == "") {
         echo "<script>location.href = 'dependencias_crear.php?nom_depen=$nom_depen'</script>";
         exit();
     } else {
-        $nom_depen="nom_depen";
+        $nom_depen=utf8_encode($_POST["nom_depen"]);
     }
 
     if ($_POST["responsable_dep"] == "") {
@@ -39,14 +39,14 @@ if ($_POST['nom_depen'] == "") {
         $_SESSION['dependencia_mensaje']='si';
         $nom_depen=$_POST["nom_depen"];
         $_SESSION['nom_depen']=$_POST['nom_depen'];
-        $_SESSION['responsable_dep']="";         
+        $_SESSION['responsable_dep']="";
         $_SESSION['cargo']=$_POST["cargo"];
         $_SESSION['direccion']=$_POST["direccion"];
 
         echo "<script>location.href = 'dependencias_crear.php?responsable_dep=$responsable_dep'</script>";
         exit();
     } else {
-        $responsable_dep="responsable_dep";
+        $responsable_dep=utf8_encode($_POST["responsable_dep"]);
     }
 
     if ($_POST["cargo"] == "") {
@@ -62,7 +62,7 @@ if ($_POST['nom_depen'] == "") {
         echo "<script>location.href = 'dependencias_crear.php?cargo=$cargo'</script>";
         exit();
 } else {
-        $cargo="cargo";
+        $cargo=utf8_encode($_POST["cargo"]);
     }
 
     if ($_POST["direccion"] == "") {
@@ -78,7 +78,7 @@ if ($_POST['nom_depen'] == "") {
         echo "<script>location.href = 'dependencias_crear.php ? direccion=$direccion'</script>";
         exit();
 } else {
-        $direccion="direccion";
+        $direccion=utf8_encode($_POST["direccion"]);
     }
 
 // Chequea que existe la dependencia
@@ -95,7 +95,6 @@ if ($query20->num_rows!=0) {
     $_SESSION['cargo']=$_POST["cargo"];
     $_SESSION['direccion']=$_POST["direccion"];
     
-
     echo "<script>location.href = 'dependencias_crear.php?nom_depen=$nom_depen'</script>";    
     exit();
 
@@ -107,12 +106,13 @@ $hora_actual=$_SESSION['hora_actual'];
 $id_usuario_cp=$_SESSION["id_usuario"];
 
 // Guarda datos 
-$sql21="INSERT INTO dependencia (nom_depen,direccion,responsable_dep, cargo,fecha_reg, hora_reg, id_usuario)VALUES ('$nom_depen','$direccion','$responsable_dep','$cargo','$fecha_act','$hora_actual','$id_usuario_cp')";
+$sql="INSERT INTO dependencia (nom_depen,direccion,responsable_dep, cargo,fecha_reg, hora_reg, id_usuario)";
+$sql.="VALUES ('$nom_depen','$direccion','$responsable_dep','$cargo','$fecha_act','$hora_actual','$id_usuario_cp')";
 
- echo $sql21;
- exit();
+//echo $sql21;
+ //exit();
 
-$query = $mysqli->query($sql21);
+$query = $mysqli->query($sql);
 
 // Chequea si el usuario tiene movimientos
 $sql8="SELECT movimiento FROM usuarios WHERE (id_usuario = $id_usuario_cp)";
@@ -123,8 +123,8 @@ $movimiento8=$row8['movimiento'];
 
 if($movimiento8=='no'){
 
-    $sql9="UPDATE usuarios SET movimiento = 'si' ;
-    $sql9.=WHERE (id_usuario = $id_usuario_cp)"; 
+    $sql9="UPDATE usuarios SET movimiento = 'si'";
+    $sql9.="WHERE (id_usuario = $id_usuario_cp)"; 
     $query9 = $mysqli->query($sql9);
 }
 

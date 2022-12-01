@@ -186,7 +186,7 @@ if(isset($_GET["nom_depen"])) {
     <form id="formulario_dependencia" class="form-horizontal" method="POST" action="return false" onsubmit="return false">
 
       <div class="form-group">
-        <label for="nom_depen" class="control-label col-md-2">Dependencia:</label>
+        <label for="nom_depen" class="control-label col-md-2"><b><i>Dependencia:</i></b></label>
         <div class="col-md-1">
           
             <div class="input-group">
@@ -199,21 +199,21 @@ if(isset($_GET["nom_depen"])) {
       </div>      
 
       <div class="form-group">
-        <label for="responsable_dep" class="control-label col-md-2">Responsable:</label>
+        <label for="responsable_dep" class="control-label col-md-2"><b><i>Responsable:</i></b></label>
         <div class="col-md-9">
           <input id="responsable_dep" style="width:420px" class="form-control" type="text" name="responsable_dep" value="<?php echo  $responsable_dep ?>" size="20" maxlength="20" />
         </div>
       </div>
 
       <div class="form-group">
-        <label for="cargo" class="control-label col-md-2">Cargo:</label>
+        <label for="cargo" class="control-label col-md-2"><b><i>Cargo:</i></b></label>
         <div class="col-md-9">
           <input id="cargo" style="width:420px" class="form-control" type="text" name="cargo" value="<?php echo $cargo ?>" size="50" maxlength="50" />
         </div>
       </div>
 
       <div class="form-group">
-        <label for="direccion" class="control-label col-md-2">Dirección:</label>
+        <label for="direccion" class="control-label col-md-2"><b><i>Dirección:</i></b></label>
         <div class="col-md-9">
           <input id="direccion" style="width:420px" class="form-control" type="text" name="direccion" value="<?php echo $direccion ?>" size="100" maxlength="100" />
         </div>
@@ -226,7 +226,7 @@ if(isset($_GET["nom_depen"])) {
       </div>
 
       <div>&nbsp&nbsp</div>
-      <div id="resp"></div>
+      <!--<div id="resp"></div>-->
       
     </form>
 

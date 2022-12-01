@@ -204,7 +204,7 @@ if(isset($_GET['nom_depen'])) {
 
   </p>
 
-  <h4>Editar Dependencia</h4>
+  <h4><b>Editar Dependencia</b></h4>
  
     <form id="formulario_dependencia" class="form-horizontal" method="post" action="return false" onsubmit="return false">
 
