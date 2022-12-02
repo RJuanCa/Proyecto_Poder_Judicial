@@ -22,10 +22,10 @@ if(isset($_GET['nom_depen'])) {
 $sql2="SELECT * FROM dependencia WHERE (nom_depen = $nom_depen)";
 $query2 = $mysqli->query($sql2);
 
-if($query2->num_rows==0){
+if($query2->num_rows == 0){
 
-    echo "No hay datos para mostrar";
-    exit();
+  echo "No hay datos para mostrar";
+  exit();
 
 }
 
@@ -34,8 +34,8 @@ $row2=$query2->fetch_assoc();
 $valores_fecha_act = explode('-', $row2['fecha_reg']);
 $fecha_act=$valores_fecha_act[2]."-".$valores_fecha_act[1]."-".$valores_fecha_act[0];
 
- echo $nom_depen;
- exit();
+ //echo $nom_depen;
+ //exit();
 
 ?>
 
@@ -134,23 +134,23 @@ function printe(){
 
   <div class="form-group">
  
-    <span class="clientelabel">Responsable:</span>
+    <span class="clientelabel"><i>Responsable: </i></span>
     <span class="clientedato"><?php echo $row2['responsable_dep'] ?></span>
     <br/>
 
-    <span class="clientelabel">Juzgado:</span>
-    <span class="clientedato"><?php echo utf8_decode($row2['nom_depen']) ?></span>
+    <span class="clientelabel"><i>Juzgado: </i></span>
+    <span class="clientedato"><?php echo $row2['nom_depen'] ?></span>
     <br/>        
 
-    <span class="clientelabel">Dirección:</span>
-    <span class="clientedato"><?php echo utf8_decode($row2['direccion']) ?></span>
+    <span class="clientelabel"><i>Dirección:</i></span>
+    <span class="clientedato"><?php echo $row2['direccion'] ?></span>
     <br/>
     
-    <span class="clientelabel">Fecha Registro:</span>
+    <span class="clientelabel"><i>Fecha Registro: </i></span>
     <span class="clientedato"><?php echo $fecha_act ?></span>
     <br/>
 
-    <span class="clientelabel">Hora Registro:</span>
+    <span class="clientelabel"><i>Hora Registro:</i></span>
     <span class="clientedato"><?php echo $row2['hora_reg'] ?></span>
     <br/>
 

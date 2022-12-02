@@ -125,11 +125,11 @@ function compararFechas($primera, $segunda)
 				
 				<div>
 					<div class="input-group">
-						<label class="label1" for="nombre">Usuario: </label>
+						<label class="label1" for="nombre"><b>Usuario: </b></label>
 						<input type="text" id="user" name="user" autofocus value=<?php echo $_SESSION['usuario_2']; ?>>
 					</div>
 					<div class="input-group">
-						<label class="label2" for="pass">Contraseña: </label>
+						<label class="label2" for="pass"><b>Contraseña: </b></label>
 						<input type="password" id="pass" name="pass" value=<?php echo $_SESSION['clave_2']; ?>>
 					</div>
           <input onclick="Validar(document.getElementById('user').value, document.getElementById('pass').value);" type="submit" id="btn-submit" value="Entrar">

@@ -13,16 +13,17 @@ if ($definido==false){
 }
 
 // Viene de valida dependencias crear
-if(isset($_GET["nom_depen"])) {
-
-    $nom_depen=$_GET["nom_depen"];    
-    $responsable_dep=$_SESSION["responsable_dep"];
-    $cargo=$_SESSION["cargo"];
-    $direccion=$_SESSION["direccion"];
+if(isset($_GET["id_dep"])) {
+  $id_dep=$_GET["id_dep"];
+  $nom_depen=$_GET["nom_depen"];    
+  $responsable_dep=$_SESSION["responsable_dep"];
+  $cargo=$_SESSION["cargo"];
+  $direccion=$_SESSION["direccion"];
     
    
 }else{
-    
+
+  $id_dep="";    
   $nom_depen="";  
   $responsable_dep="";
   $cargo="";
