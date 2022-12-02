@@ -13,10 +13,11 @@ if ($definido==false){
 }
 
 
+/*
 Nota:
 echo $_SESSION['carrito'][1]['nombre_articulo'];
 exit();
-
+*/
 
 if(isset($_GET['cantidad_existencia'])) {
 
@@ -389,7 +390,7 @@ if(isset($_POST['submit'])){
       
       <p class="navbar-brand"><span class="menu2">Dir. de Arquitectura</span></p> 
       <p class="navbar-brand"><span class="menu2"><a href="panel.php">Menú</a></span></p> 
-      <p class="navbar-brand"><span class="menu2"><a href="buscar_dependencias.php?id_cliente=<?php echo $_SESSION['id_dep'] ?>">Volver</a></span></p> 
+      <p class="navbar-brand"><span class="menu2"><a href="buscar_dependencias.php?nom_depen=<?php echo $_SESSION['nom_depen'] ?>">Volver</a></span></p> 
 
   </div>
     
@@ -409,11 +410,11 @@ if(isset($_POST['submit'])){
 	Usuario: <?php echo $_SESSION['usuario']; ?>
 	</span>
 	<br/>
-	<b>Dependencia:</b> <?php echo $_SESSION['nom_depen']; ?>
+	<b><i>Dependencia: </i></b> <?php echo $_SESSION['nom_depen']; ?>
 	<br/>
-	<b>Responsable:</b> <?php echo $_SESSION['responsable_dep']; ?>
+	<b><i>Responsable:</i></b> <?php echo $_SESSION['responsable_dep']; ?>
 	<br/>
-	<b>Cargo:</b> <?php echo $_SESSION['cargo']; ?>
+	<b><i>Cargo:</i></b> <?php echo $_SESSION['cargo']; ?>
 	<br/>
 	
 	</span>

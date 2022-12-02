@@ -22,17 +22,17 @@ if(isset($_GET['nom_depen'])) {
 $sql2="SELECT * FROM dependencia WHERE (nom_depen = $nom_depen)";
 $query2 = $mysqli->query($sql2);
 
-if($query2->num_rows == 0){
+if($query2){
 
   echo "No hay datos para mostrar";
   exit();
 
 }
 
-$row2=$query2->fetch_assoc();
+$row2=$query2;
 
-$valores_fecha_act = explode('-', $row2['fecha_reg']);
-$fecha_act=$valores_fecha_act[2]."-".$valores_fecha_act[1]."-".$valores_fecha_act[0];
+//$valores_fecha_act = explode('-', $row2['fecha_reg']);
+//$fecha_act=$valores_fecha_act[2]."-".$valores_fecha_act[1]."-".$valores_fecha_act[0];
 
  //echo $nom_depen;
  //exit();
@@ -133,27 +133,26 @@ function printe(){
   </div>
 
   <div class="form-group">
+
+  
+  <span class="clientelabel"><i>Juzgado: </i></span>
+  <span class="clientedato"><?php echo utf8_decode($row2["nom_depen"]) ?></span>
+  <br/>
  
-    <span class="clientelabel"><i>Responsable: </i></span>
-    <span class="clientedato"><?php echo $row2['responsable_dep'] ?></span>
-    <br/>
-
-    <span class="clientelabel"><i>Juzgado: </i></span>
-    <span class="clientedato"><?php echo $row2['nom_depen'] ?></span>
-    <br/>        
-
-    <span class="clientelabel"><i>Dirección:</i></span>
-    <span class="clientedato"><?php echo $row2['direccion'] ?></span>
-    <br/>
+  <span class="clientelabel"><i>Responsable: </i></span>
+  <span class="clientedato"><?php echo $row2["responsable_dep"] ?></span>
+  <br/>
     
-    <span class="clientelabel"><i>Fecha Registro: </i></span>
-    <span class="clientedato"><?php echo $fecha_act ?></span>
-    <br/>
+    
+  <span class="clientelabel"><i>Cargo: </i></span>
+  <span class="clientedato"><?php echo ($row2["cargo"]) ?></span>
+  <br/>
 
-    <span class="clientelabel"><i>Hora Registro:</i></span>
-    <span class="clientedato"><?php echo $row2['hora_reg'] ?></span>
-    <br/>
-
+  <span class="clientelabel"><i>Dirección:</i></span>
+  <span class="clientedato"><?php echo ($row2["direccion"]) ?></span>
+  <br/>
+    
+  
   </div> <!-- class="form-group" -->
 
   <div class="form-group">

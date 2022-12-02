@@ -100,7 +100,7 @@ $nro=0;
       
       <p class="navbar-brand"><span class="menu2">Dir. de Arquitectura</span></p> 
       <p class="navbar-brand"><span class="menu2"><a href="panel.php">Menú</a></span></p> 
-      <p class="navbar-brand"><span class="menu2"><a href="crear_factura.php">Volver</a></span></p> 
+      <p class="navbar-brand"><span class="menu2"><a href="crear_comprobante.php">Volver</a></span></p> 
 
     </div>
     
@@ -141,7 +141,7 @@ return $tfecha;
 	if(!empty($_POST['search']['keyword'])) {
 		$search_keyword = $_POST['search']['keyword'];
 	}
-	$sql = 'SELECT * FROM tab_productos WHERE (producto LIKE :keyword OR descripcion LIKE :keyword OR cod_producto_2 LIKE :keyword OR cantidad_existencia LIKE :keyword OR precio_final LIKE :keyword ) ORDER BY producto ASC';
+	$sql = 'SELECT * FROM articulos WHERE ( id_articulo LIKE :keyword OR nombre_articulo LIKE :keyword OR  marca LIKE :keyword OR modelo LIKE :keyword OR cantidad_existencia LIKE :keyword ) ORDER BY nombre_articulo ASC';
 	
 	/* Pagination Code starts */
 	$per_page_html = '';
@@ -155,7 +155,7 @@ return $tfecha;
 	$limit=" limit " . $start . "," . NRO_REGISTROS;
 	$pagination_statement = $pdo_conn->prepare($sql);
 	$pagination_statement->bindValue(':keyword', '%' . $search_keyword . '%', PDO::PARAM_STR);
-	$pagination_statement->execute();
+	//$pagination_statement->execute();
 
 	$row_count = $pagination_statement->rowCount();
 	if(!empty($row_count)){
@@ -202,9 +202,10 @@ return $tfecha;
   <thead>
 	<tr class='th_color'>
 	  
-	  <th class='table-header' width='15%'>Cod. Artículo</th>
+	  <th class='table-header' width='15%'>Id. Artículo</th>
     <th class='table-header' width='30%'>Articulo</th>
-	  <th class='table-header' width='35%'>Descripción</th>
+	  <th class='table-header' width='25%'>Marca</th>
+	  <th class='table-header' width='25%'>Modelo</th>
     <th class='table-header' width='10%'>Existencia</th>
 	  <th class='table-header' width='10%'>Agregar</th>
 
@@ -216,22 +217,16 @@ return $tfecha;
 		foreach($resultados as $row) {
 	?>
 	  <tr class='table-row'>
-		<td>
-
-      <?php 
-
-        $nro=$nro+1;
-        echo $nro; 
-
-      ?>
-
+	    
     </td>
-		<td><?php echo $row['producto']; ?></td>
-		<td><?php echo $row['descripcion']; ?></td>
+		<td><?php echo $row['id_articulo']; ?></td>
+		<td><?php echo $row['nombre_articulo']; ?></td>
+		<td><?php echo $row['marca']; ?></td>
+		<td><?php echo $row['modelo']; ?></td>
     <td>
 		<div class="monto2"><?php echo $row['cantidad_existencia']; ?></div>
 	</td>
-		<td><a href="crear_factura.php?id_producto=<?php echo $row['id_producto']?>&producto=<?php echo $row['producto']?>&descripcion=<?php echo $row['descripcion']?>&existencia=<?php echo $row['cantidad_existencia']?> ">Agregar</a></td>
+		<td><a href="crear_comprobante.php?nombre_articulo=<?php echo $row['nombre_articulo']?>&marca=<?php echo $row['marca']?>&modelo=<?php echo $row['modelo']?>&existencia=<?php echo $row['cantidad_existencia']?> ">Agregar</a></td>
 
 	  </tr>
     <?php
@@ -250,10 +245,7 @@ Página <?php echo $page; ?>
 </div>
 <div class="panel-footer">
   <div class="container">
-   	<?php 
-  	// mini Sistemas RJC
-  	require("mini.php"); 
-	?>
+   	
   </div>
 </div>
 </body>

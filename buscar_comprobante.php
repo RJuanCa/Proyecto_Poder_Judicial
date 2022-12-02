@@ -21,14 +21,14 @@ if(isset($_GET['nom_depen'])){
 	$sql2='SELECT nom_depen, direccion, responsable_dep, cargo FROM dependencia WHERE (nom_depen = '.$nom_depen.')';
     
 	$query2 = $pdo_conn -> prepare($sql2); 
-	$query2 -> execute(); 
+	//$query2 -> execute(); 
 	$results = $query2 -> fetchAll(PDO::FETCH_OBJ); 
 
 	if($query2 -> rowCount() > 0) { 
 	
 	  foreach($results as $result) { 
 	
-	    $nom_depen = $result -> nom_depen." ".$result -> direccion;
+	    $nom_depen = $result -> nom_depen;
 	    $_SESSION['nom_depen'] = $nom_depen;
 	    $_SESSION['responsable_dep'] = $result -> responsable_dep;	    
 	    $_SESSION['cargo'] = $result -> cargo;
