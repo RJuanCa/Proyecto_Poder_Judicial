@@ -41,7 +41,7 @@ for($i=1;$i<=$_SESSION['total_articulos'];$i++){
 	$id_articulo_b=$_SESSION['carrito'][$i]['id_articulo'];
 
 	// Buscar id_articulo
-	$sql3="SELECT id_articulo, cantidad_art, cantidad_enviada, cantidad_existencia FROM articulos WHERE (id_articulo = ".$id_articulo_b.")";
+	$sql3="SELECT id_articulo, cantidad_enviada, cantidad_existencia FROM articulos WHERE (id_articulo = ".$id_articulo_b.")";
 	$query3=$mysqli->query($sql3);
 	$row3=$query3->fetch_assoc();
 
@@ -97,22 +97,22 @@ if($total_articulos!=$_SESSION['totalprice']){
 
 }
 
+
+
+$_SESSION['carrito'][$i]['precio'];
+$_SESSION['carrito'][$i]['cantidad'];
+
+$_SESSION['nom_depen'];
+$_SESSION["id_usuario"];
+$_SESSION['fecha'];
 /*
-
-$_SESSION['carrito'][$i]['precio']
-$_SESSION['carrito'][$i]['cantidad']
-
-$_SESSION['id_cliente']
-$_SESSION["id_usuario"]
-$_SESSION['fecha']
-
-$valores[0], año
-$valores[1], mes
-$valores[2], dia
+$valores[0], año;
+$valores[1], mes;
+$valores[2], dia;
 
 */
 
-$id_cliente=$_SESSION['id_cliente'];
+$nom_depen=$_SESSION['nom_depen'];
 $id_usuario=$_SESSION["id_usuario"];
 
 
@@ -125,21 +125,21 @@ $sql="SELECT * FROM tab_correlativos";
 $query = $mysqli->query($sql);
 $row=$query->fetch_assoc();
 
-$nro_comprobante=$row["nro_comprobante"];
-$nro_comprobante_nuevo=$nro_comprobante+1;
+$nro_transferencia=$row["num_transferencia"];
+$nro_transferencia_nuevo=$nro_transferencia+1;
 
 // Guarda datos en la tabla comprobantes
-$sql2="INSERT INTO comprobantes (nro_comprobante,fecha_reg,hora_reg,id_dep,cantidad_enviada,id_usuario) ";
-$sql2.="VALUES ('$nro_comprobante_nuevo','$fecha_act','$hora_actual','$id_dep','$cantidad_enviada','$id_usuario')";
+$sql2="INSERT INTO comprobantes (num_transferencia,fecha_reg,id_dep,cantidad_enviada,id_usuario) ";
+$sql2.="VALUES ('$nro_transferencia_nuevo','$fecha_act','$id_dep','$cantidad_enviada','$id_usuario')";
 $query2=$mysqli->query($sql2);
 
 // Buscar nro_comprobante
-$sql3="SELECT  nro_comprobante FROM comprobantes WHERE (nro_comprobante = ".$nro_comprobante_nuevo.")";
+$sql3="SELECT  nro_transferencia FROM comprobantes WHERE (nro_transferencia = ".$nro_transferencia_nuevo.")";
 $query3=$mysqli->query($sql3);
 $row3=$query3->fetch_assoc();
 
 // Guarda datos en tab_correlativos
-$sql3="UPDATE tab_correlativos SET nro_comprobante=$nro_comprobante_nuevo";
+$sql3="UPDATE tab_correlativos SET nro_transferencia=$nro_transferencia_nuevo";
 $query3=$mysqli->query($sql3);      
 
 $nro_transferencia=$row3["nro_transferencia"];
@@ -147,7 +147,7 @@ $nro_transferencia=$row3["nro_transferencia"];
 //Guarda datos en la tabla comprobantes_reng
 for($i=1;$i<=$_SESSION['total_articulos'];$i++){
 
-	$id_orden=$_SESSION['carrito'][$i]['orden'];
+	$nro_renglon=$_SESSION['carrito'][$i]['orden'];
 	$id_articulo=$_SESSION['carrito'][$i]['id_articulo'];
 	$cantidad=$_SESSION['carrito'][$i]['cantidad'];
 	$nom_depen=$_SESSION['carrito'][$i]['precio'];
@@ -159,10 +159,10 @@ for($i=1;$i<=$_SESSION['total_articulos'];$i++){
 
   	$query4 = $mysqli->query($sql4);
   	$row4=$query4->fetch_assoc();
-  	$precio_costo=$row4['precio_compra'];
+  	
 
 	$sql4="INSERT INTO comprobantes_reng (nro_transferencia,nro_reglon,id_articulo,cantidad,nom_depen,responsable_dep,direccion);
-	$sql4.=VALUES ('$nro_transferencia','$id_orden','$id_articulo','$cantidad','$nom_depen','$responsable_dep','$direccion')";
+	$sql4.=VALUES ('$nro_transferencia','$nro_renglon','$id_articulo','$cantidad','$nom_depen','$responsable_dep','$direccion')";
 	$query4=$mysqli->query($sql4);
 
 } // for($i=1;$i<=$_SESSION['total_articulos'];$i++)
@@ -178,7 +178,7 @@ $movimiento8=$row8['movimiento'];
 if($movimiento8=='no'){
 
 	$sql9="UPDATE dependencia SET movimiento = 'si' ";
-	$sql9.="WHERE (dependencia.id_cliente = ".$id_cliente.")"; 
+	$sql9.="WHERE (dependencia.nom_depen = ".$nom_depen.")"; 
 
 	$query9 = $mysqli->query($sql9);
 

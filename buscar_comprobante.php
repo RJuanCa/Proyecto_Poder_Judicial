@@ -59,7 +59,7 @@ if(isset($_GET['nom_depen'])){
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="fonts/style.css">
 
-<link rel="shortcut icon" href="imagen/imagen/avatar.png" />
+<link rel="shortcut icon" href="imagen/avatar.png" />
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
 <style type="text/css">
@@ -146,7 +146,7 @@ if(isset($_GET['nom_depen'])){
 	</span>
 	</span>
 	<br/>
-	<b>nom_depen:</b> <?php echo $_SESSION['nom_depen']; ?>
+	<b>Dependencia:</b> <?php echo $_SESSION['nom_depen']; ?>
 	<br/>
 	<b>Responsable de Dependencia:</b> <?php echo $_SESSION['responsable_dep']; ?>
 	<br/>

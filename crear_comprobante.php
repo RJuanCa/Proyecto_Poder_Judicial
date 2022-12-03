@@ -97,7 +97,7 @@ $articulo_agregado='no';
 $articulo_mensaje='no';
 
 // agregar articulo
-if(isset($_GET['nombre_articulo'])) {
+if(isset($_GET['id_articulo'])) {
 
 	// id del articulo
 	$id_articulo=$_GET['id_articulo'];
@@ -390,7 +390,7 @@ if(isset($_POST['submit'])){
       
       <p class="navbar-brand"><span class="menu2">Dir. de Arquitectura</span></p> 
       <p class="navbar-brand"><span class="menu2"><a href="panel.php">Menú</a></span></p> 
-      <p class="navbar-brand"><span class="menu2"><a href="buscar_dependencias.php?nom_depen=<?php echo $_SESSION['nom_depen'] ?>">Volver</a></span></p> 
+      <p class="navbar-brand"><span class="menu2"><a href="buscar_comprobante.php?nom_depen=<?php echo $_SESSION['nom_depen'] ?>">Volver</a></span></p> 
 
   </div>
     

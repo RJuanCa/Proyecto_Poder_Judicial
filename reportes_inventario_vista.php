@@ -14,7 +14,7 @@ if ($definido==false){
 }
 
 // Totaliza los renglones del comprobante segun la cantidad del articulos
-$sql3="SELECT id_articulo, nombre_articulo, id_subrubro, id_rubro, marca, modelo, estado, cantidad_art, cantidad_existencia FROM articulos GROUP BY id_articulo ";
+$sql3="SELECT id_articulo, nombre_articulo, id_subrubro, id_rubro, marca, modelo, estado, cantidad_existencia FROM articulos GROUP BY id_articulo ";
 
 $query3 = $mysqli->query($sql3);
 
@@ -232,6 +232,7 @@ function printe(){
       $pp6=0;
       $pp7=0;
       $pp8=0;
+      
       foreach ($new_array_2 as $id_articulo=> $a){
         $p="";
         foreach($a as $b=>$c){
@@ -251,6 +252,7 @@ function printe(){
           <td><?php echo utf8_decode($pp[5]);?></td>
           <td><?php echo utf8_decode($pp[6]);?></td>
           <td><?php echo utf8_decode($pp[7]);?></td>
+          
           <td><div class="cantidad"><?php echo $pp[0];?></div></td>
           
         </tr>

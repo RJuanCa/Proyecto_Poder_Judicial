@@ -15,6 +15,7 @@ if ($definido==false){
 if(isset($_GET['nom_depen'])) {
 
     $nom_depen=$_GET['nom_depen'];
+
    
 }
 
@@ -54,7 +55,7 @@ $row2=$query2;
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="fonts/style.css">
-<link rel="shortcut icon" href="imagen/logoPoderJud150x550.png" />
+<link rel="shortcut icon" href="imagen/avatar.png" />
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
 <style type="text/css">
@@ -135,20 +136,20 @@ function printe(){
   <div class="form-group">
 
   
-  <span class="clientelabel"><i>Juzgado: </i></span>
-  <span class="clientedato"><?php echo utf8_decode($row2["nom_depen"]) ?></span>
+  <span class="clientelabel"><b><i>Juzgado: </i></b></span>
+  <span class="clientedato"><?php echo $row2["nom_depen"] ?></span>
   <br/>
  
-  <span class="clientelabel"><i>Responsable: </i></span>
+  <span class="clientelabel"><b><i>Responsable: </i></b></span>
   <span class="clientedato"><?php echo $row2["responsable_dep"] ?></span>
   <br/>
     
     
-  <span class="clientelabel"><i>Cargo: </i></span>
+  <span class="clientelabel"><b><i>Cargo: </i></b></span>
   <span class="clientedato"><?php echo ($row2["cargo"]) ?></span>
   <br/>
 
-  <span class="clientelabel"><i>Dirección:</i></span>
+  <span class="clientelabel"><b><i>Dirección:</i></b></span>
   <span class="clientedato"><?php echo ($row2["direccion"]) ?></span>
   <br/>
     
