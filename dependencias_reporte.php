@@ -23,20 +23,20 @@ if(isset($_GET['nom_depen'])) {
 $sql2="SELECT * FROM dependencia WHERE (nom_depen = $nom_depen)";
 $query2 = $mysqli->query($sql2);
 
-if($query2){
+if($query2->num_rows){
 
   echo "No hay datos para mostrar";
   exit();
 
 }
 
-$row2=$query2;
+$row2=$query2->fetch_assoc();
 
-//$valores_fecha_act = explode('-', $row2['fecha_reg']);
-//$fecha_act=$valores_fecha_act[2]."-".$valores_fecha_act[1]."-".$valores_fecha_act[0];
+$valores_fecha_act = explode('-', $row2['fecha_reg']);
+$fecha_act=$valores_fecha_act[2]."-".$valores_fecha_act[1]."-".$valores_fecha_act[0];
 
- //echo $nom_depen;
- //exit();
+ echo $nom_depen;
+ exit();
 
 ?>
 

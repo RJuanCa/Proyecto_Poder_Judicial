@@ -21,7 +21,7 @@ if(isset($_GET['nom_depen'])) {
     $query = $mysqli->query($sql);
     $row = $query->fetch_assoc(); 
 
-    if ($query->num_rows!=0) {
+    if ($query->num_rows) {
 
       $_SESSION['nom_depen']=$row['nom_depen'];
       $nom_depen=$row['nom_depen'];
