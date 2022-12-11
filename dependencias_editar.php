@@ -14,22 +14,22 @@ if ($definido==false){
 
 if(isset($_GET['nom_depen'])) {
 
-    $nom_depen=$_GET['nom_depen'];
+    $nom_depen = $_GET['nom_depen'];
 
-    $sql="SELECT * FROM dependencia WHERE (nom_depen = ".$nom_depen.")";
+    $sql10="SELECT * FROM dependencia WHERE (nom_depen = ".$nom_depen.")";
 
-    $query = $mysqli->query($sql);
-    $row = $query->fetch_assoc(); 
+    $query10 = $mysqli->query($sql10);
+    $row = $query10; 
 
-    if ($query->num_rows) {
+    if ($query10->num_rows) {
 
       $_SESSION['nom_depen']=$row['nom_depen'];
       $nom_depen=$row['nom_depen'];
       $responsable_dep=utf8_decode($row['responsable_dep']);
-      $cargo=$row['cargo'];
+      $cargo=utf8_decode( $row['cargo']);
       $direccion=utf8_decode($row['direccion']);
       
-     $_SESSION['nom_depen2']=$nom_depen;     
+      $_SESSION['nom_depen2']=$nom_depen;
       $_SESSION['responsable_dep2']=$responsable_dep;
       $_SESSION['cargo2']=$cargo;
       $_SESSION['direccion2']=$direccion;
@@ -37,8 +37,8 @@ if(isset($_GET['nom_depen'])) {
 
     } else { // $row = $query->fetch_assoc()
 
-      echo "dependencia no existe.";
-      exit();
+      //echo "dependencia no existe.";
+      //exit();
 
     } // $row = $query->fetch_assoc()
 
