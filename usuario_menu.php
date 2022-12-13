@@ -127,7 +127,7 @@ if ($definido==false){
 <p><span class="#"><a href="usuario_menu_form_crear.php"><b>Agregar Usuario</b></a></span></p>
 <div class="table-responsive">
 
-<form id="formulario_usuarios" method="post" action="crear_comprobante.php">
+<form id="formulario_usuario_editar" method="post" action="crear_comprobante.php">
 
 <?php
 
@@ -174,7 +174,7 @@ if($query2->num_rows==0){
       <td><?php echo ($row2['nombre_apellido'])?></td>
 			<td>
 
-        <a href="#" onclick="Validar3(<?php echo $row2['id_usuario']?>, '<?php echo $row2['usuario']?>', '<?php echo $row2['contrasena']?>', '<?php echo $row2['nombre_apellido']?>', '<?php echo $row2['rol']?>')">Editar | </a>
+        <a href="#" onclick="Validar3('<?php echo $row2['usuario']?>', '<?php echo $row2['contrasena']?>', '<?php echo $row2['nombre_apellido']?>', '<?php echo $row2['rol']?>')">Editar | </a>
         <a href="#" onclick="Validar4(<?php echo $row2['id_usuario']?>, '<?php echo $row2['usuario'] ?>')">Eliminar</a>
 
       </td>
@@ -221,7 +221,7 @@ buttons: {
 
            action: function(){
 
-	         window.location.href="usuario_menu_form_editar.php?id_usuario="+id_usuario+"&usuario="+usuario+"&contrasena="+contrasena+"&nombre_apellido="+nombre_apellido+"&rol="+rol;				     
+	         window.location.href="usuario_menu_form_editar.php?id_usuario="+$id_usuario+"&usuario="+$usuario+"&contrasena="+$contrasena+"&nombre_apellido="+$nombre_apellido+"&rol="+$rol;
              
            } // action: function(){
 
@@ -253,7 +253,7 @@ buttons: {
 
            action: function(){
 
-           window.location.href="usuario_menu_eliminar_validar.php?id_usuario="+id_usuario;           
+           window.location.href="usuario_menu_eliminar_validar.php?id_usuario="+$id_usuario;
              
            } // action: function(){
 

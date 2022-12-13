@@ -52,7 +52,7 @@ for($i=1;$i<=$_SESSION['total_articulos'];$i++){
 	}else{
 
 		$existencia_b=$row3["cantidad_existencia"];
-		$nor_env_b=$row3["cantidad_env"];
+		$nor_env_b=$row3["cantidad_enviada"];
 
 	}	
 
@@ -73,7 +73,7 @@ for($i=1;$i<=$_SESSION['total_articulos'];$i++){
 		$nor_env_bd=$nor_env_b+$_SESSION['carrito'][$i]['cantidad'];
 
 		// Guarda datos 
-		$sql="UPDATE articulos SET cantidad_existencia = .$existencia_bd., cantidad_env = .$nor_env_bd. ;
+		$sql="UPDATE articulos SET cantidad_existencia = .$existencia_bd., cantidad_enviada = .$nor_env_bd. ;
 		$sql.= WHERE (articulos.id_articulo = .$id_articulo_b.)";
 
 		$query = $mysqli->query($sql);
@@ -150,8 +150,9 @@ for($i=1;$i<=$_SESSION['total_articulos'];$i++){
 	$nro_renglon=$_SESSION['carrito'][$i]['orden'];
 	$id_articulo=$_SESSION['carrito'][$i]['id_articulo'];
 	$cantidad=$_SESSION['carrito'][$i]['cantidad'];
-	$nom_depen=$_SESSION['carrito'][$i]['precio'];
-	$responsable_dep=$_SESSION['carrito'][$i]['cantidad']*$_SESSION['carrito'][$i]['precio'];
+	$nom_depen=$_SESSION['carrito'][$i]['nom_depen'];
+	$responsable_dep=$_SESSION['carrito'][$i]['responsable_dep'];
+	$direccion=$_SESSION['carrito'][$i]['direccion'];
 
 	
 	$sql4="SELECT nombre_articulo ; 
@@ -178,7 +179,7 @@ $movimiento8=$row8['movimiento'];
 if($movimiento8=='no'){
 
 	$sql9="UPDATE dependencia SET movimiento = 'si' ";
-	$sql9.="WHERE (dependencia.nom_depen = ".$nom_depen.")"; 
+	$sql9.="WHERE (dependencia.id_dep = ".$id_dep.")"; 
 
 	$query9 = $mysqli->query($sql9);
 

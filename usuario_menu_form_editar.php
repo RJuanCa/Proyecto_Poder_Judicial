@@ -13,15 +13,13 @@ if ($definido==false){
          
 }
 
-if(isset($_GET['id_usuario'])) {
-
-    $id_usuario=$_GET['id_usuario'];
+if(isset($_GET['usuario'])) {
+    
     $usuario=utf8_decode($_GET['usuario']);
     $contrasena=$_GET['contrasena'];
     $nombre_apellido=utf8_decode($_GET['nombre_apellido']);
     $rol=$_GET['rol'];
 
-    $_SESSION['id_usuario2']=$id_usuario;
     $_SESSION['usuario2']=$usuario;
     $_SESSION['contrasena2']=$contrasena;
     $_SESSION['nombre_apellido2']=$nombre_apellido;
@@ -163,11 +161,11 @@ if(isset($_GET['id_usuario'])) {
         </div>
       </div>
 
-      <input id="id_usuario" class="form-control" type="hidden" name="id_usuario" value="<?php  echo $id_usuario  ?>"/>
+      <input id="usuario" class="form-control" type="hidden" name="usuario" value="<?php  echo $usuario  ?>"/>
 
       <div class="form-group">
         <div class="col-md-1 col-md-offset-2">
-          <button class="btn btn-success" name="submit2" onclick="Validar(document.getElementById('id_usuario').value,document.getElementById('usuario').value,document.getElementById('contrasena').value,document.getElementById('nombre_apellido').value,document.getElementById('rol').value);"><b>Guardar</b></button></p>
+          <button class="btn btn-success" name="submit2" onclick="Validar(document.getElementById('usuario').value,document.getElementById('contrasena').value,document.getElementById('nombre_apellido').value,document.getElementById('rol').value);"><b>Guardar</b></button></p>
         </div>
 
       </div>
@@ -180,7 +178,7 @@ if(isset($_GET['id_usuario'])) {
 <script>
 
 // Boton Guardar
-function Validar(id_usuario,usuario,contrasena,nombre_apellido,rol) {
+function Validar($usuario,$contrasena,$nombre_apellido,$rol) {
   
 // confirmation
 $.confirm({
@@ -198,7 +196,7 @@ buttons: {
           $.ajax({
             url: "usuario_menu_form_editar_validar.php",
             type: "POST",
-            data: "id_usuario="+id_usuario+"&usuario="+usuario+"&contrasena="+contrasena+"&nombre_apellido="+nombre_apellido+"&rol="+rol,
+            data: "&usuario="+$usuario+"&contrasena="+$contrasena+"&nombre_apellido="+$nombre_apellido+"&rol="+$rol,
             beforeSend: function () {
                 $("#resultado").html("<img src='imagen/loader-small.gif'/><font color='green'>&nbsp&nbspProcesando, por favor espere...</font>");
               },

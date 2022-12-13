@@ -12,23 +12,25 @@ if ($definido==false){
          
 }
 
-if(isset($_GET['nom_depen'])) {
+if(isset($_GET['id_dep'])) {
 
-    $nom_depen = $_GET['nom_depen'];
+    $id_dep = $_GET['id_dep'];
 
-    $sql10="SELECT * FROM dependencia WHERE (nom_depen = ".$nom_depen.")";
+    $sql="SELECT * FROM dependencia WHERE (id_dep = ".$id_dep.")";
 
-    $query10 = $mysqli->query($sql10);
-    $row = $query10; 
+    $query = $mysqli->query($sql);
+    $row = $query->fetch_assoc(); 
 
-    if ($query10->num_rows) {
+    if ($query->num_rows!=0) {
 
       $_SESSION['nom_depen']=$row['nom_depen'];
-      $nom_depen=$row['nom_depen'];
+      $id_dep=$row['id_dep'];
+      $nom_depen=utf8_decode($row['nom_depen']);
       $responsable_dep=utf8_decode($row['responsable_dep']);
       $cargo=utf8_decode( $row['cargo']);
       $direccion=utf8_decode($row['direccion']);
       
+      $_SESSION['id_dep2']=$id_dep;
       $_SESSION['nom_depen2']=$nom_depen;
       $_SESSION['responsable_dep2']=$responsable_dep;
       $_SESSION['cargo2']=$cargo;
@@ -213,7 +215,7 @@ if(isset($_GET['nom_depen'])) {
         <div class="col-md-1">
           
             <div class="input-group">
-            <input id="nom_depen" style="width:200px" class="form-control" type="text" name="nom_depen" size="20" maxlength="20" value="<?php echo $nom_depen ?>"/>
+            <input id="nom_depen" style="width:500px" class="form-control" type="text" name="nom_depen" size="70" maxlength="70" value="<?php echo $nom_depen ?>"/>
             </div>
             <span class="input-group-addon">por ejemplo: JUZGADO DE FALTAS</span>
          
@@ -223,14 +225,14 @@ if(isset($_GET['nom_depen'])) {
       <div class="form-group">
         <label for="responsable_dep" class="control-label col-md-2">Responsable:</label>
         <div class="col-md-9">
-          <input id="responsable_dep" class="form-control" type="text" name="responsable_dep" size="20" maxlength="20" value="<?php echo $responsable_dep ?>"/>
+          <input id="responsable_dep" class="form-control" type="text" name="responsable_dep" size="70" maxlength="70" value="<?php echo $responsable_dep ?>"/>
         </div>
       </div>
 
       <div class="form-group">
         <label for="cargo" class="control-label col-md-2">Cargo:</label>
         <div class="col-md-9">
-          <input id="cargo" class="form-control" type="text" name="cargo" size="50" maxlength="50" value="<?php echo $cargo ?>"/>
+          <input id="cargo" class="form-control" type="text" name="cargo" size="70" maxlength="70" value="<?php echo $cargo ?>"/>
         </div>
       </div>
 
@@ -241,7 +243,7 @@ if(isset($_GET['nom_depen'])) {
         </div>
       </div>      
 
-      <input id="nom_depen" class="form-control" type="hidden" name="nom_depen" value="<?php echo $nom_depen ?>"/>
+      <input id="id_dep" class="form-control" type="hidden" name="id_dep" value="<?php echo $id_dep ?>"/>
 
       <div class="form-group">
         <div class="col-md-1 col-md-offset-2">

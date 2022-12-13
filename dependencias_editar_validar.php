@@ -16,16 +16,17 @@ if ($definido==false){
 }
 
 
-
-$nom_depen = $_POST['nom_depen'];
-echo $nom_depen;
+/*
+$id_dep = $_POST['id_dep'];
+echo $id_dep;
 exit();
 
+$id_dep;
 $nom_depen;
 $responsable_dep;
 $cargo;
 $direccion;
-
+*/
 
 //validación
 $error_form = "";
@@ -41,7 +42,7 @@ if ($_POST["nom_depen"] == "") {
     $cargo=$_SESSION['cargo2'];
     $direccion=$_SESSION['direccion2'];    
 
-    echo "<script>location.href = 'dependencias_editar.php?nom_depen=$nom_depen'</script>";    
+    echo "<script>location.href = 'dependencias_editar.php?id_dep=$id_dep'</script>";    
     exit();
 
 }
@@ -56,7 +57,7 @@ if ($_POST["responsable_dep"] == "") {
     $cargo=$_SESSION['cargo2'];
     $direccion=$_SESSION['direccion2'];   
 
-    echo "<script>location.href = 'dependencias_editar.php?nom_depen=$nom_depen'</script>";    
+    echo "<script>location.href = 'dependencias_editar.php?id_dep=$id_dep'</script>";    
     exit();
 
 }
@@ -71,7 +72,7 @@ if ($_POST["cargo"] == "") {
     $cargo=$_SESSION['cargo2'];
     $direccion=$_SESSION["direccion2"];
 
-    echo "<script>location.href = 'dependencias_editar.php?nom_depen=$nom_depen'</script>";    
+    echo "<script>location.href = 'dependencias_editar.php?id_dep=$id_dep'</script>";    
     exit();
 
 }
@@ -86,7 +87,7 @@ if ($_POST["direccion"] == "") {
     $cargo=$_SESSION['cargo2'];
     $direccion=$_SESSION['direccion2'];
     
-    echo "<script>location.href = 'dependencias_editar.php?nom_depen=$nom_depen'</script>";    
+    echo "<script>location.href = 'dependencias_editar.php?id_dep=$id_dep'</script>";    
     exit();
 
 }
@@ -100,7 +101,7 @@ $direccion=$_POST['direccion'];
 if($nom_depen!=$_SESSION['nom_depen_actual2']){
     
     //Chequea que existe la Dependencia
-    $sql20="SELECT nom_depen FROM dependencia WHERE (nom_depen = '$nom_depen')";
+    $sql20="SELECT nom_depen FROM dependencia WHERE (id_dep = '$id_dep')";
     $query20 = $mysqli->query($sql20);
     // $row20=$query20->fetch_assoc();
 
@@ -114,13 +115,14 @@ if($nom_depen!=$_SESSION['nom_depen_actual2']){
         $cargo=$_SESSION['cargo2'];
         $direccion=$_SESSION["direccion2"];
 
-        echo "<script>location.href = 'dependencias_editar.php?nom_depen=$nom_depen'</script>";    
+        echo "<script>location.href = 'dependencias_editar.php?id_dep=$id_dep'</script>";    
         exit();
 
     }
 
 }
 
+$id_dep=$_POST['id_dep'];
 $nom_depen=utf8_encode( $_POST['nom_depen']);
 $responsable_dep=utf8_encode($_POST['responsable_dep']);
 $cargo=utf8_encode( $_POST['cargo']);
@@ -131,7 +133,7 @@ $direccion=utf8_encode($_POST['direccion']);
 $sql="UPDATE dependencia SET nom_depen = '".$nom_depen."'," ;
 $sql.= "responsable_dep = '".$responsable_dep."'," ;
 $sql.= "cargo = '".$cargo."', direccion = '".$direccion."'," ;
-$sql.= "WHERE (dependencia.nom_depen = '".$nom_depen."')";
+$sql.= "WHERE (dependencia.id_dep = '".$id_dep."')";
 
 $query = $mysqli->query($sql);
 $id_usuario=$_SESSION["id_usuario"];
@@ -140,7 +142,7 @@ $id_usuario=$_SESSION["id_usuario"];
 $sql8="SELECT movimiento" ; 
 $sql8.= "FROM usuarios WHERE (id_usuario = $id_usuario)";
 $query8 = $mysqli->query($sql8);
-$row8=$query8->fetch_assoc();
+//$row8=$query8->fetch_assoc();
 $movimiento8=$row8['movimiento'];
 
 if($movimiento8=='no'){
