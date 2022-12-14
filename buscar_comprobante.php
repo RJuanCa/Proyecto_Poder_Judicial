@@ -1,7 +1,7 @@
 <?php
+require('coneccion/conexion.php');
 session_start();
 define("NRO_REGISTROS",10);
-require_once('coneccion/conexion.php');
 
 // Si se cerro la sesión por otro lado
 $definido=isset($_SESSION['usuario']);
@@ -18,20 +18,20 @@ if(isset($_GET['nom_depen'])){
 
 	$nom_depen=$_GET['nom_depen'];
 
-	$sql2='SELECT nom_depen, direccion, responsable_dep, cargo FROM dependencia WHERE (nom_depen = '.$nom_depen.')';
+	$sql2="SELECT nom_depen, direccion, responsable_dep, cargo FROM dependencia WHERE (nom_depen = '$nom_depen')";
     
 	$query2 = $pdo_conn -> prepare($sql2); 
-	//$query2 -> execute(); 
+	$query2 -> execute(); 
 	$results = $query2 -> fetchAll(PDO::FETCH_OBJ); 
 
 	if($query2 -> rowCount() > 0) { 
 	
 	  foreach($results as $result) { 
 	
-	    $nom_depen = $result -> nom_depen;
+	    $nom_depen = $result -> nom_depen.", ".$result -> direccion;
 	    $_SESSION['nom_depen'] = $nom_depen;
-	    $_SESSION['responsable_dep'] = $result -> responsable_dep;	    
-	    $_SESSION['cargo'] = $result -> cargo;
+	    $responsable_dep = $result -> cargo .", ". $result -> responsable_dep;	    
+	    $_SESSION['responsable_dep']=$responsable_dep;
 
       } // foreach($results as $result)
 
@@ -145,15 +145,11 @@ if(isset($_GET['nom_depen'])){
 	Usuario: <?php echo $_SESSION['usuario']; ?>
 	</span>
 	</span>
-	<br/>
+	<br/><br/>
 	<b>Dependencia:</b> <?php echo $_SESSION['nom_depen']; ?>
 	<br/>
 	<b>Responsable de Dependencia:</b> <?php echo $_SESSION['responsable_dep']; ?>
 	<br/>
-	<b>Cargo:</b> <?php echo $_SESSION['cargo']; ?>
-	<br/>
-	
-	
   </p>		
   <div class="row">
     <div class="col-md-12">
@@ -264,7 +260,7 @@ return $tfecha;
 		<td><?php echo $fecha_reg; ?></td>
 		<td><?php echo $row['anulado']; ?></td>
 		<td>
-			<a href="comprobante_reporte.php?num_transferencia=<?php echo $row['num_transferencia'] ?>&num_transferencia=<?php echo $row['num_transferencia'] ?>&fecha_reg=<?php echo $fecha_reg ?>&cantidad=<?php echo $row['cantidad'] ?>&responsable_dep=<?php echo $row['responsable_dep'] ?>&id_articulo=<?php echo $row['id_articulo'] ?>">Vista | </a> 
+			<a href="comprobante_reporte.php?num_transferencia=<?php echo $row['num_transferencia'] ?>&fecha_reg=<?php echo $fecha_reg ?>&cantidad=<?php echo $row['cantidad'] ?>&responsable_dep=<?php echo $row['responsable_dep'] ?>&id_articulo=<?php echo $row['id_articulo'] ?>">Vista | </a> 
 			<?php
 			
 				if($row['anulado']=='no'){

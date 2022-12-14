@@ -20,17 +20,17 @@ if(isset($_GET['nom_depen'])) {
 }
 
 // Tabla dependencia
-$sql12="SELECT * FROM dependencia WHERE (nom_depen = $nom_depen)";
+$sql12="SELECT * FROM dependencia WHERE (nom_depen = '$nom_depen')";
 $query12 = $mysqli->query($sql12);
 
 if($query12->num_rows==0){
 
-  //echo "No hay datos para mostrar";
-  //exit();
+  echo "No hay datos para mostrar";
+  exit();
 
 }
 
-$row2=$query12;
+$row2=$query12->fetch_assoc();
 
 $valores_fecha_act = explode('-', $row2['fecha_reg']);
 $fecha_act=$valores_fecha_act[2]."-".$valores_fecha_act[1]."-".$valores_fecha_act[0];
@@ -135,7 +135,6 @@ function printe(){
 
   <div class="form-group">
 
-  
   <span class="clientelabel"><b><i>Juzgado: </i></b></span>
   <span class="clientedato"><?php echo utf8_decode($row2["nom_depen"]) ?></span>
   <br/>
@@ -145,15 +144,8 @@ function printe(){
   <br/>
  
   <span class="clientelabel"><b><i>Responsable: </i></b></span>
-  <span class="clientedato"><?php echo utf8_decode($row2["responsable_dep"]) ?></span>
+  <span class="clientedato"><?php echo ($row2["responsable_dep"]) ?></span>
   <br/>
-    
-    
-  <span class="clientelabel"><b><i>Cargo: </i></b></span>
-  <span class="clientedato"><?php echo utf8_decode($row2["cargo"]) ?></span>
-  <br/>
-
-    
   
   </div> <!-- class="form-group" -->
 
