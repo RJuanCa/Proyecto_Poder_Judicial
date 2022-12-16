@@ -16,7 +16,7 @@ if(isset($_GET['id_dep'])) {
 
     $id_dep = $_GET['id_dep'];
 
-    $sql="SELECT * FROM dependencia WHERE (id_dep = ".$id_dep.")";
+    $sql="SELECT * FROM dependencia WHERE (id_dep = '$id_dep')";
 
     $query = $mysqli->query($sql);
     $row = $query->fetch_assoc(); 
@@ -215,7 +215,7 @@ if(isset($_GET['id_dep'])) {
         <div class="col-md-1">
           
             <div class="input-group">
-            <input id="nom_depen" style="width:500px" class="form-control" type="text" name="nom_depen" size="70" maxlength="70" value="<?php echo $nom_depen ?>"/>
+            <input id="nom_depen" style="width:500px" class="form-control" type="text" name="nom_depen" size="70" maxlength="70" value="<?php echo ($_SESSION['nom_depen2']=$nom_depen); ?>"/>
             </div>
             <span class="input-group-addon">por ejemplo: JUZGADO DE FALTAS</span>
          

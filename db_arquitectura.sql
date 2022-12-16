@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2022 a las 03:54:46
+-- Tiempo de generación: 16-12-2022 a las 22:37:49
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.13
 
@@ -35,29 +35,28 @@ CREATE TABLE `articulos` (
   `marca` varchar(70) DEFAULT NULL,
   `modelo` varchar(70) DEFAULT NULL,
   `estado` varchar(70) DEFAULT NULL,
-  `cantidad_art` int(11) DEFAULT 0,
   `cantidad_env` int(11) DEFAULT 0,
   `cantidad_existencia` int(11) DEFAULT 0,
   `comprobantes` varchar(2) CHARACTER SET utf8 DEFAULT 'no',
   `alta_articulo` datetime DEFAULT NULL,
   `baja_articulo` datetime DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT 0
+  `usuario` varchar(70) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `articulos`
 --
 
-INSERT INTO `articulos` (`id_articulo`, `nombre_articulo`, `id_subrubro`, `id_rubro`, `marca`, `modelo`, `estado`, `cantidad_art`, `cantidad_env`, `cantidad_existencia`, `comprobantes`, `alta_articulo`, `baja_articulo`, `id_usuario`) VALUES
-(3518, 'ACONDICIONADOR DE AIRE SPLIT 2100/3000 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 0, 'no', '2022-11-04 15:37:46', '0000-00-00 00:00:00', 0),
-(3572, 'ACONDICIONADOR DE AIRE PORTATIL FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 0, 'no', '2022-11-04 15:38:00', '0000-00-00 00:00:00', 0),
-(3879, 'ACONDICIONADOR DE AIRE SPLIT 4300/4500 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 0, 'no', '2022-11-04 15:38:22', '0000-00-00 00:00:00', 0),
-(3880, 'ACONDICIONADOR DE AIRE SPLIT 5500/6000 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 0, 'no', '2022-11-04 15:38:34', '0000-00-00 00:00:00', 0),
-(3881, 'ACONDICIONADOR DE AIRE SPLIT 8000/9000 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 0, 'no', '2022-11-04 15:38:45', '0000-00-00 00:00:00', 0),
-(3882, 'ACONDICIONADOR DE AIRE SPLIT DE 9001 HASTA 18000 F', 441, 21, '', '', 'NUEVO', 0, 0, 0, 'no', '2022-11-04 15:50:21', '0000-00-00 00:00:00', 0),
-(3883, 'ACONDICIONADOR DE AIRE VENTANA 2100/3000 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 0, 'no', '2022-11-04 15:38:56', '0000-00-00 00:00:00', 0),
-(3884, 'ACONDICIONADOR DE AIRE VENTANA 4300/4500 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 0, 'no', '2022-11-04 15:39:06', '0000-00-00 00:00:00', 0),
-(3885, 'ACONDICIONADOR DE AIRE VENTANA 5500/6000 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 0, 'no', '2022-11-04 15:39:17', '0000-00-00 00:00:00', 0);
+INSERT INTO `articulos` (`id_articulo`, `nombre_articulo`, `id_subrubro`, `id_rubro`, `marca`, `modelo`, `estado`, `cantidad_env`, `cantidad_existencia`, `comprobantes`, `alta_articulo`, `baja_articulo`, `usuario`) VALUES
+(3518, 'ACONDICIONADOR DE AIRE SPLIT 2100/3000 FGS.', 441, 21, '', '', 'Nuevo', 0, 10, 'no', '2022-11-04 15:37:46', '0000-00-00 00:00:00', '0'),
+(3572, 'ACONDICIONADOR DE AIRE PORTATIL FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 'no', '2022-11-04 15:38:00', '0000-00-00 00:00:00', '0'),
+(3879, 'ACONDICIONADOR DE AIRE SPLIT 4300/4500 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 'no', '2022-11-04 15:38:22', '0000-00-00 00:00:00', '0'),
+(3880, 'ACONDICIONADOR DE AIRE SPLIT 5500/6000 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 'no', '2022-11-04 15:38:34', '0000-00-00 00:00:00', '0'),
+(3881, 'ACONDICIONADOR DE AIRE SPLIT 8000/9000 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 'no', '2022-11-04 15:38:45', '0000-00-00 00:00:00', '0'),
+(3882, 'ACONDICIONADOR DE AIRE SPLIT DE 9001 HASTA 18000 F', 441, 21, '', '', 'NUEVO', 0, 0, 'no', '2022-11-04 15:50:21', '0000-00-00 00:00:00', '0'),
+(3883, 'ACONDICIONADOR DE AIRE VENTANA 2100/3000 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 'no', '2022-11-04 15:38:56', '0000-00-00 00:00:00', '0'),
+(3884, 'ACONDICIONADOR DE AIRE VENTANA 4300/4500 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 'no', '2022-11-04 15:39:06', '0000-00-00 00:00:00', '0'),
+(3885, 'ACONDICIONADOR DE AIRE VENTANA 5500/6000 FGS.', 441, 21, '', '', 'Nuevo', 0, 0, 'no', '2022-11-04 15:39:17', '0000-00-00 00:00:00', '0');
 
 -- --------------------------------------------------------
 
@@ -71,10 +70,10 @@ CREATE TABLE `articulos_entregados` (
   `id_rubro` int(11) NOT NULL,
   `id_subrubro` int(11) NOT NULL,
   `marca` varchar(70) DEFAULT NULL,
-  `id_dep` int(11) NOT NULL,
+  `nom_depen` varchar(70) NOT NULL,
   `responsable_dep` varchar(70) DEFAULT NULL,
   `cantidad` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
+  `usuario` varchar(70) CHARACTER SET utf8 DEFAULT NULL,
   `fecha_envio` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -118,10 +117,10 @@ INSERT INTO `climatizacion` (`id_climatizacion`, `id_rubro`, `id_subrubro`, `id_
 CREATE TABLE `comprobantes` (
   `nro_transferencia` int(11) NOT NULL DEFAULT 0,
   `fecha_reg` date NOT NULL,
-  `id_dep` int(11) NOT NULL,
+  `nom_depen` varchar(70) NOT NULL,
   `cantidad_enviada` int(11) NOT NULL,
   `anulado` varchar(2) CHARACTER SET latin1 DEFAULT 'no',
-  `id_usuario` int(11) NOT NULL
+  `usuario` varchar(70) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -136,7 +135,7 @@ CREATE TABLE `comprobantes_reng` (
   `nro_renglon` int(11) NOT NULL,
   `id_articulo` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `nom_depen` int(11) NOT NULL,
+  `nom_depen` varchar(70) CHARACTER SET utf8 NOT NULL,
   `responsable_dep` varchar(70) CHARACTER SET utf8 DEFAULT NULL,
   `direccion` varchar(70) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -158,6 +157,16 @@ CREATE TABLE `dependencia` (
   `hora_reg` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `id_usuario` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `dependencia`
+--
+
+INSERT INTO `dependencia` (`id_dep`, `nom_depen`, `direccion`, `responsable_dep`, `cargo`, `movimiento`, `fecha_reg`, `hora_reg`, `id_usuario`) VALUES
+(1, 'Juzgado de Faltas N°1', 'C. Pellegrini 800', 'Dr', 'Juez', NULL, '2022-11-29', '08:35:30 PM', 0),
+(2, '', 'C. Pellegrini 800', 'Dr', 'Juez', NULL, '2022-12-05', '06:54:32 PM', 0),
+(8, 'Juzgado de InstrucciÃ³n N 1', 'C. Pellegrini 800', 'Dr', 'Juez', NULL, '2022-12-13', '10:15:27 PM', 1),
+(9, 'Juzgado de Faltas n2', '9 de Julio 1051', 'Dr', 'Juez', NULL, '2022-12-16', '05:59:23 PM', 1);
 
 -- --------------------------------------------------------
 
@@ -222,7 +231,7 @@ INSERT INTO `subrubro` (`id_rubro`, `id_subrubro`, `nombre_subrubro`) VALUES
 
 CREATE TABLE `tab_correlativos` (
   `Id_correlativo` int(11) NOT NULL,
-  `nro_comprobante` int(11) NOT NULL,
+  `nro_transferencia` int(11) NOT NULL,
   `id_articulo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -247,7 +256,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `usuario`, `contrasena`, `nombre_apellido`, `rol`, `estado`, `movimiento`) VALUES
-(0, 'RomeroR', 'RomeroR', 'ROMERO R. Juan Carlos', 'admin', 'activo', 'no');
+(1, 'RomeroR', 'RomeroR', 'ROMERO R. Juan Carlos', 'admin', 'activo', 'si'),
+(2, 'RodolfoC', 'RodolfoC', 'Rodolfo Cocchia', 'admin', 'activo', 'no');
 
 --
 -- Índices para tablas volcadas
@@ -269,8 +279,9 @@ ALTER TABLE `articulos_entregados`
   ADD KEY `id_articulo` (`id_articulo`),
   ADD KEY `id_rubro` (`id_rubro`),
   ADD KEY `id_subrubro` (`id_subrubro`),
-  ADD KEY `id_dep` (`id_dep`),
-  ADD KEY `id_usuario` (`id_usuario`);
+  ADD KEY `id_dep` (`nom_depen`),
+  ADD KEY `id_usuario` (`usuario`),
+  ADD KEY `id_usuario_2` (`usuario`);
 
 --
 -- Indices de la tabla `climatizacion`
@@ -285,19 +296,24 @@ ALTER TABLE `climatizacion`
 -- Indices de la tabla `comprobantes`
 --
 ALTER TABLE `comprobantes`
-  ADD PRIMARY KEY (`nro_transferencia`);
+  ADD PRIMARY KEY (`nro_transferencia`),
+  ADD KEY `nom_depen` (`nom_depen`);
 
 --
 -- Indices de la tabla `comprobantes_reng`
 --
 ALTER TABLE `comprobantes_reng`
-  ADD PRIMARY KEY (`id_compte_reng`);
+  ADD PRIMARY KEY (`id_compte_reng`),
+  ADD KEY `nom_depen` (`nom_depen`);
 
 --
 -- Indices de la tabla `dependencia`
 --
 ALTER TABLE `dependencia`
-  ADD PRIMARY KEY (`id_dep`);
+  ADD PRIMARY KEY (`id_dep`),
+  ADD UNIQUE KEY `nom_depen` (`nom_depen`),
+  ADD KEY `nom_depen_2` (`nom_depen`),
+  ADD KEY `nom_depen_3` (`nom_depen`);
 
 --
 -- Indices de la tabla `fecha_pc`
@@ -322,13 +338,15 @@ ALTER TABLE `subrubro`
 -- Indices de la tabla `tab_correlativos`
 --
 ALTER TABLE `tab_correlativos`
-  ADD PRIMARY KEY (`Id_correlativo`);
+  ADD PRIMARY KEY (`Id_correlativo`),
+  ADD KEY `nro_transferencia` (`nro_transferencia`);
 
 --
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id_usuario`);
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD KEY `usuario` (`usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -353,6 +371,12 @@ ALTER TABLE `comprobantes_reng`
   MODIFY `id_compte_reng` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `dependencia`
+--
+ALTER TABLE `dependencia`
+  MODIFY `id_dep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT de la tabla `fecha_pc`
 --
 ALTER TABLE `fecha_pc`
@@ -363,6 +387,12 @@ ALTER TABLE `fecha_pc`
 --
 ALTER TABLE `tab_correlativos`
   MODIFY `Id_correlativo` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
@@ -382,8 +412,7 @@ ALTER TABLE `articulos_entregados`
   ADD CONSTRAINT `articulos_entregados_ibfk_1` FOREIGN KEY (`id_articulo`) REFERENCES `articulos` (`id_articulo`),
   ADD CONSTRAINT `articulos_entregados_ibfk_2` FOREIGN KEY (`id_rubro`) REFERENCES `rubro` (`id_rubro`),
   ADD CONSTRAINT `articulos_entregados_ibfk_3` FOREIGN KEY (`id_subrubro`) REFERENCES `subrubro` (`id_subrubro`),
-  ADD CONSTRAINT `articulos_entregados_ibfk_4` FOREIGN KEY (`id_dep`) REFERENCES `dependencia` (`id_dep`),
-  ADD CONSTRAINT `articulos_entregados_ibfk_5` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
+  ADD CONSTRAINT `articulos_entregados_ibfk_6` FOREIGN KEY (`nom_depen`) REFERENCES `dependencia` (`nom_depen`);
 
 --
 -- Filtros para la tabla `climatizacion`

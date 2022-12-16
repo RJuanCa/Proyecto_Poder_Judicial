@@ -1,4 +1,4 @@
-<?php  
+<?php
 
 sleep(1);
 
@@ -10,23 +10,22 @@ $definido=isset($_SESSION['usuario']);
 // No está definido la variable
 if ($definido==false){
 
-	header("Location:error1.php");
-	exit();
-         
+	header("Location:index.php");
+	exit();         
 }
 
-$id_dep=$_GET["id_dep"];
+$nom_depen=$_GET["nom_depen"];
 
 // Elimina la dependencia si no tiene movimientos
-$sql="SELECT movimiento FROM dependencia WHERE (id_dep = ".$id_dep.")";
+$sql="SELECT movimiento FROM dependencia WHERE (nom_depen = ".$nom_depen.")";
 $query=$mysqli->query($sql);
 $row=$query->fetch_assoc();
 
-if($query->num_rows!=0){
+if($query->num_rows==0){
 	if ($row['movimiento']=="no") {
 
-  		$sql="DELETE FROM dependencia WHERE (id_dep = ".$id_dep.")";
-  		$query=$mysqli->query($sql);
+  		$sql1="DELETE FROM dependencia WHERE (nom_depen = $nom_depen)";
+  		$query=$mysqli->query($sql1);
           
   		$_SESSION['dependencia_eliminado']="si";
   		echo '<script>location.href = "buscar_dependencias.php"</script>';
@@ -34,8 +33,7 @@ if($query->num_rows!=0){
 	}else{
 
   		$_SESSION['dependencia_tiene_comprobantes']="si";
-  		echo "<script>location.href = 'buscar_dependencias.php'</script>";    
-
+  		echo "<script>location.href = 'buscar_dependencias.php'</script>";
 	}
 }
 

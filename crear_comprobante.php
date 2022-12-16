@@ -190,7 +190,7 @@ if(isset($_POST['submit2'])){
 		}
 	}
 //ver despues !=0 o ==0
-	if($entro!=0){
+	if($entro==0){
 
 		$_SESSION['reglon_actualizado']="no";
 		$_SESSION['mensaje_no_actualizado']="El reglon nro. $indicee no se actualizó la Cantidad";
@@ -314,7 +314,7 @@ if(isset($_POST['submit'])){
   }
   .th_color{
 
-  	background: green;
+  	background: blue;
 
   }
   .navbar{
@@ -447,7 +447,7 @@ if(isset($_POST['submit'])){
 
 <?php
 
-	}  for($i=0;$i<$_SESSION['total_articulos'];$i++)
+	}  for($i!=0;$i<$_SESSION['total_articulos'];$i++)
 
 	
 	
@@ -461,7 +461,7 @@ if(isset($_POST['submit'])){
 
 <br/><br/>
 	<div align="right">
-	<b>Nro. de Artículos: </b> <?php echo number_format($cantidad2,0,',','.'); ?>
+	<b>Nro. de Artículos: </b> <?php echo number_format( $cantidad2,0,',','.'); ?>
 	</div>
 
 </div>

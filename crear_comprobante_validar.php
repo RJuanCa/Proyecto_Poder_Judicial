@@ -19,7 +19,7 @@ if ($definido==false){
 //exit();
 
 // Chequea si hay un valor vacio
-for($i=1;$i<=$_SESSION['total_articulos'];$i++){
+for($i!=0;$i<=$_SESSION['total_articulos'];$i++){
 
 	if(empty($_SESSION['carrito'][$i]['cantidad'])){
 

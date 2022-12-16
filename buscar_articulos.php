@@ -226,7 +226,7 @@ return $tfecha;
     <td>
 		<div class="monto2"><?php echo $row['cantidad_existencia']; ?></div>
 	</td>
-		<td><a href="crear_comprobante.php?nombre_articulo=<?php echo $row['nombre_articulo']?>&marca=<?php echo $row['marca']?>&modelo=<?php echo $row['modelo']?>&existencia=<?php echo $row['cantidad_existencia']?> ">Agregar</a></td>
+		<td><a href="crear_comprobante.php?id_articulo=<?php echo $row['id_articulo']?>&nombre_articulo=<?php echo $row['nombre_articulo']?>&id_subrubro=<?php echo $row['id_subrubro']?>&id_rubro=<?php echo $row['id_rubro']?>&existencia=<?php echo $row['cantidad_existencia']?> ">Agregar</a></td>
 
 	  </tr>
     <?php
